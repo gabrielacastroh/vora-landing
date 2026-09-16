@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import voraLogo from '../assets/vora/vora-logo.png';
+import iconInstagram from '../assets/vora/footer-social-1.png';
+import iconTiktok from '../assets/vora/footer-social-2.png';
+import iconX from '../assets/vora/footer-social-3.png';
+
+const explora = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Colección', href: '/coleccion' },
+  { label: 'Sobre Vora', href: '#nosotros' },
+  { label: 'Contacto', href: '#contacto' },
+];
+
+const masDeVora = [
+  { label: 'Filosofía', href: '#' },
+  { label: 'Preguntas Frecuentes', href: '#' },
+];
+---
+
+<footer id="contacto" class="relative bg-vora-maroon px-6 py-16 sm:px-10 lg:px-[60px]">
+  <div class="grid grid-cols-1 gap-12 border-b border-white/20 pb-10 lg:grid-cols-4">
+    <div class="flex flex-col items-start gap-6 lg:col-span-1">
+      <Image src={voraLogo} alt="VORA" class="h-[78px] w-auto" width={193} height={78} />
+      <p class="text-[13px] font-extralight capitalize text-white">
+        Para quienes no se detienen. Una mentalidad en constante movimiento.
+      </p>
+      <p class="text-[13px] font-normal uppercase text-vora-cream">Ambición · Propósito · Evolución</p>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <p class="text-[13px] font-medium uppercase text-white">Explora</p>
+      {explora.map((item) => (
+        <a href={item.href} class="text-[13px] font-extralight capitalize text-white/80 hover:text-white">
+          {item.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <p class="text-[13px] font-medium uppercase text-white">Más de VORA</p>
+      {masDeVora.map((item) => (
+        <a href={item.href} class="text-[13px] font-extralight capitalize text-white/80 hover:text-white">
+          {item.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <p class="text-[13px] font-medium uppercase text-white">Sigamos avanzando</p>
+      <p class="text-[13px] font-extralight text-white">Encuéntranos en</p>
+      <div class="flex items-center gap-4">
+        <a href="#" aria-label="Instagram"><Image src={iconInstagram} alt="" class="size-5" width={21} height={21} /></a>
+        <a href="#" aria-label="TikTok"><Image src={iconTiktok} alt="" class="size-5" width={18} height={20} /></a>
+        <a href="#" aria-label="X"><Image src={iconX} alt="" class="size-5" width={20} height={20} /></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="pt-6 text-[11px] font-thin text-white">2026 vora, todos los derechos reservados.</p>
+</footer>

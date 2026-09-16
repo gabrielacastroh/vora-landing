@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import voraLogo from '../assets/vora/vora-logo.png';
+
+interface Props {
+  active?: 'inicio' | 'coleccion' | 'ropa' | 'nosotros' | 'contacto';
+  theme?: 'dark' | 'light';
+}
+
+const { active = 'inicio', theme = 'dark' } = Astro.props;
+
+const links = [
+  { label: 'inicio', href: '/', key: 'inicio' },
+  { label: 'colección', href: '/coleccion', key: 'coleccion' },
+  { label: 'ropa', href: '#', key: 'ropa' },
+  { label: 'nosotros', href: '#', key: 'nosotros' },
+  { label: 'contacto', href: '#contacto', key: 'contacto' },
+];
+
+const activeColor = theme === 'dark' ? 'text-white' : 'text-[#6d1212]';
+const inactiveColor = theme === 'dark' ? 'text-white/50' : 'text-[#6d1212]/50';
+---
+
+<header class="absolute top-0 left-0 z-20 flex w-full items-center justify-between px-6 py-8 sm:px-10 lg:px-[60px]">
+  <a href="/" aria-label="VORA — inicio">
+    <Image src={voraLogo} alt="VORA" class="h-10 w-auto sm:h-[53px]" width={131} height={53} />
+  </a>
+  <nav class="hidden items-center justify-center gap-10 text-[13px] font-medium tracking-wide uppercase md:flex">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        class:list={['transition-colors', link.key === active ? activeColor : inactiveColor]}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</header>

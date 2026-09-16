@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", sans-serif;
+  --font-display: "Archivo", sans-serif;
+
+  --color-vora-bg: #0b0b0d;
+  --color-vora-cream: #ece6dd;
+  --color-vora-muted: #8d877d;
+  --color-vora-red: #a32b32;
+  --color-vora-maroon: #5c141a;
+}
+
+body {
+  background-color: var(--color-vora-bg);
+}
+
+/* Figma frames are fixed 1440px canvases; scale them down proportionally
+   instead of reflowing, so the rendering stays identical to the prototype. */
+.vora-stage {
+  container-type: inline-size;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.vora-frame-box {
+  /* tan(atan2()) turns the two lengths into a unitless ratio; plain division
+     by a length is invalid CSS and silently kills the calc. */
+  --vora-scale: min(1, tan(atan2(100cqw, 1440px)));
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.vora-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  transform: scale(var(--vora-scale));
+  transform-origin: top left;
+  overflow: hidden;
+}
