@@ -11,6 +11,8 @@
   --color-vora-cream: #ece6dd;
   --color-vora-muted: #8d877d;
   --color-vora-red: #a32b32;
+  /* Same red, lifted for small text on the dark background: #a32b32 is ~2:1 there, this is ~4.9:1 (WCAG AA). */
+  --color-vora-red-bright: #d94f56;
   --color-vora-maroon: #5c141a;
 }
 

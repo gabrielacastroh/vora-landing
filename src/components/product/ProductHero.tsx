@@ -93,7 +93,7 @@ export default function ProductHero({ product }: { product: Product }) {
             {product.name}
           </h1>
           <div className="flex flex-col items-start gap-3" style={info('product-copy')}>
-            <p data-reveal className="text-sm font-semibold uppercase text-vora-red">{product.variant}</p>
+            <p data-reveal className="text-sm font-semibold uppercase text-vora-red-bright">{product.variant}</p>
             <p data-reveal className="text-sm leading-relaxed text-vora-muted">{product.description}</p>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function ProductHero({ product }: { product: Product }) {
               </a>
             </div>
           </div>
-          <a href="/coleccion" className="text-xs font-bold text-vora-red underline">
+          <a href="/coleccion" className="text-xs font-bold text-vora-red-bright underline">
             VER COLECCIÓN ↓
           </a>
         </div>

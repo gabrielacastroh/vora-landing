@@ -36,7 +36,7 @@ export default function ProductCard({ slug, name, variant, image, ratio, theme, 
           {/* Muted grey on cream fails contrast; the light theme uses a darker step. */}
           <p className={`text-xs ${light ? 'text-[#6b655c]' : 'text-[#8d877d]'}`}>{variant}</p>
         </div>
-        <p className="text-[0.6875rem] font-bold text-[#a32b32]">VER PRODUCTO →</p>
+        <p className={`text-[0.6875rem] font-bold ${light ? 'text-vora-red' : 'text-vora-red-bright'}`}>VER PRODUCTO →</p>
       </div>
     </a>
   );

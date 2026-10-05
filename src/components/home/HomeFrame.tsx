@@ -169,7 +169,7 @@ function Hero() {
 
       <div data-hero-content className={`${container} relative flex flex-1 flex-col pt-28 pb-14 lg:pt-[8.3125rem] lg:pb-20`}>
         <div className="my-auto flex max-w-[45rem] flex-col items-start gap-6 py-12">
-          <p data-split="chars" data-delay="0.3" className="text-sm font-semibold uppercase text-[#a32b32]">
+          <p data-split="chars" data-delay="0.3" className="text-sm font-semibold uppercase text-vora-red-bright">
             MADE TO MOVE FORWARD
           </p>
           <h1
@@ -208,7 +208,7 @@ function FeaturedCollection() {
         COLECCIÓN DESTACADA
       </h2>
       <div data-reveal className="mt-2 uppercase">
-        <p className="text-2xl font-semibold text-[#a32b32]">COLECCIÓN 01</p>
+        <p className="text-2xl font-semibold text-vora-red-bright">COLECCIÓN 01</p>
         <p className="text-sm font-thin text-[#cecece]">SS26 — PRE-RELEASE</p>
       </div>
 
@@ -219,7 +219,7 @@ function FeaturedCollection() {
       </div>
 
       <a data-reveal href="/coleccion" className="group mx-auto mt-16 flex w-fit items-center gap-2 lg:mt-[6.8125rem]">
-        <span className="text-sm font-bold uppercase text-[#a32b32]">EXPLORAR COLECCIÓN</span>
+        <span className="text-sm font-bold uppercase text-vora-red-bright">EXPLORAR COLECCIÓN</span>
         <img alt="" src={arrowRight1.src} className="size-3.5 transition-transform group-hover:translate-x-1" />
       </a>
     </section>
