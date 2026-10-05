@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 @theme {
   --font-sans: "Geist", sans-serif;
@@ -25,4 +26,172 @@
 body {
   background-color: var(--color-vora-bg);
   overflow-x: clip;
+}
+
+p {
+  /* Longhand on purpose: the `text-wrap` shorthand also resets wrapping and breaks `whitespace-nowrap`. */
+  text-wrap-style: pretty;
+}
+
+/* ---------- Motion: initial states (only when JS + motion are on, so nothing hides without them) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js-motion :is([data-split], [data-drift], [data-reveal], [data-hero-item], [data-hero-img]) {
+    visibility: hidden;
+  }
+  .js-motion [data-clip] {
+    clip-path: inset(100% 0% 0% 0%);
+  }
+  .js-motion [data-line] {
+    transform: scaleX(0);
+  }
+}
+
+/* ---------- Cross-document View Transitions ---------- */
+@view-transition {
+  navigation: auto;
+}
+
+[data-nav] {
+  view-transition-name: site-nav;
+}
+/* Above the morphing product photo, which would otherwise cover the logo mid-transition. */
+::view-transition-group(site-nav) {
+  z-index: 20;
+}
+
+/* Page to page: the old page dissolves into the destination canvas (Layout `canvas`) while the
+   new one rises into place. Full-bleed fades only, no shapes moving across the screen. */
+::view-transition-old(root) {
+  animation: vora-fade-out 0.35s cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(root) {
+  animation: vora-page-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+::view-transition-group(.product) {
+  z-index: 10;
+  animation-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ---------- Prev/next between products: directional, choreographed swap ----------
+   Root stays put (same layout); the photo is replaced by a rising curtain and each
+   info block leaves upward while the new one follows in a stagger. `swap-prev` mirrors it. */
+html:active-view-transition-type(product-swap) {
+  --swap-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --swap-shift: -2.5rem;
+
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    animation: none;
+  }
+
+  /* Photo: old slides away and is clipped off, new is uncovered while settling from a zoom. */
+  &::view-transition-group(.product) {
+    animation-duration: 1.1s;
+  }
+  /* Keep the zoomed-in photo inside its column. */
+  &::view-transition-image-pair(.product) {
+    overflow: clip;
+  }
+  &::view-transition-old(.product) {
+    animation: vora-photo-out-up 1.1s var(--swap-ease) both;
+  }
+  &::view-transition-new(.product) {
+    animation: vora-photo-in-up 1.1s var(--swap-ease) both;
+  }
+
+  /* Info blocks: geometry glides, snapshots never stretch when text length differs. */
+  &::view-transition-group(.info) {
+    animation-duration: 0.9s;
+    animation-timing-function: var(--swap-ease);
+  }
+  &::view-transition-old(.info),
+  &::view-transition-new(.info) {
+    height: auto;
+    object-fit: none;
+    object-position: left top;
+  }
+  &::view-transition-old(.info) {
+    animation: vora-info-out 0.5s cubic-bezier(0.7, 0, 0.84, 0) both;
+  }
+  &::view-transition-new(.info) {
+    animation: vora-info-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  }
+  &::view-transition-new(product-copy) {
+    animation-delay: 0.42s;
+  }
+  &::view-transition-new(product-details) {
+    animation-delay: 0.49s;
+  }
+  &::view-transition-new(product-sizes) {
+    animation-delay: 0.56s;
+  }
+}
+
+html:active-view-transition-type(swap-prev) {
+  --swap-shift: 2.5rem;
+
+  &::view-transition-old(.product) {
+    animation-name: vora-photo-out-down;
+  }
+  &::view-transition-new(.product) {
+    animation-name: vora-photo-in-down;
+  }
+}
+
+@keyframes vora-photo-out-up {
+  to {
+    transform: translateY(-25%);
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes vora-photo-in-up {
+  from {
+    transform: scale(1.18);
+    clip-path: inset(100% 0 0 0);
+  }
+}
+@keyframes vora-photo-out-down {
+  to {
+    transform: translateY(25%);
+    clip-path: inset(100% 0 0 0);
+  }
+}
+@keyframes vora-photo-in-down {
+  from {
+    transform: scale(1.18);
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes vora-info-out {
+  to {
+    opacity: 0;
+    transform: translateY(var(--swap-shift));
+  }
+}
+@keyframes vora-info-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--swap-shift) * -1.4));
+  }
+}
+
+@keyframes vora-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vora-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }

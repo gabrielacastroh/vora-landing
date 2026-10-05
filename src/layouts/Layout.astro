@@ -4,18 +4,23 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  /** Page canvas color. View Transitions expose it behind the animating pages, so it
+   *  must match the page or navigation flashes the default dark canvas. */
+  canvas?: string;
 }
 
-const { title, description = 'VORA — ropa para una generación que no se detiene.' } = Astro.props;
+const { title, description = 'VORA — ropa para una generación que no se detiene.', canvas = '#0b0b0d' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" style={`background-color: ${canvas}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,8 +28,56 @@ const { title, description = 'VORA — ropa para una generación que no se detie
       rel="stylesheet"
     />
     <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const html = document.documentElement;
+        // Product → product (prev/next): same layout, so swap content in place instead of
+        // replaying the page wipe and the text intros, which reads as a flicker.
+        const path = (url) => new URL(url).pathname;
+        const isProduct = (url) => !!url && path(url).startsWith('/producto/');
+        // The nav only stays pinned across pages with the same theme; between dark and light
+        // it must travel with the page, or the old nav lingers as a dark band over the new one.
+        const navTheme = (url) => (path(url).startsWith('/coleccion') ? 'light' : 'dark');
+        const unpinNav = () => document.querySelector('[data-nav]')?.style.setProperty('view-transition-name', 'none');
+        addEventListener('pageswap', (e) => {
+          const to = e.activation?.entry?.url;
+          if (e.viewTransition && to && navTheme(to) !== navTheme(location.href)) unpinNav();
+        });
+        addEventListener('pagereveal', (e) => {
+          const from = window.navigation?.activation?.from?.url;
+          if (e.viewTransition && from && navTheme(from) !== navTheme(location.href)) unpinNav();
+        });
+        const swap = isProduct(window.navigation?.activation?.from?.url) && isProduct(location.href);
+        if (swap) {
+          html.dataset.swap = '';
+          // Set by the prev/next arrows; back/forward history defaults to "next".
+          let dir = 'next';
+          try {
+            dir = sessionStorage.getItem('vora-dir') || dir;
+            sessionStorage.removeItem('vora-dir');
+          } catch {}
+          addEventListener(
+            'pagereveal',
+            (e) => {
+              // types is Set-like: add() takes one value at a time.
+              e.viewTransition?.types.add('product-swap');
+              e.viewTransition?.types.add(`swap-${dir}`);
+            },
+            { once: true },
+          );
+        }
+        // Hide animated elements before first paint; reveal everything if the motion bundle never runs.
+        if (!swap && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+          html.classList.add('js-motion');
+          setTimeout(() => window.__voraMotion || html.classList.remove('js-motion'), 4000);
+        }
+      })();
+    </script>
   </head>
   <body class="bg-vora-bg font-sans antialiased">
     <slot />
+    <script>
+      import '../scripts/motion';
+    </script>
   </body>
 </html>

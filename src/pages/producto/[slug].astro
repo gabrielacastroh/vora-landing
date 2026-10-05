@@ -19,9 +19,9 @@ if (!product) return Astro.redirect('/coleccion');
 ---
 
 <Layout title={`${product.name} — VORA`} description={product.description}>
-  <FrameNav active="coleccion" background={productNavBg.src} theme="dark" client:load />
+  <FrameNav active="coleccion" background={productNavBg.src} theme="dark" />
   <main>
-    <ProductHero product={product} client:load />
+    <ProductHero product={product} />
   </main>
   <FrameFooter />
 </Layout>

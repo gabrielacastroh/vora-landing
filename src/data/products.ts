@@ -4,6 +4,9 @@ import shopCardVora03 from '../assets/vora/shop-card-vora03.png';
 import shopCardVora04 from '../assets/vora/shop-card-vora04.png';
 import shopCardVora05 from '../assets/vora/shop-card-vora05.png';
 import productModelBackView from '../assets/vora/product-model-back-view.png';
+import shopHeroModel from '../assets/vora/shop-hero-model.png';
+import shopPortrait2 from '../assets/vora/shop-mask-portrait-2.png';
+import shopPortrait3 from '../assets/vora/shop-mask-portrait-3.png';
 
 export interface Product {
   slug: string;
@@ -12,6 +15,10 @@ export interface Product {
   color: string;
   cardImage: ImageMetadata;
   heroImage: ImageMetadata;
+  /** object-position for the hero photo, to keep the model in frame. */
+  heroPosition?: string;
+  /** No model photo yet: show the garment whole instead of cropping it. */
+  packshot?: boolean;
   description: string;
   details: { label: string; value: string }[];
   sizes: string[];
@@ -41,7 +48,7 @@ export const products: Product[] = [
     variant: 'Camiseta / Beige',
     color: 'Beige',
     cardImage: shopCardVora02,
-    heroImage: shopCardVora02,
+    heroImage: shopPortrait3,
     description:
       'Camiseta de corte oversize en algodón de alto gramaje, con caída estructurada y un tono beige versátil pensado para moverse entre el día y la noche.',
     details: [
@@ -58,7 +65,7 @@ export const products: Product[] = [
     variant: 'Camiseta / Verde',
     color: 'Verde',
     cardImage: shopCardVora03,
-    heroImage: shopCardVora03,
+    heroImage: shopPortrait2,
     description:
       'Silueta oversize en verde profundo, con estampado frontal que resume la filosofía VORA: seguir avanzando sin perder identidad.',
     details: [
@@ -76,6 +83,7 @@ export const products: Product[] = [
     color: 'Blanco',
     cardImage: shopCardVora04,
     heroImage: shopCardVora04,
+    packshot: true,
     description:
       'Un básico reinterpretado: algodón premium en blanco puro, corte oversize y acabados reforzados para el uso diario.',
     details: [
@@ -92,7 +100,8 @@ export const products: Product[] = [
     variant: 'Camiseta / Azul Claro',
     color: 'Azul claro',
     cardImage: shopCardVora05,
-    heroImage: shopCardVora05,
+    heroImage: shopHeroModel,
+    heroPosition: '68% center',
     description:
       'Azul claro con estampado gráfico contemporáneo, corte oversize y algodón de alto gramaje para una caída natural.',
     details: [

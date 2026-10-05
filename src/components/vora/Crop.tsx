@@ -1,6 +1,4 @@
 import type { CSSProperties, ReactNode } from 'react';
-import { motion } from 'motion/react';
-import { reveal } from './mask';
 
 const pct = (n: number, of: number) => `${(n / of) * 100}%`;
 
@@ -13,6 +11,8 @@ interface Props {
   /** Image rect relative to that window, in design px: [x, y, width, height]. */
   img: [number, number, number, number];
   className?: string;
+  /** Scroll parallax factor, see data-speed in scripts/motion.ts. */
+  speed?: number;
   style?: CSSProperties;
   children?: ReactNode;
 }
@@ -21,9 +21,9 @@ interface Props {
  * Figma rectangle mask as a plain overflow crop. Every offset is a percentage of
  * the window, so the framing is identical at any rendered size.
  */
-export default function Crop({ src, alt = '', w, h, img: [x, y, iw, ih], className = 'relative', style, children }: Props) {
+export default function Crop({ src, alt = '', w, h, img: [x, y, iw, ih], className = 'relative', speed, style, children }: Props) {
   return (
-    <motion.div {...reveal} className={`overflow-hidden ${className}`} style={{ aspectRatio: `${w} / ${h}`, ...style }}>
+    <div data-clip data-speed={speed} className={`overflow-hidden ${className}`} style={{ aspectRatio: `${w} / ${h}`, ...style }}>
       <img
         src={src}
         alt={alt}
@@ -33,6 +33,6 @@ export default function Crop({ src, alt = '', w, h, img: [x, y, iw, ih], classNa
         style={{ left: pct(x, w), top: pct(y, h), width: pct(iw, w), height: pct(ih, h) }}
       />
       {children}
-    </motion.div>
+    </div>
   );
 }
