@@ -47,7 +47,11 @@ const { title, description = site.description, canvas = '#0b0b0d', preloadImage 
         });
         addEventListener('pagereveal', (e) => {
           const from = window.navigation?.activation?.from?.url;
-          if (e.viewTransition && from && navTheme(from) !== navTheme(location.href)) unpinNav();
+          if (e.viewTransition && from && navTheme(from) !== navTheme(location.href)) {
+            unpinNav();
+            // Dark ↔ light: a solid curtain instead of a crossfade, so the two palettes never blend.
+            e.viewTransition.types.add('theme-change');
+          }
         });
         const swap = isProduct(window.navigation?.activation?.from?.url) && isProduct(location.href);
         if (swap) {

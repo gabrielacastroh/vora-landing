@@ -56,8 +56,11 @@ p {
   .js-motion [data-clip] {
     clip-path: inset(100% 0% 0% 0%);
   }
-  .js-motion [data-line] {
+  .js-motion [data-line]:not([data-line='y']) {
     transform: scaleX(0);
+  }
+  .js-motion [data-line='y'] {
+    transform: scaleY(0);
   }
 }
 
@@ -82,6 +85,31 @@ p {
 ::view-transition-new(root) {
   animation: vora-page-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
+/* Between dark and light pages the new page rises as an opaque curtain over the old one,
+   which sinks and dims behind it: no opacity mixing, so no muddy mid-tones. */
+html:active-view-transition-type(theme-change) {
+  &::view-transition-old(root) {
+    animation: vora-theme-out 1s cubic-bezier(0.76, 0, 0.24, 1) both;
+  }
+  &::view-transition-new(root) {
+    animation: vora-theme-in 1s cubic-bezier(0.76, 0, 0.24, 1) both;
+  }
+}
+@keyframes vora-theme-out {
+  to {
+    transform: translateY(-14%);
+    filter: brightness(0.55);
+  }
+}
+@keyframes vora-theme-in {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
 ::view-transition-group(.product) {
   z-index: 10;
   animation-duration: 0.9s;

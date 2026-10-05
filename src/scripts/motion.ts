@@ -197,7 +197,7 @@ function lines() {
     const y = el.dataset.line === 'y';
     gsap.fromTo(
       el,
-      y ? { scaleY: 0, transformOrigin: 'center top' } : { scaleX: 0, transformOrigin: 'left center' },
+      y ? { scaleX: 1, scaleY: 0, transformOrigin: 'center top' } : { scaleX: 0, transformOrigin: 'left center' },
       {
         ...(y ? { scaleY: 1 } : { scaleX: 1 }),
         duration: 1.4,
