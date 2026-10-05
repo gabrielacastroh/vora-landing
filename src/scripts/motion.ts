@@ -82,6 +82,33 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
   };
 });
 
+// Packshots tilt toward the cursor like an object held in the hand. Mouse only: touch has no hover.
+gsap.matchMedia().add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+  const offs = $$('[data-tilt]').map((img) => {
+    const area = img.closest<HTMLElement>('[data-slider]')!;
+    gsap.set(img, { transformPerspective: 900, transformOrigin: '50% 50%' });
+    const rx = gsap.quickTo(img, 'rotationX', { duration: 0.8, ease: 'power3' });
+    const ry = gsap.quickTo(img, 'rotationY', { duration: 0.8, ease: 'power3' });
+    const shadow = gsap.quickTo(img, '--tilt-x', { duration: 0.8, ease: 'power3' });
+    const move = (e: PointerEvent) => {
+      const r = area.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      ry(x * 28);
+      rx(-y * 18);
+      shadow(-x * 40);
+    };
+    const leave = () => (rx(0), ry(0), shadow(0));
+    area.addEventListener('pointermove', move);
+    area.addEventListener('pointerleave', leave);
+    return () => {
+      area.removeEventListener('pointermove', move);
+      area.removeEventListener('pointerleave', leave);
+    };
+  });
+  return () => offs.forEach((off) => off());
+});
+
 function splits() {
   for (const el of $$('[data-split]')) {
     const type = el.dataset.split as 'lines' | 'words' | 'chars';

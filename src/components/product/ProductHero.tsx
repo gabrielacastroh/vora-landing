@@ -42,11 +42,16 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
             style={i > 0 ? { clipPath: 'inset(100% 0% 0% 0%)' } : { zIndex: 1 }}
           >
             <img
+              data-tilt={image.packshot || undefined}
               src={image.src}
               alt={`${product.name} — ${product.variant}, ${image.label}`}
               loading={i ? 'lazy' : undefined}
               className={`h-full w-full ${image.packshot ? 'object-contain p-[12%]' : 'object-cover'}`}
-              style={{ objectPosition: image.position }}
+              style={{
+                objectPosition: image.position,
+                // Shadow drifts opposite the tilt (--tilt-x set by motion.ts) to sell the depth.
+                filter: image.packshot ? 'drop-shadow(calc(var(--tilt-x, 0) * 1px) 2.5rem 2rem rgb(0 0 0 / 0.45))' : undefined,
+              }}
             />
           </div>
         ))}
