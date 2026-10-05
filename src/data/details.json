@@ -1,0 +1,23 @@
+[
+  {
+    "id": "01",
+    "title": "01 / MATERIAL",
+    "lines": ["Algodón de alta calidad,", "transpirable y resistente."],
+    "image": "../assets/vora/shop-detail-print.webp",
+    "frame": [-12, -157, 414, 518]
+  },
+  {
+    "id": "02",
+    "title": "02 / CONSTRUCCIÓN",
+    "lines": ["Costuras reforzadas", "y acabados premium."],
+    "image": "../assets/vora/shop-detail-fabric.webp",
+    "frame": [-6, -47, 399, 399]
+  },
+  {
+    "id": "03",
+    "title": "03 / IDENTIDAD",
+    "lines": ["Un símbolo que representa", "movimiento y dirección."],
+    "image": "../assets/vora/shop-detail-label.webp",
+    "frame": [-41.35, -94.28, 433.95, 542.24]
+  }
+]

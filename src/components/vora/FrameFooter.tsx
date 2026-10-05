@@ -4,22 +4,15 @@ import footerSocial2 from '../../assets/vora/footer-social-2.png';
 import footerSocial3 from '../../assets/vora/footer-social-3.png';
 import footerCopyrightIcon from '../../assets/vora/footer-copyright-icon.png';
 
-const explora = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Colección', href: '/coleccion' },
-  { label: 'Sobre Vora', href: '#' },
-  { label: 'Contacto', href: '#' },
-];
+import { site, type SocialNetwork } from '../../data/site';
 
-const masDeVora = [
-  { label: 'Filosofía', href: '#' },
-  { label: 'Preguntas Frecuentes', href: '#' },
-];
+const { explora, masDeVora } = site.footer;
 
-const socials = [
-  { label: 'WhatsApp', icon: footerSocial3.src, className: 'size-5' },
-  { label: 'Instagram', icon: footerSocial1.src, className: 'size-[1.3125rem]' },
-  { label: 'TikTok', icon: footerSocial2.src, className: 'h-5 w-[1.125rem]' },
+// Icons live here; the profile URLs live in site.json (empty = placeholder link).
+const socials: { network: SocialNetwork; label: string; icon: string; className: string }[] = [
+  { network: 'whatsapp', label: 'WhatsApp', icon: footerSocial3.src, className: 'size-5' },
+  { network: 'instagram', label: 'Instagram', icon: footerSocial1.src, className: 'size-[1.3125rem]' },
+  { network: 'tiktok', label: 'TikTok', icon: footerSocial2.src, className: 'h-5 w-[1.125rem]' },
 ];
 
 // Figma column widths (341 / 232 / 291 / 209 px) kept as ratios on desktop.
@@ -67,7 +60,13 @@ export default function FrameFooter() {
             </p>
             <div className="mt-[0.9375rem] flex items-center gap-3">
               {socials.map((s) => (
-                <a key={s.label} href="#" aria-label={s.label} className="transition-opacity hover:opacity-70">
+                <a
+                  key={s.network}
+                  href={site.social[s.network] || '#'}
+                  {...(site.social[s.network] ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  aria-label={s.label}
+                  className="transition-opacity hover:opacity-70"
+                >
                   <img alt="" src={s.icon} className={`${s.className} max-w-none object-cover`} />
                 </a>
               ))}

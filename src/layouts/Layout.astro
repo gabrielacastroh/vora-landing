@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { site } from '../data/site';
 import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 
@@ -13,7 +14,7 @@ interface Props {
   preloadImage?: string;
 }
 
-const { title, description = 'VORA — ropa para una generación que no se detiene.', canvas = '#0b0b0d', preloadImage } = Astro.props;
+const { title, description = site.description, canvas = '#0b0b0d', preloadImage } = Astro.props;
 ---
 
 <!doctype html>

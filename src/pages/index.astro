@@ -3,9 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import HomeFrame from '../components/home/HomeFrame';
 import FrameFooter from '../components/vora/FrameFooter';
 import heroBg from '../assets/vora/hero-bg-node.webp';
+import { getFeatured } from '../data/catalog';
+import { site } from '../data/site';
+
+const featured = await getFeatured();
 ---
 
-<Layout title="VORA — Made to Move Forward" preloadImage={heroBg.src}>
-  <HomeFrame />
+<Layout title={site.pages.home.title} preloadImage={heroBg.src}>
+  <HomeFrame featured={featured} />
   <FrameFooter />
 </Layout>

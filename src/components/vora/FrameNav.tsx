@@ -1,13 +1,8 @@
 import voraLogo from '../../assets/vora/vora-logo.png';
 import { container } from './mask';
+import { site } from '../../data/site';
 
-const links = [
-  { label: 'inicio', href: '/', key: 'inicio' },
-  { label: 'colección', href: '/coleccion', key: 'coleccion' },
-  { label: 'ropa', href: '#', key: 'ropa' },
-  { label: 'nosotros', href: '#', key: 'nosotros' },
-  { label: 'contacto', href: '#contacto', key: 'contacto' },
-];
+const links = site.nav;
 
 interface Props {
   active: string;

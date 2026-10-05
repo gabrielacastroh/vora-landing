@@ -4,24 +4,25 @@ import FrameNav from '../../components/vora/FrameNav';
 import FrameFooter from '../../components/vora/FrameFooter';
 import productNavBg from '../../assets/vora/product-nav-bg.png';
 import ProductHero from '../../components/product/ProductHero';
-import { products, getProduct } from '../../data/products';
+import { getProducts } from '../../data/catalog';
+import { site } from '../../data/site';
 
-export function getStaticPaths() {
-  return products.map((product) => ({
+export async function getStaticPaths() {
+  const products = await getProducts();
+  const at = (i: number) => products[(i + products.length) % products.length];
+  return products.map((product, i) => ({
     params: { slug: product.slug },
-    props: { product },
+    props: { product, prev: at(i - 1), next: at(i + 1), position: i + 1, total: products.length },
   }));
 }
 
-const { slug } = Astro.params;
-const product = getProduct(slug!);
-if (!product) return Astro.redirect('/coleccion');
+const { product, prev, next, position, total } = Astro.props;
 ---
 
-<Layout title={`${product.name} — VORA`} description={product.description}>
+<Layout title={`${product.name} — ${site.name}`} description={product.description}>
   <FrameNav active="coleccion" background={productNavBg.src} theme="dark" />
   <main>
-    <ProductHero product={product} />
+    <ProductHero product={product} prev={prev} next={next} position={position} total={total} />
   </main>
   <FrameFooter />
 </Layout>

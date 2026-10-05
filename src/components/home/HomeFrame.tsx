@@ -13,9 +13,7 @@ import arrowRight1 from '../../assets/vora/arrow-right-1.svg';
 import dividerRect from '../../assets/vora/divider-rectangle.png';
 import navBg from '../../assets/vora/nav-bg.png';
 
-import productVora01 from '../../assets/vora/product-vora01.webp';
-import productVora02 from '../../assets/vora/product-vora02.webp';
-import productVora05 from '../../assets/vora/product-vora05.webp';
+import type { Product } from '../../data/catalog';
 
 import heroFigure from '../../assets/vora/hero-figure.webp';
 import img1150272 from '../../assets/vora/mask-1150272.webp';
@@ -27,11 +25,7 @@ import img1145542 from '../../assets/vora/mask-1145542.webp';
 import galleryPortrait from '../../assets/vora/gallery-portrait-1.webp';
 import img1154471 from '../../assets/vora/mask-1154471.webp';
 
-const productCards = [
-  { ratio: '280 / 286', image: productVora01.src, name: 'VORA 01', variant: 'Camiseta / Verde', slug: 'vora-01' },
-  { ratio: '280 / 282', image: productVora02.src, name: 'VORA 02', variant: 'Camiseta / Beige', slug: 'vora-02' },
-  { ratio: '280 / 282', image: productVora05.src, name: 'VORA 05', variant: 'Camiseta / Azul Claro', slug: 'vora-05' },
-];
+
 
 const captions = {
   personas: ['PERSONAS', 'QUE SIGUEN', 'AVANZANDO'],
@@ -201,7 +195,7 @@ function Hero() {
   );
 }
 
-function FeaturedCollection() {
+function FeaturedCollection({ products }: { products: Product[] }) {
   return (
     <section className={`${container} relative pt-20 pb-20 lg:pt-[8.0625rem] lg:pb-[5.875rem]`}>
       <h2 data-split="chars" className="font-display text-[2rem] font-black uppercase leading-tight text-[#ece6dd] sm:text-5xl">
@@ -213,8 +207,16 @@ function FeaturedCollection() {
       </div>
 
       <div className="mx-auto mt-12 grid max-w-[70.25rem] grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:mt-[9.125rem] lg:grid-cols-[repeat(3,minmax(0,17.5rem))] lg:justify-between">
-        {productCards.map((product) => (
-          <ProductCard key={product.slug} {...product} theme="dark" />
+        {products.map((product, i) => (
+          <ProductCard
+            key={product.slug}
+            slug={product.slug}
+            name={product.name}
+            variant={product.variant}
+            image={product.cardImage.src}
+            ratio={i === 0 ? '280 / 286' : '280 / 282'}
+            theme="dark"
+          />
         ))}
       </div>
 
@@ -288,13 +290,14 @@ function Gallery() {
   );
 }
 
-export default function HomeFrame() {
+/** `featured`: products.json entries flagged `featured`, already ordered (see data/catalog). */
+export default function HomeFrame({ featured }: { featured: Product[] }) {
   return (
     <div className="relative overflow-x-clip bg-[#0b0b0d]">
       <FrameNav active="inicio" background={navBg.src} theme="dark" />
       <main>
         <Hero />
-        <FeaturedCollection />
+        <FeaturedCollection products={featured} />
         <Gallery />
       </main>
     </div>

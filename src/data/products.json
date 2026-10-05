@@ -1,0 +1,80 @@
+[
+  {
+    "id": "vora-01",
+    "name": "VORA 01",
+    "variant": "Camiseta / Azul",
+    "cardImage": "../assets/vora/shop-card-vora01.webp",
+    "heroImage": "../assets/vora/product-model-back-view.webp",
+    "description": "Una camiseta de silueta oversize, confeccionada en algodón de alto gramaje para ofrecer estructura, comodidad y una caída natural. Diseñada con un estampado de inspiración hotelera que aporta carácter sin perder la esencia contemporánea de VORA.",
+    "details": [
+      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Azul marino" },
+      { "label": "Estampado", "value": "Serigrafía premium de alta densidad" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "vora-02",
+    "name": "VORA 02",
+    "variant": "Camiseta / Beige",
+    "cardImage": "../assets/vora/shop-card-vora02.webp",
+    "heroImage": "../assets/vora/shop-mask-portrait-3.webp",
+    "featured": 2,
+    "description": "Camiseta de corte oversize en algodón de alto gramaje, con caída estructurada y un tono beige versátil pensado para moverse entre el día y la noche.",
+    "details": [
+      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Beige" },
+      { "label": "Estampado", "value": "Bordado minimalista" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "vora-03",
+    "name": "VORA 03",
+    "variant": "Camiseta / Verde",
+    "cardImage": "../assets/vora/shop-card-vora03.webp",
+    "heroImage": "../assets/vora/shop-mask-portrait-2.webp",
+    "featured": 1,
+    "description": "Silueta oversize en verde profundo, con estampado frontal que resume la filosofía VORA: seguir avanzando sin perder identidad.",
+    "details": [
+      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Verde" },
+      { "label": "Estampado", "value": "Serigrafía frontal" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "vora-04",
+    "name": "VORA 04",
+    "variant": "Camiseta / Blanco",
+    "cardImage": "../assets/vora/shop-card-vora04.webp",
+    "description": "Un básico reinterpretado: algodón premium en blanco puro, corte oversize y acabados reforzados para el uso diario.",
+    "details": [
+      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Blanco" },
+      { "label": "Estampado", "value": "Logo tonal" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "vora-05",
+    "name": "VORA 05",
+    "variant": "Camiseta / Azul Claro",
+    "cardImage": "../assets/vora/shop-card-vora05.webp",
+    "heroImage": "../assets/vora/shop-hero-model.webp",
+    "heroPosition": "68% center",
+    "featured": 3,
+    "description": "Azul claro con estampado gráfico contemporáneo, corte oversize y algodón de alto gramaje para una caída natural.",
+    "details": [
+      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Azul claro" },
+      { "label": "Estampado", "value": "Gráfico frontal" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  }
+]

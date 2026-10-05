@@ -1,19 +1,23 @@
 import { Fragment, type CSSProperties } from 'react';
-import type { Product } from '../../data/products';
-import { products } from '../../data/products';
+import type { Product } from '../../data/catalog';
 
 /** Named View Transition layer; `.info` blocks are choreographed when paging between products. */
 const info = (name: string) => ({ viewTransitionName: name, viewTransitionClass: 'info' }) as CSSProperties;
 
-export default function ProductHero({ product }: { product: Product }) {
-  const index = products.findIndex((p) => p.slug === product.slug);
-  const prev = products[(index - 1 + products.length) % products.length];
-  const next = products[(index + 1) % products.length];
+interface Props {
+  product: Product;
+  prev: Product;
+  next: Product;
+  /** 1-based position in the catalog and catalog size, for the "02 / 05" counter. */
+  position: number;
+  total: number;
+}
 
+export default function ProductHero({ product, prev, next, position, total }: Props) {
   // Garment first, then the model wearing it. Products without a model shot have one image.
   const images = [
     { src: product.cardImage.src, packshot: true, position: undefined, label: 'prenda' },
-    ...(product.packshot ? [] : [{ src: product.heroImage.src, packshot: false, position: product.heroPosition, label: 'en uso' }]),
+    ...(product.heroImage ? [{ src: product.heroImage.src, packshot: false, position: product.heroPosition, label: 'en uso' }] : []),
   ];
   const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -127,7 +131,7 @@ export default function ProductHero({ product }: { product: Product }) {
         <div data-reveal className="flex items-center justify-between pt-5">
           <div className="flex items-center gap-3">
             <p className="text-[0.8125rem] text-vora-cream" style={info('product-count')}>
-              {String(index + 1).padStart(2, '0')} / {String(products.length).padStart(2, '0')}
+              {pad(position)} / {pad(total)}
             </p>
             <div className="flex gap-1">
               <a

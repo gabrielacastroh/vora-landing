@@ -1,0 +1,32 @@
+{
+  "name": "VORA",
+  "description": "VORA — ropa para una generación que no se detiene.",
+  "pages": {
+    "home": { "title": "VORA — Made to Move Forward" },
+    "coleccion": { "title": "Colección / 01 — VORA" }
+  },
+  "nav": [
+    { "key": "inicio", "label": "inicio", "href": "/" },
+    { "key": "coleccion", "label": "colección", "href": "/coleccion" },
+    { "key": "ropa", "label": "ropa", "href": "#" },
+    { "key": "nosotros", "label": "nosotros", "href": "#" },
+    { "key": "contacto", "label": "contacto", "href": "#contacto" }
+  ],
+  "footer": {
+    "explora": [
+      { "label": "Inicio", "href": "/" },
+      { "label": "Colección", "href": "/coleccion" },
+      { "label": "Sobre Vora", "href": "#" },
+      { "label": "Contacto", "href": "#" }
+    ],
+    "masDeVora": [
+      { "label": "Filosofía", "href": "#" },
+      { "label": "Preguntas Frecuentes", "href": "#" }
+    ]
+  },
+  "social": {
+    "whatsapp": "",
+    "instagram": "",
+    "tiktok": ""
+  }
+}

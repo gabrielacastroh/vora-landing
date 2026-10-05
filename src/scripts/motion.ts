@@ -93,6 +93,8 @@ function splits() {
       // Visually split copy is aria-hidden and a screen-reader copy keeps the sentence intact;
       // the default puts aria-label on <p>, which is not allowed on generic elements.
       aria: 'hidden',
+      // Keep intentional spacing (e.g. "LOOKBOOK   /   01"); JSX emits no stray whitespace.
+      reduceWhiteSpace: false,
       autoSplit: true,
       onSplit(self) {
         el.style.visibility = 'visible';
