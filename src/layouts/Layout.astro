@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
+import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -7,9 +9,11 @@ interface Props {
   /** Page canvas color. View Transitions expose it behind the animating pages, so it
    *  must match the page or navigation flashes the default dark canvas. */
   canvas?: string;
+  /** Above-the-fold image to fetch before the CSS/JS discovers it (the LCP element). */
+  preloadImage?: string;
 }
 
-const { title, description = 'VORA — ropa para una generación que no se detiene.', canvas = '#0b0b0d' } = Astro.props;
+const { title, description = 'VORA — ropa para una generación que no se detiene.', canvas = '#0b0b0d', preloadImage } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,12 +25,9 @@ const { title, description = 'VORA — ropa para una generación que no se detie
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Geist:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
+    {preloadImage && <link rel="preload" href={preloadImage} as="image" fetchpriority="high" />}
     <title>{title}</title>
     <script is:inline>
       (() => {

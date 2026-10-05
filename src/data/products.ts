@@ -1,12 +1,12 @@
-import shopCardVora01 from '../assets/vora/shop-card-vora01.png';
-import shopCardVora02 from '../assets/vora/shop-card-vora02.png';
-import shopCardVora03 from '../assets/vora/shop-card-vora03.png';
-import shopCardVora04 from '../assets/vora/shop-card-vora04.png';
-import shopCardVora05 from '../assets/vora/shop-card-vora05.png';
-import productModelBackView from '../assets/vora/product-model-back-view.png';
-import shopHeroModel from '../assets/vora/shop-hero-model.png';
-import shopPortrait2 from '../assets/vora/shop-mask-portrait-2.png';
-import shopPortrait3 from '../assets/vora/shop-mask-portrait-3.png';
+import shopCardVora01 from '../assets/vora/shop-card-vora01.webp';
+import shopCardVora02 from '../assets/vora/shop-card-vora02.webp';
+import shopCardVora03 from '../assets/vora/shop-card-vora03.webp';
+import shopCardVora04 from '../assets/vora/shop-card-vora04.webp';
+import shopCardVora05 from '../assets/vora/shop-card-vora05.webp';
+import productModelBackView from '../assets/vora/product-model-back-view.webp';
+import shopHeroModel from '../assets/vora/shop-hero-model.webp';
+import shopPortrait2 from '../assets/vora/shop-mask-portrait-2.webp';
+import shopPortrait3 from '../assets/vora/shop-mask-portrait-3.webp';
 
 export interface Product {
   slug: string;

@@ -59,7 +59,8 @@ export default function ProductHero({ product }: { product: Product }) {
                 <button
                   type="button"
                   data-slide-dot
-                  aria-label={`Ver imagen ${i + 1}: ${image.label}`}
+                  // Accessible name starts with the visible number so voice control ("click 01") works.
+                  aria-label={`${pad(i + 1)}, ver ${image.label}`}
                   aria-current={i === 0 ? 'true' : undefined}
                   className="flex size-7 items-center justify-center tabular-nums opacity-40 transition-opacity hover:opacity-100 aria-current:opacity-100"
                 >

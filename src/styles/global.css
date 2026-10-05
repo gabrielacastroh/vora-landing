@@ -1,9 +1,11 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
+@import "@fontsource-variable/archivo/wght.css";
+@import "@fontsource-variable/geist/wght.css";
 
 @theme {
-  --font-sans: "Geist", sans-serif;
-  --font-display: "Archivo", sans-serif;
+  --font-sans: "Geist Variable", sans-serif;
+  --font-display: "Archivo Variable", sans-serif;
 
   --color-vora-bg: #0b0b0d;
   --color-vora-cream: #ece6dd;
@@ -35,7 +37,7 @@ p {
 
 /* ---------- Motion: initial states (only when JS + motion are on, so nothing hides without them) ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .js-motion :is([data-split], [data-drift], [data-reveal], [data-hero-item], [data-hero-img]) {
+  .js-motion :is([data-split], [data-drift], [data-reveal], [data-hero-item]) {
     visibility: hidden;
   }
   .js-motion [data-clip] {

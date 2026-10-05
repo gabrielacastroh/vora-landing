@@ -88,6 +88,9 @@ function splits() {
       // Chars are grouped in words so a word never breaks across lines.
       type: type === 'chars' ? 'words,chars' : type,
       mask: type,
+      // Visually split copy is aria-hidden and a screen-reader copy keeps the sentence intact;
+      // the default puts aria-label on <p>, which is not allowed on generic elements.
+      aria: 'hidden',
       autoSplit: true,
       onSplit(self) {
         el.style.visibility = 'visible';
@@ -154,6 +157,7 @@ function drift() {
   for (const el of $$('[data-drift]')) {
     SplitText.create(el, {
       type: 'lines',
+      aria: 'hidden',
       autoSplit: true,
       onSplit(self) {
         el.style.visibility = 'visible';
@@ -194,7 +198,8 @@ function hero() {
   const root = document.querySelector<HTMLElement>('[data-hero]');
   if (!root) return;
 
-  gsap.fromTo('[data-hero-img]', { scale: 1.3, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 2.6, ease: EASE });
+  // Scale only: the hero image is the LCP element, so it must be painted from the first frame.
+  gsap.fromTo('[data-hero-img]', { scale: 1.3 }, { scale: 1, duration: 2.6, ease: EASE });
   gsap.fromTo('[data-nav]', { yPercent: -100 }, { yPercent: 0, duration: 1.2, ease: EASE, delay: 0.6 });
   gsap.fromTo(
     '[data-hero-item]',

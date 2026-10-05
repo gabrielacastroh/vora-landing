@@ -8,6 +8,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [react()],
 
+  // One small stylesheet for the whole site: inlining it removes a render-blocking request.
+  build: { inlineStylesheets: 'always' },
+
   vite: {
     plugins: [tailwindcss()]
   }

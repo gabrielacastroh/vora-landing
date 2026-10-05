@@ -5,7 +5,7 @@ import Crop from '../vora/Crop';
 import ProductCard from '../vora/ProductCard';
 import { mask, u, container } from '../vora/mask';
 
-import heroBg from '../../assets/vora/hero-bg-node.png';
+import heroBg from '../../assets/vora/hero-bg-node.webp';
 import spotlight from '../../assets/vora/spotlight.svg';
 import spotlight1 from '../../assets/vora/spotlight-1.svg';
 import arrowRight from '../../assets/vora/arrow-right.svg';
@@ -13,19 +13,19 @@ import arrowRight1 from '../../assets/vora/arrow-right-1.svg';
 import dividerRect from '../../assets/vora/divider-rectangle.png';
 import navBg from '../../assets/vora/nav-bg.png';
 
-import productVora01 from '../../assets/vora/product-vora01.png';
-import productVora02 from '../../assets/vora/product-vora02.png';
-import productVora05 from '../../assets/vora/product-vora05.png';
+import productVora01 from '../../assets/vora/product-vora01.webp';
+import productVora02 from '../../assets/vora/product-vora02.webp';
+import productVora05 from '../../assets/vora/product-vora05.webp';
 
-import heroFigure from '../../assets/vora/hero-figure.png';
-import img1150272 from '../../assets/vora/mask-1150272.png';
-import img1146032 from '../../assets/vora/mask-1146032.png';
-import img1135152 from '../../assets/vora/mask-1135152.png';
-import galleryMountainMask from '../../assets/vora/gallery-mountain-1.png';
-import galleryMountain from '../../assets/vora/gallery-mountain-2.png';
-import img1145542 from '../../assets/vora/mask-1145542.png';
-import galleryPortrait from '../../assets/vora/gallery-portrait-1.png';
-import img1154471 from '../../assets/vora/mask-1154471.png';
+import heroFigure from '../../assets/vora/hero-figure.webp';
+import img1150272 from '../../assets/vora/mask-1150272.webp';
+import img1146032 from '../../assets/vora/mask-1146032.webp';
+import img1135152 from '../../assets/vora/mask-1135152.webp';
+import galleryMountainMask from '../../assets/vora/gallery-mountain-1.webp';
+import galleryMountain from '../../assets/vora/gallery-mountain-2.webp';
+import img1145542 from '../../assets/vora/mask-1145542.webp';
+import galleryPortrait from '../../assets/vora/gallery-portrait-1.webp';
+import img1154471 from '../../assets/vora/mask-1154471.webp';
 
 const productCards = [
   { ratio: '280 / 286', image: productVora01.src, name: 'VORA 01', variant: 'Camiseta / Verde', slug: 'vora-01' },
@@ -292,9 +292,11 @@ export default function HomeFrame() {
   return (
     <div className="relative overflow-x-clip bg-[#0b0b0d]">
       <FrameNav active="inicio" background={navBg.src} theme="dark" />
-      <Hero />
-      <FeaturedCollection />
-      <Gallery />
+      <main>
+        <Hero />
+        <FeaturedCollection />
+        <Gallery />
+      </main>
     </div>
   );
 }

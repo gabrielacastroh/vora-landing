@@ -4,20 +4,20 @@ import ProductCard from '../vora/ProductCard';
 
 import shopNavBg from '../../assets/vora/shop-nav-bg.png';
 import voraLogoDark from '../../assets/vora/vora-logo-dark.png';
-import shopCardVora01 from '../../assets/vora/shop-card-vora01.png';
-import shopCardVora02 from '../../assets/vora/shop-card-vora02.png';
-import shopCardVora03 from '../../assets/vora/shop-card-vora03.png';
-import shopCardVora04 from '../../assets/vora/shop-card-vora04.png';
-import shopCardVora05 from '../../assets/vora/shop-card-vora05.png';
-import shopHeroModel from '../../assets/vora/shop-hero-model.png';
-import shopHeroModelCutout from '../../assets/vora/shop-hero-model-cutout.png';
+import shopCardVora01 from '../../assets/vora/shop-card-vora01.webp';
+import shopCardVora02 from '../../assets/vora/shop-card-vora02.webp';
+import shopCardVora03 from '../../assets/vora/shop-card-vora03.webp';
+import shopCardVora04 from '../../assets/vora/shop-card-vora04.webp';
+import shopCardVora05 from '../../assets/vora/shop-card-vora05.webp';
+import shopHeroModel from '../../assets/vora/shop-hero-model.webp';
+import shopHeroModelCutout from '../../assets/vora/shop-hero-model-cutout.webp';
 import shopDiagonalVector from '../../assets/vora/shop-diagonal-vector.svg';
-import shopDetailPrint from '../../assets/vora/shop-detail-print.png';
-import shopDetailFabric from '../../assets/vora/shop-detail-fabric.png';
-import shopDetailLabel from '../../assets/vora/shop-detail-label.png';
-import shopPortrait1 from '../../assets/vora/shop-mask-portrait-1.png';
-import shopPortrait2 from '../../assets/vora/shop-mask-portrait-2.png';
-import shopPortrait3 from '../../assets/vora/shop-mask-portrait-3.png';
+import shopDetailPrint from '../../assets/vora/shop-detail-print.webp';
+import shopDetailFabric from '../../assets/vora/shop-detail-fabric.webp';
+import shopDetailLabel from '../../assets/vora/shop-detail-label.webp';
+import shopPortrait1 from '../../assets/vora/shop-mask-portrait-1.webp';
+import shopPortrait2 from '../../assets/vora/shop-mask-portrait-2.webp';
+import shopPortrait3 from '../../assets/vora/shop-mask-portrait-3.webp';
 
 const shopContainer = 'mx-auto w-full max-w-360 px-6 sm:px-10 lg:px-[6.5rem]';
 
@@ -161,10 +161,12 @@ export default function ShopFrame() {
   return (
     <div className="relative overflow-x-clip bg-[#ece6dd]">
       <FrameNav active="coleccion" background={shopNavBg.src} theme="light" logo={voraLogoDark.src} />
-      <Products />
-      <Statement />
-      <Details />
-      <Lookbook />
+      <main>
+        <Products />
+        <Statement />
+        <Details />
+        <Lookbook />
+      </main>
     </div>
   );
 }

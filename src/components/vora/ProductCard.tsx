@@ -33,7 +33,8 @@ export default function ProductCard({ slug, name, variant, image, ratio, theme, 
       <div className="flex w-full items-center justify-between gap-4 whitespace-nowrap leading-normal">
         <div className="flex flex-col gap-0.5">
           <p className={`font-display text-[0.9375rem] font-bold ${light ? 'text-[#240407]' : 'text-[#ece6dd]'}`}>{name}</p>
-          <p className="text-xs text-[#8d877d]">{variant}</p>
+          {/* Muted grey on cream fails contrast; the light theme uses a darker step. */}
+          <p className={`text-xs ${light ? 'text-[#6b655c]' : 'text-[#8d877d]'}`}>{variant}</p>
         </div>
         <p className="text-[0.6875rem] font-bold text-[#a32b32]">VER PRODUCTO →</p>
       </div>

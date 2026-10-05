@@ -2,9 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import HomeFrame from '../components/home/HomeFrame';
 import FrameFooter from '../components/vora/FrameFooter';
+import heroBg from '../assets/vora/hero-bg-node.webp';
 ---
 
-<Layout title="VORA — Made to Move Forward">
+<Layout title="VORA — Made to Move Forward" preloadImage={heroBg.src}>
   <HomeFrame />
   <FrameFooter />
 </Layout>
