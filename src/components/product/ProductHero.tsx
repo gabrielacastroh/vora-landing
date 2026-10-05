@@ -86,7 +86,7 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
         )}
       </div>
 
-      <div className="flex w-full flex-col gap-8 px-6 py-16 sm:px-10 lg:w-1/2 lg:px-20 lg:pt-[11.5rem] lg:pb-20">
+      <div className="flex w-full flex-col gap-8 px-6 pt-16 sm:px-10 lg:w-1/2 lg:px-20 lg:pt-[11.5rem]">
         <div className="flex flex-col items-start gap-3 pt-10">
           <h1
             data-split="chars"
@@ -128,32 +128,41 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
           </div>
         </div>
 
-        <div data-reveal className="flex items-center justify-between pt-5">
-          <div className="flex items-center gap-3">
-            <p className="text-[0.8125rem] text-vora-cream" style={info('product-count')}>
-              {pad(position)} / {pad(total)}
+        {/* Sticky bottom bar: when the copy fits it rests at the column's end (= viewport bottom), when it
+            doesn't it sticks to the viewport bottom. Either way the arrows land on the same spot for every
+            product, so the cursor never has to chase them. */}
+        <div
+          data-reveal
+          className="sticky bottom-0 z-10 -mx-6 mt-auto flex items-center justify-between border-t border-[#525256] bg-vora-bg px-6 py-5 sm:-mx-10 sm:px-10 lg:-mx-20 lg:px-20 lg:py-6"
+        >
+          <div className="flex items-center gap-5">
+            <p className="font-display text-[0.8125rem] tabular-nums text-vora-cream" style={info('product-count')}>
+              {pad(position)} <span className="text-vora-muted">/ {pad(total)}</span>
             </p>
-            <div className="flex gap-1">
-              <a
-                href={`/producto/${prev.slug}`}
-                data-dir="prev"
-                aria-label="Producto anterior"
-                className="flex size-6 items-center justify-center border border-vora-cream text-[0.625rem] text-vora-cream"
-              >
-                &lt;
-              </a>
-              <a
-                href={`/producto/${next.slug}`}
-                data-dir="next"
-                aria-label="Producto siguiente"
-                className="flex size-6 items-center justify-center border border-vora-cream/50 text-[0.625rem] text-vora-cream"
-              >
-                &gt;
-              </a>
+            <div className="flex gap-2">
+              {[
+                { dir: 'prev', target: prev, label: 'anterior', path: 'M10 3 5 8l5 5' },
+                { dir: 'next', target: next, label: 'siguiente', path: 'm6 3 5 5-5 5' },
+              ].map(({ dir, target, label, path }) => (
+                <a
+                  key={dir}
+                  href={`/producto/${target.slug}`}
+                  data-dir={dir}
+                  aria-label={`Producto ${label}: ${target.name}`}
+                  className="flex size-11 items-center justify-center rounded-full border border-vora-cream/40 text-vora-cream transition-colors hover:border-vora-cream hover:bg-vora-cream hover:text-vora-bg"
+                >
+                  <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                    <path d={path} />
+                  </svg>
+                </a>
+              ))}
             </div>
           </div>
-          <a href="/coleccion" className="text-xs font-bold text-vora-red-bright underline">
-            VER COLECCIÓN ↓
+          <a href="/coleccion" className="group flex items-center gap-2 text-xs font-bold uppercase text-vora-red-bright">
+            Ver colección
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
           </a>
         </div>
       </div>
