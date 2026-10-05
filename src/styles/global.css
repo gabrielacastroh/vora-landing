@@ -2,10 +2,13 @@
 @import "lenis/dist/lenis.css";
 @import "@fontsource-variable/archivo/wght.css";
 @import "@fontsource-variable/geist/wght.css";
+@import "@fontsource-variable/montserrat/wght.css";
+@import "@fontsource-variable/montserrat/wght-italic.css";
 
 @theme {
   --font-sans: "Geist Variable", sans-serif;
   --font-display: "Archivo Variable", sans-serif;
+  --font-mont: "Montserrat Variable", sans-serif;
 
   --color-vora-bg: #0b0b0d;
   --color-vora-cream: #ece6dd;
@@ -30,6 +33,14 @@
 body {
   background-color: var(--color-vora-bg);
   overflow-x: clip;
+}
+
+/* Tailwind v4 preflight gives buttons the default arrow; every clickable control here gets the hand. */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 p {

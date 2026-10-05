@@ -6,10 +6,13 @@
  *   data-reveal                      fade-up, batched so siblings stagger
  *   data-clip                        image wipe-up with inner zoom-out
  *   data-speed="0.1"                 scroll parallax (negative = opposite way)
- *   data-line                        hairline drawn left → right
+ *   data-line                        hairline drawn left → right (data-line="y": top → bottom)
  *   data-drift                       lines slide in at different speeds (scrubbed)
  *   data-skew                        skews with scroll velocity
  *   data-glow                        slow breathing light
+ *   data-banner                      banner opens from card to full bleed (scrubbed); [data-banner-title] slides
+ *   data-count                       number counts up from 0 (markup holds the final value)
+ *   data-spot                        hover light that follows the cursor (sets --mx / --my)
  *   data-hero / data-statement       page-specific timelines
  */
 import gsap from 'gsap';
@@ -72,6 +75,8 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
   lines();
   drift();
   glow();
+  banners();
+  counters();
   skew(lenis);
   navAutoHide();
 
@@ -80,6 +85,20 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
     lenis?.destroy();
     lenis = null;
   };
+});
+
+// Card spotlight: the hover light follows the cursor (CSS reads --mx / --my). Mouse only.
+gsap.matchMedia().add('(hover: hover) and (pointer: fine)', () => {
+  const offs = $$('[data-spot]').map((el) => {
+    const move = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    };
+    el.addEventListener('pointermove', move);
+    return () => el.removeEventListener('pointermove', move);
+  });
+  return () => offs.forEach((off) => off());
 });
 
 // Packshots tilt toward the cursor like an object held in the hand. Mouse only: touch has no hover.
@@ -175,11 +194,52 @@ function parallax() {
 
 function lines() {
   for (const el of $$('[data-line]')) {
+    const y = el.dataset.line === 'y';
     gsap.fromTo(
       el,
-      { scaleX: 0, transformOrigin: 'left center' },
-      { scaleX: 1, duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: el, start: 'top 95%', toggleActions: 'play none none none' } },
+      y ? { scaleY: 0, transformOrigin: 'center top' } : { scaleX: 0, transformOrigin: 'left center' },
+      {
+        ...(y ? { scaleY: 1 } : { scaleX: 1 }),
+        duration: 1.4,
+        ease: 'expo.inOut',
+        delay: y ? 0.6 : 0,
+        scrollTrigger: { trigger: el, start: 'top 95%', toggleActions: 'play none none none' },
+      },
     );
+  }
+}
+
+/** Section banners: a rounded card that widens to full bleed while the photo settles from a zoom. */
+function banners() {
+  for (const root of $$('[data-banner]')) {
+    const scrub = { trigger: root, start: 'top bottom', end: 'top 30%', scrub: true };
+    gsap.fromTo(
+      root,
+      { clipPath: 'inset(0% 7% 0% 7% round 2rem)' },
+      { clipPath: 'inset(0% 0% 0% 0% round 0rem)', ease: 'none', scrollTrigger: scrub },
+    );
+    gsap.fromTo(root.querySelector('img'), { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: { ...scrub, end: 'bottom top' } });
+    gsap.fromTo(
+      root.querySelector('[data-banner-title]'),
+      { xPercent: 12 },
+      { xPercent: -4, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', scrub: true } },
+    );
+  }
+}
+
+function counters() {
+  for (const el of $$('[data-count]')) {
+    const final = el.textContent!.trim();
+    const end = Number(final);
+    const value = { n: 0 };
+    el.textContent = final.replace(/\d/g, '0');
+    gsap.to(value, {
+      n: end,
+      duration: 1.8,
+      ease: 'power3.out',
+      onUpdate: () => (el.textContent = String(Math.round(value.n)).padStart(final.length, '0')),
+      scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' },
+    });
   }
 }
 
@@ -248,12 +308,7 @@ function statement() {
   const root = document.querySelector<HTMLElement>('[data-statement]');
   if (!root) return;
   const range = { trigger: root, start: 'top bottom', end: 'bottom top', scrub: true };
-  gsap.fromTo($$('[data-statement-photo]', root), { yPercent: -7, scale: 1.16 }, { yPercent: 7, scale: 1.16, ease: 'none', scrollTrigger: range });
-  gsap.fromTo(
-    '[data-statement-diagonal]',
-    { xPercent: -45 },
-    { xPercent: 0, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'top 25%', scrub: 1 } },
-  );
+  gsap.fromTo($$('[data-statement-photo]', root), { yPercent: -2.5, scale: 1.06 }, { yPercent: 2.5, scale: 1.06, ease: 'none', scrollTrigger: range });
 }
 
 function navAutoHide() {
@@ -300,9 +355,9 @@ function initSliders() {
   for (const root of $$('[data-slider]')) {
     const slides = $$('[data-slide]', root);
     if (slides.length < 2) continue;
-    const dots = $$<HTMLButtonElement>('[data-slide-dot]', root);
-    const fills = $$('[data-slide-fill]', root);
-    const arrow = root.querySelector<SVGElement>('[data-slide-arrow]');
+    const count = root.querySelector('[data-slide-count]');
+    const fill = root.querySelector('[data-slide-fill]');
+    const progress = (i: number) => (i + 1) / slides.length;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let current = 0;
     let busy = false;
@@ -316,17 +371,14 @@ function initSliders() {
       const fromImg = from.querySelector('img');
       const nextImg = next.querySelector('img');
 
-      dots.forEach((d, i) => (i === to ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current')));
       slides.forEach((s, i) => s.setAttribute('aria-hidden', String(i !== to)));
-      const last = to === slides.length - 1;
-      root.querySelector('[data-slide-next]')?.setAttribute('aria-label', last ? 'Volver a la primera imagen' : 'Siguiente imagen');
+      if (count) count.textContent = String(to + 1).padStart(2, '0');
       current = to;
 
       if (reduce) {
         gsap.set(slides, { zIndex: 0, clipPath: 'inset(100% 0% 0% 0%)' });
         gsap.set(next, { zIndex: 1, clipPath: 'inset(0% 0% 0% 0%)' });
-        gsap.set(fills, { scaleY: (i) => (i < to ? 1 : 0) });
-        gsap.set(arrow, { rotation: last ? 180 : 0 });
+        gsap.set(fill, { scaleY: progress(to) });
         return;
       }
 
@@ -344,8 +396,7 @@ function initSliders() {
         )
         .fromTo(nextImg, { scale: 1.25 }, { scale: 1, duration: 1.8, ease: EASE }, 0)
         .to(fromImg, { yPercent: -14 * dir }, 0)
-        .to(fills, { scaleY: (i) => (i < to ? 1 : 0), duration: 1 }, 0.1)
-        .to(arrow, { rotation: last ? 180 : 0, duration: 0.8, ease: 'power3.inOut' }, 0.2)
+        .to(fill, { scaleY: progress(to), duration: 1 }, 0.1)
         // Unlock as soon as the curtain lands; the zoom keeps settling but must not block input.
         .call(
           () => {
@@ -358,7 +409,7 @@ function initSliders() {
         );
     };
 
-    dots.forEach((dot, i) => dot.addEventListener('click', () => go(i)));
+    root.querySelector('[data-slide-prev]')?.addEventListener('click', () => go(current - 1));
     root.querySelector('[data-slide-next]')?.addEventListener('click', () => go(current + 1));
     root.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') go(current + 1);

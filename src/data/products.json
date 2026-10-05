@@ -1,79 +1,134 @@
 [
   {
-    "id": "vora-01",
-    "name": "VORA 01",
-    "variant": "Camiseta / Azul",
-    "cardImage": "../assets/vora/shop-card-vora01.webp",
-    "heroImage": "../assets/vora/product-model-back-view.webp",
-    "description": "Una camiseta de silueta oversize, confeccionada en algodón de alto gramaje para ofrecer estructura, comodidad y una caída natural. Diseñada con un estampado de inspiración hotelera que aporta carácter sin perder la esencia contemporánea de VORA.",
-    "details": [
-      { "label": "Corte", "value": "Oversize contemporáneo" },
-      { "label": "Material", "value": "100% algodón de alto gramaje" },
-      { "label": "Color", "value": "Azul marino" },
-      { "label": "Estampado", "value": "Serigrafía premium de alta densidad" }
-    ],
-    "sizes": ["S", "M", "L", "XL"]
-  },
-  {
-    "id": "vora-02",
-    "name": "VORA 02",
-    "variant": "Camiseta / Beige",
-    "cardImage": "../assets/vora/shop-card-vora02.webp",
-    "heroImage": "../assets/vora/shop-mask-portrait-3.webp",
-    "featured": 2,
-    "description": "Camiseta de corte oversize en algodón de alto gramaje, con caída estructurada y un tono beige versátil pensado para moverse entre el día y la noche.",
-    "details": [
-      { "label": "Corte", "value": "Oversize contemporáneo" },
-      { "label": "Material", "value": "100% algodón de alto gramaje" },
-      { "label": "Color", "value": "Beige" },
-      { "label": "Estampado", "value": "Bordado minimalista" }
-    ],
-    "sizes": ["S", "M", "L", "XL"]
-  },
-  {
-    "id": "vora-03",
-    "name": "VORA 03",
-    "variant": "Camiseta / Verde",
-    "cardImage": "../assets/vora/shop-card-vora03.webp",
-    "heroImage": "../assets/vora/shop-mask-portrait-2.webp",
+    "id": "first-step",
+    "name": "FIRST STEP",
+    "variant": "Camiseta / Rojo",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-first-step.webp",
     "featured": 1,
-    "description": "Silueta oversize en verde profundo, con estampado frontal que resume la filosofía VORA: seguir avanzando sin perder identidad.",
+    "gallery": [
+      { "image": "../assets/vora/first-step-1.webp", "position": "center 26%" },
+      { "image": "../assets/vora/first-step-2.webp", "position": "center top" },
+      { "image": "../assets/vora/first-step-3.webp", "position": "center top" }
+    ],
+    "description": "Una camiseta que representa el inicio del camino. Su lenguaje gráfico toma referencias de señalización, dirección y movimiento para construir una composición que transmite la idea de avanzar desde un punto inicial.",
     "details": [
       { "label": "Corte", "value": "Oversize contemporáneo" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
-      { "label": "Color", "value": "Verde" },
-      { "label": "Estampado", "value": "Serigrafía frontal" }
+      { "label": "Color", "value": "Rojo" },
+      { "label": "Estampado", "value": "DTF premium de alta definición" }
     ],
     "sizes": ["S", "M", "L", "XL"]
   },
   {
-    "id": "vora-04",
-    "name": "VORA 04",
-    "variant": "Camiseta / Blanco",
-    "cardImage": "../assets/vora/shop-card-vora04.webp",
-    "description": "Un básico reinterpretado: algodón premium en blanco puro, corte oversize y acabados reforzados para el uso diario.",
+    "id": "desde-cero",
+    "name": "DESDE CERO",
+    "variant": "Camiseta / Verde oliva",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-desde-cero.webp",
+    "featured": 2,
+    "description": "Para quien decide empezar de nuevo. Verde oliva, corte oversize y algodón de alto gramaje con una caída natural.",
     "details": [
-      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Corte", "value": "Oversize unisex" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Verde oliva" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "keep-going",
+    "name": "KEEP GOING",
+    "variant": "Camiseta / Blanco",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-keep-going.webp",
+    "featured": 3,
+    "description": "Un recordatorio para seguir avanzando. Blanco limpio, corte oversize y estampado gráfico en la espalda.",
+    "details": [
+      { "label": "Corte", "value": "Oversize unisex" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
       { "label": "Color", "value": "Blanco" },
-      { "label": "Estampado", "value": "Logo tonal" }
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
     ],
     "sizes": ["S", "M", "L", "XL"]
   },
   {
-    "id": "vora-05",
-    "name": "VORA 05",
-    "variant": "Camiseta / Azul Claro",
-    "cardImage": "../assets/vora/shop-card-vora05.webp",
-    "heroImage": "../assets/vora/shop-hero-model.webp",
-    "heroPosition": "68% center",
-    "featured": 3,
-    "description": "Azul claro con estampado gráfico contemporáneo, corte oversize y algodón de alto gramaje para una caída natural.",
+    "id": "good-luck",
+    "name": "GOOD LUCK",
+    "variant": "Camiseta / Negro",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-good-luck.webp",
+    "description": "Para lo inesperado que también forma parte del camino. Negro profundo, corte oversize y algodón de alto gramaje.",
     "details": [
-      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Corte", "value": "Oversize unisex" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Negro" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "take-your-time",
+    "name": "TAKE YOUR TIME",
+    "variant": "Camiseta / Blanco",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-take-your-time.webp",
+    "featured": 3,
+    "description": "Avanzar también es darse tiempo. Blanco con estampado floral, silueta femenina y algodón suave de alto gramaje.",
+    "details": [
+      { "label": "Corte", "value": "Women's fit" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Blanco" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "keep-becoming",
+    "name": "KEEP BECOMING",
+    "variant": "Camiseta / Azul claro",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-keep-becoming.webp",
+    "featured": 1,
+    "description": "En constante evolución. Azul claro con estampado de mariposa, silueta femenina y caída natural.",
+    "details": [
+      { "label": "Corte", "value": "Women's fit" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
       { "label": "Color", "value": "Azul claro" },
-      { "label": "Estampado", "value": "Gráfico frontal" }
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "on-my-way",
+    "name": "ON MY WAY",
+    "variant": "Camiseta / Arena",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-on-my-way.webp",
+    "heroImage": "../assets/vora/shop-numbers.webp",
+    "heroPosition": "20% center",
+    "featured": 2,
+    "description": "Ya en camino. Tono arena con tipografía editorial, silueta femenina y algodón de alto gramaje.",
+    "details": [
+      { "label": "Corte", "value": "Women's fit" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Arena" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "still-becoming",
+    "name": "STILL BECOMING",
+    "variant": "Camiseta / Lyla",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-still-becoming.webp",
+    "description": "Todavía en proceso, y está bien. Lila suave, silueta femenina y estampado gráfico trasero.",
+    "details": [
+      { "label": "Corte", "value": "Women's fit" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Lila" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
     ],
     "sizes": ["S", "M", "L", "XL"]
   }

@@ -2,13 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import ShopFrame from '../components/shop/ShopFrame';
 import FrameFooter from '../components/vora/FrameFooter';
-import { getDetails, getLookbook, getProducts } from '../data/catalog';
+import { getDetails, getLine } from '../data/catalog';
 import { site } from '../data/site';
 
-const [products, looks, details] = await Promise.all([getProducts(), getLookbook(), getDetails()]);
+const [unisex, womens, details] = await Promise.all([getLine('unisex'), getLine('womens'), getDetails()]);
 ---
 
 <Layout title={site.pages.coleccion.title} canvas="#ece6dd">
-  <ShopFrame products={products} looks={looks} details={details} />
+  <ShopFrame unisex={unisex} womens={womens} details={details} />
   <FrameFooter />
 </Layout>

@@ -1,4 +1,4 @@
-import { Fragment, type CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import type { Product } from '../../data/catalog';
 
 /** Named View Transition layer; `.info` blocks are choreographed when paging between products. */
@@ -14,10 +14,11 @@ interface Props {
 }
 
 export default function ProductHero({ product, prev, next, position, total }: Props) {
-  // Garment first, then the model wearing it. Products without a model shot have one image.
+  // Garment first, then the photos: the gallery when there is one, else the single model shot.
+  const photos = product.gallery ?? (product.heroImage ? [{ image: product.heroImage, position: product.heroPosition }] : []);
   const images = [
-    { src: product.cardImage.src, packshot: true, position: undefined, label: 'prenda' },
-    ...(product.heroImage ? [{ src: product.heroImage.src, packshot: false, position: product.heroPosition, label: 'en uso' }] : []),
+    { src: product.cardImage.src, packshot: true, position: undefined as string | undefined, label: 'prenda' },
+    ...photos.map((p, i) => ({ src: p.image.src, packshot: false, position: p.position, label: `foto ${i + 1}` })),
   ];
   const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -57,33 +58,36 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
         ))}
 
         {images.length > 1 && (
-          <div className="absolute top-1/2 right-4 z-10 flex -translate-y-1/2 flex-col items-center gap-3 rounded-full bg-black/25 px-2 py-4 text-[0.6875rem] font-medium text-[#ece6dd] backdrop-blur-md sm:right-6 lg:right-8">
-            {images.map((image, i) => (
-              <Fragment key={image.src}>
-                {i > 0 && (
-                  <span className="relative h-12 w-px overflow-hidden bg-[#ece6dd]/25">
-                    <span data-slide-fill className="absolute inset-0 origin-top bg-[#ece6dd]" style={{ transform: 'scaleY(0)' }} />
-                  </span>
-                )}
-                <button
-                  type="button"
-                  data-slide-dot
-                  // Accessible name starts with the visible number so voice control ("click 01") works.
-                  aria-label={`${pad(i + 1)}, ver ${image.label}`}
-                  aria-current={i === 0 ? 'true' : undefined}
-                  className="flex size-7 items-center justify-center tabular-nums opacity-40 transition-opacity hover:opacity-100 aria-current:opacity-100"
-                >
-                  {pad(i + 1)}
-                </button>
-              </Fragment>
-            ))}
+          // Fixed-size control (arrows, counter, progress) so it reads the same with 2 photos or 30.
+          <div className="absolute top-1/2 right-4 z-10 flex -translate-y-1/2 flex-col items-center gap-3 rounded-full bg-black/25 px-2 py-3 text-[#ece6dd] backdrop-blur-md sm:right-6 lg:right-8">
+            <button
+              type="button"
+              data-slide-prev
+              aria-label="Imagen anterior"
+              className="flex size-9 items-center justify-center rounded-full border border-[#ece6dd]/40 transition-colors hover:bg-[#ece6dd] hover:text-[#240407]"
+            >
+              <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M8 14V2M3 7l5-5 5 5" />
+              </svg>
+            </button>
+            <p aria-live="polite" className="flex flex-col items-center text-[0.6875rem] font-medium leading-tight tabular-nums">
+              <span className="sr-only">Imagen </span>
+              <span data-slide-count>{pad(1)}</span>
+              <span className="text-[#ece6dd]/40">
+                <span className="sr-only"> de </span>
+                {pad(images.length)}
+              </span>
+            </p>
+            <span className="relative h-16 w-px overflow-hidden bg-[#ece6dd]/25" aria-hidden="true">
+              <span data-slide-fill className="absolute inset-0 origin-top bg-[#ece6dd]" style={{ transform: `scaleY(${1 / images.length})` }} />
+            </span>
             <button
               type="button"
               data-slide-next
               aria-label="Siguiente imagen"
-              className="mt-1 flex size-9 items-center justify-center rounded-full border border-[#ece6dd]/40 transition-colors hover:bg-[#ece6dd] hover:text-[#240407]"
+              className="flex size-9 items-center justify-center rounded-full border border-[#ece6dd]/40 transition-colors hover:bg-[#ece6dd] hover:text-[#240407]"
             >
-              <svg data-slide-arrow viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <path d="M8 2v12M3 9l5 5 5-5" />
               </svg>
             </button>

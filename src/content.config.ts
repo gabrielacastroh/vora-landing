@@ -1,4 +1,4 @@
-import { defineCollection, reference } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -10,8 +10,12 @@ const products = defineCollection({
     z.object({
       name: z.string(),
       variant: z.string(),
+      /** Collection-page group. Omit to leave the product out of /coleccion. */
+      line: z.enum(['unisex', 'womens']).optional(),
       /** Garment on its own: collection/home cards and the first product slide. */
       cardImage: image(),
+      /** Full-bleed product photos (Figma vora-1-N). Shown after the packshot; when set, heroImage is ignored. */
+      gallery: z.array(z.object({ image: image(), position: z.string().optional() })).nonempty().optional(),
       /** Model wearing it: second product slide. Omit when there is no model shot yet. */
       heroImage: image().optional(),
       /** object-position for heroImage, to keep the model in frame. */
@@ -27,19 +31,6 @@ const products = defineCollection({
 /** Figma mask framing: image rect [x, y, width, height] relative to the visible window. Omit to fill. */
 const frame = z.tuple([z.number(), z.number(), z.number(), z.number()]).optional();
 
-// Lookbook portraits on /coleccion. `product` must be an id from products.json; its name and link
-// come from the catalog.
-const lookbook = defineCollection({
-  loader: file('src/data/lookbook.json'),
-  schema: ({ image }) =>
-    z.object({
-      product: reference('products'),
-      tag: z.string(),
-      image: image(),
-      frame,
-    }),
-});
-
 // "Detalles de la colección" cards on /coleccion.
 const details = defineCollection({
   loader: file('src/data/details.json'),
@@ -53,4 +44,4 @@ const details = defineCollection({
     }),
 });
 
-export const collections = { products, lookbook, details };
+export const collections = { products, details };

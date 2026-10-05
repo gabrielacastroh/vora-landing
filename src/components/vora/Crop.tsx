@@ -11,6 +11,8 @@ interface Props {
   /** Image rect relative to that window, in design px: [x, y, width, height]. Omit to fill (cover). */
   img?: readonly [number, number, number, number];
   className?: string;
+  /** false skips the data-clip wipe, for crops that run their own scroll animation. */
+  reveal?: boolean;
   /** Scroll parallax factor, see data-speed in scripts/motion.ts. */
   speed?: number;
   style?: CSSProperties;
@@ -21,10 +23,10 @@ interface Props {
  * Figma rectangle mask as a plain overflow crop. Every offset is a percentage of
  * the window, so the framing is identical at any rendered size.
  */
-export default function Crop({ src, alt = '', w, h, img = [0, 0, w, h], className = 'relative', speed, style, children }: Props) {
+export default function Crop({ src, alt = '', w, h, img = [0, 0, w, h], className = 'relative', reveal = true, speed, style, children }: Props) {
   const [x, y, iw, ih] = img;
   return (
-    <div data-clip data-speed={speed} className={`overflow-hidden ${className}`} style={{ aspectRatio: `${w} / ${h}`, ...style }}>
+    <div data-clip={reveal || undefined} data-speed={speed} className={`overflow-hidden ${className}`} style={{ aspectRatio: `${w} / ${h}`, ...style }}>
       <img
         src={src}
         alt={alt}

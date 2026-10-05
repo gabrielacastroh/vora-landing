@@ -195,32 +195,47 @@ function Hero() {
   );
 }
 
+const featuredLines = [
+  { line: 'unisex', title: 'UNISEX', blurb: 'Siluetas versátiles diseñadas para avanzar contigo.' },
+  { line: 'womens', title: "WOMEN'S FIT", blurb: 'Siluetas femeninas que exploran el movimiento, el proceso y la evolución personal.' },
+] as const;
+
 function FeaturedCollection({ products }: { products: Product[] }) {
   return (
     <section className={`${container} relative pt-20 pb-20 lg:pt-[8.0625rem] lg:pb-[5.875rem]`}>
       <h2 data-split="chars" className="font-display text-[2rem] font-black uppercase leading-tight text-[#ece6dd] sm:text-5xl">
         COLECCIÓN DESTACADA
       </h2>
-      <div data-reveal className="mt-2 uppercase">
-        <p className="text-2xl font-semibold text-vora-red-bright">COLECCIÓN 01</p>
-        <p className="text-sm font-thin text-[#cecece]">SS26 — PRE-RELEASE</p>
+      <div data-reveal className="mt-2 uppercase lg:pl-2.5">
+        <p className="text-2xl font-semibold text-vora-red-bright">EN MARCHA</p>
+        <p className="text-sm font-thin text-[#cecece]">VORA · 01 / 2026</p>
       </div>
 
-      <div className="mx-auto mt-12 grid max-w-[70.25rem] grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:mt-[9.125rem] lg:grid-cols-[repeat(3,minmax(0,17.5rem))] lg:justify-between">
-        {products.map((product, i) => (
-          <ProductCard
-            key={product.slug}
-            slug={product.slug}
-            name={product.name}
-            variant={product.variant}
-            image={product.cardImage.src}
-            ratio={i === 0 ? '280 / 286' : '280 / 282'}
-            theme="dark"
-          />
-        ))}
-      </div>
+      {featuredLines.map(({ line, title, blurb }, i) => (
+        <div key={line} className={i === 0 ? 'mt-16 lg:mt-32' : 'mt-20 lg:mt-48'}>
+          <div data-reveal>
+            <h3 className="text-2xl font-semibold uppercase text-[#ece6dd]">{title}</h3>
+            <p className="text-base font-thin text-[#cecece] sm:text-xl">{blurb}</p>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:mt-[2.8125rem] lg:grid-cols-[repeat(3,minmax(0,23.875rem))] lg:justify-between">
+            {products
+              .filter((product) => product.line === line)
+              .map((product) => (
+                <ProductCard
+                  key={product.slug}
+                  slug={product.slug}
+                  name={product.name}
+                  variant={product.variant}
+                  image={product.cardImage.src}
+                  ratio="382 / 286"
+                  theme="dark"
+                />
+              ))}
+          </div>
+        </div>
+      ))}
 
-      <a data-reveal href="/coleccion" className="group mx-auto mt-16 flex w-fit items-center gap-2 lg:mt-[6.8125rem]">
+      <a data-reveal href="/coleccion" className="group mx-auto mt-16 flex w-fit items-center gap-2 lg:mt-[8.3125rem]">
         <span className="text-sm font-bold uppercase text-vora-red-bright">EXPLORAR COLECCIÓN</span>
         <img alt="" src={arrowRight1.src} className="size-3.5 transition-transform group-hover:translate-x-1" />
       </a>
