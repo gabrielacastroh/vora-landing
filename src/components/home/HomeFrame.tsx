@@ -202,7 +202,7 @@ const featuredLines = [
 
 function FeaturedCollection({ products }: { products: Product[] }) {
   return (
-    <section className={`${container} relative pt-20 pb-20 lg:pt-[8.0625rem] lg:pb-[5.875rem]`}>
+    <section className={`${container} relative pt-20 pb-20 lg:pt-[8.0625rem] lg:pb-[5.875rem] xl:pb-0`}>
       <h2 data-split="chars" className="font-display text-[2rem] font-black uppercase leading-tight text-[#ece6dd] sm:text-5xl">
         COLECCIÓN DESTACADA
       </h2>
