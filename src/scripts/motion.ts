@@ -24,6 +24,10 @@ const $$ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = doc
 
 let lenis: Lenis | null = null;
 
+// Signal that the bundle is running before awaiting anything, so the inline fallback in
+// Layout only reveals content when the script truly failed to load.
+(window as Window & { __voraMotion?: boolean }).__voraMotion = true;
+
 initMenu();
 initSliders();
 
@@ -77,8 +81,6 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
     lenis = null;
   };
 });
-
-(window as Window & { __voraMotion?: boolean }).__voraMotion = true;
 
 function splits() {
   for (const el of $$('[data-split]')) {

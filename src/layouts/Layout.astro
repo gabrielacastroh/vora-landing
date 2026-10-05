@@ -67,10 +67,13 @@ const { title, description = 'VORA — ropa para una generación que no se detie
             { once: true },
           );
         }
-        // Hide animated elements before first paint; reveal everything if the motion bundle never runs.
+        // Hide animated elements before first paint. If the motion bundle never starts (blocked,
+        // failed or stale), reveal everything as soon as the page has loaded, with a hard cap.
         if (!swap && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
           html.classList.add('js-motion');
-          setTimeout(() => window.__voraMotion || html.classList.remove('js-motion'), 4000);
+          const reveal = () => window.__voraMotion || html.classList.remove('js-motion');
+          addEventListener('load', () => setTimeout(reveal, 300), { once: true });
+          setTimeout(reveal, 3000);
         }
       })();
     </script>
