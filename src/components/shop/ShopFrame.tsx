@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
 
 import FrameNav from '../vora/FrameNav';
-import FrameFooter from '../vora/FrameFooter';
-import { mask, archivo, geist, reveal } from '../vora/mask';
+import Crop from '../vora/Crop';
+import ProductCard from '../vora/ProductCard';
+import { reveal } from '../vora/mask';
 
 import shopNavBg from '../../assets/vora/shop-nav-bg.png';
 import voraLogoDark from '../../assets/vora/vora-logo-dark.png';
@@ -14,246 +15,162 @@ import shopCardVora05 from '../../assets/vora/shop-card-vora05.png';
 import shopHeroModel from '../../assets/vora/shop-hero-model.png';
 import shopHeroModelCutout from '../../assets/vora/shop-hero-model-cutout.png';
 import shopDiagonalVector from '../../assets/vora/shop-diagonal-vector.svg';
-import line11 from '../../assets/vora/line-11.svg';
-import shopDetailMask from '../../assets/vora/shop-detail-mask.svg';
 import shopDetailPrint from '../../assets/vora/shop-detail-print.png';
 import shopDetailFabric from '../../assets/vora/shop-detail-fabric.png';
 import shopDetailLabel from '../../assets/vora/shop-detail-label.png';
-import shopLookbookMask from '../../assets/vora/shop-lookbook-mask.svg';
 import shopPortrait1 from '../../assets/vora/shop-mask-portrait-1.png';
 import shopPortrait2 from '../../assets/vora/shop-mask-portrait-2.png';
 import shopPortrait3 from '../../assets/vora/shop-mask-portrait-3.png';
 
+const ease = [0.16, 1, 0.3, 1] as const;
+const shopContainer = 'mx-auto w-full max-w-360 px-6 sm:px-10 lg:px-[6.5rem]';
+
+// Desktop grid is 1fr | 230px | 1fr: column starts land on the Figma x = 102 / 605 / 1108.
 const products = [
-  { left: 680, top: 172, name: 'VORA 01', variant: 'Camiseta / Azul', image: shopCardVora01.src, slug: 'vora-01', blur: 18 },
-  { left: 1108, top: 174, name: 'VORA 02', variant: 'Camiseta / Beige', image: shopCardVora02.src, slug: 'vora-02', blur: 18 },
-  { left: 102, top: 555, name: 'VORA 03', variant: 'Camiseta / Verde', image: shopCardVora03.src, slug: 'vora-03', blur: 18 },
-  { left: 605, top: 555, name: 'VORA 04', variant: 'Camiseta / Blanco', image: shopCardVora04.src, slug: 'vora-04', blur: 18 },
-  { left: 1108, top: 555, name: 'VORA 05', variant: 'Camiseta / Azul Claro', image: shopCardVora05.src, slug: 'vora-05', blur: 18.1 },
+  { name: 'VORA 01', variant: 'Camiseta / Azul', image: shopCardVora01.src, slug: 'vora-01', place: 'xl:translate-x-[4.6875rem]' },
+  { name: 'VORA 02', variant: 'Camiseta / Beige', image: shopCardVora02.src, slug: 'vora-02', place: 'lg:justify-self-end' },
+  { name: 'VORA 03', variant: 'Camiseta / Verde', image: shopCardVora03.src, slug: 'vora-03', place: '' },
+  { name: 'VORA 04', variant: 'Camiseta / Blanco', image: shopCardVora04.src, slug: 'vora-04', place: '' },
+  { name: 'VORA 05', variant: 'Camiseta / Azul Claro', image: shopCardVora05.src, slug: 'vora-05', place: 'lg:justify-self-end' },
 ];
 
-const detailCopy = [
-  { left: 104, title: '01 / MATERIAL', lines: ['Algodón de alta calidad,', ' transpirable y resistente.'] },
-  { left: 518, title: '02 / CONSTRUCCIÓN', lines: ['Costuras reforzadas', ' y acabados premium.'] },
-  { left: 932, title: '03 / IDENTIDAD', lines: ['Un símbolo que representa', ' movimiento y dirección.'] },
-];
+const details = [
+  { title: '01 / MATERIAL', lines: ['Algodón de alta calidad,', 'transpirable y resistente.'], src: shopDetailPrint.src, img: [-12, -157, 414, 518] },
+  { title: '02 / CONSTRUCCIÓN', lines: ['Costuras reforzadas', 'y acabados premium.'], src: shopDetailFabric.src, img: [-6, -47, 399, 399] },
+  { title: '03 / IDENTIDAD', lines: ['Un símbolo que representa', 'movimiento y dirección.'], src: shopDetailLabel.src, img: [-41.35, -94.28, 433.95, 542.24] },
+] as const;
 
-const lookbookCaptions = [
-  { left: 120, name: 'VORA 01', tag: 'Movimieno / Ciudad' },
-  { left: 540, name: 'VORA 02', tag: 'Dirección / Libertad' },
-  { left: 959, name: 'VORA 03', tag: 'Exploración / Futuro' },
-];
+const lookbook = [
+  { name: 'VORA 01', tag: 'Movimiento / Ciudad', src: shopPortrait1.src, img: [0, -24, 399, 498] },
+  { name: 'VORA 02', tag: 'Dirección / Libertad', src: shopPortrait3.src, img: [-14, -62, 420.95, 526] },
+  { name: 'VORA 03', tag: 'Exploración / Futuro', src: shopPortrait2.src, img: [-3, -15, 411, 514] },
+] as const;
 
-const lookbookShadow = 'inset -1px -50px 41.4px 0px rgba(0,0,0,0.36)';
-
-export default function ShopFrame() {
+function Products() {
   return (
-    <div className="relative size-full bg-[#ece6dd]">
+    <section
+      className={`${shopContainer} grid grid-cols-1 gap-x-8 gap-y-12 pt-28 pb-20 sm:grid-cols-2 lg:grid-cols-[1fr_14.375rem_1fr] lg:gap-x-0 lg:gap-y-24 lg:pt-[10.75rem] lg:pb-[8.8125rem]`}
+    >
       <motion.div
-        {...reveal}
-        className="pointer-events-none absolute h-[498px] w-[399px]"
-        style={{ left: 104, top: 2312, ...mask(shopLookbookMask.src, '0px 24px', '393px 378px') }}
-      >
-        <img alt="" src={shopPortrait1.src} className="absolute inset-0 size-full max-w-none object-cover" />
-        <div className="absolute inset-0" style={{ boxShadow: lookbookShadow }} />
-      </motion.div>
-
-      <motion.div
-        className="absolute flex w-[420px] flex-col items-start gap-[24px]"
-        style={{ left: 102, top: 172 }}
+        className="flex max-w-[26.25rem] flex-col items-start gap-6 sm:col-span-2 lg:col-span-1"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.8, ease }}
       >
-        <p className="whitespace-nowrap text-[14px] font-semibold leading-[normal] text-[#5c141a]" style={geist}>
-          01 / 01 — SS26 PRE-RELEASE
-        </p>
-        <p className="w-full text-[52px] font-black leading-[normal] text-[#6d1212]" style={archivo}>
-          COLECCIÓN / 01
-        </p>
-        <p className="w-full text-[15px] font-normal leading-[1.6] text-[#525256] opacity-80" style={geist}>
-          Una colección diseñada en torno a la geometría y el movimiento, adaptándose a siluetas
-          contemporáneas con materiales premium. Hilos de algodón peinado y cortes oversize
-          estructurados.
+        <p className="text-sm font-semibold text-[#5c141a]">01 / 01 — SS26 PRE-RELEASE</p>
+        <h1 className="font-display text-[2.5rem] font-black leading-normal text-[#6d1212] sm:text-[3.25rem]">COLECCIÓN / 01</h1>
+        <p className="text-[0.9375rem] leading-[1.6] text-[#525256] opacity-80">
+          Una colección diseñada en torno a la geometría y el movimiento, adaptándose a siluetas contemporáneas con
+          materiales premium. Hilos de algodón peinado y cortes oversize estructurados.
         </p>
       </motion.div>
 
       {products.map((product, i) => (
-        <motion.a
+        <ProductCard
           key={product.slug}
-          href={`/producto/${product.slug}`}
-          className="group absolute flex flex-col items-start gap-[12px]"
-          style={{ left: product.left, top: product.top }}
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div
-            className="relative h-[240px] w-[230px] shrink-0 overflow-hidden"
-            style={{ boxShadow: `4px 12px ${product.blur}px 0px rgba(0,0,0,0.11)` }}
-          >
-            <img
-              alt={`${product.name} — ${product.variant}`}
-              src={product.image}
-              className="pointer-events-none absolute inset-0 size-full max-w-none object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-          <div className="flex w-full shrink-0 items-center justify-between whitespace-nowrap text-left leading-[normal]">
-            <div className="flex shrink-0 flex-col items-start gap-[2px]">
-              <p className="text-[15px] font-bold text-[#240407]" style={archivo}>
-                {product.name}
-              </p>
-              <p className="text-[12px] font-normal text-[#8d877d]" style={geist}>
-                {product.variant}
+          {...product}
+          ratio="230 / 240"
+          theme="light"
+          delay={(i % 3) * 0.08}
+          className={`lg:w-[14.375rem] ${product.place}`}
+        />
+      ))}
+    </section>
+  );
+}
+
+function Statement() {
+  return (
+    <section className="relative flex min-h-[36rem] flex-col justify-end overflow-hidden lg:h-[38.5625rem] lg:min-h-0 lg:justify-start">
+      <img alt="" src={shopHeroModel.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[80%_center] lg:object-center" />
+      <img
+        alt="Modelo con camiseta VORA"
+        src={shopHeroModelCutout.src}
+        loading="lazy"
+        className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[80%_center] lg:object-center"
+      />
+      <img
+        alt=""
+        src={shopDiagonalVector.src}
+        className="pointer-events-none absolute top-[1.7828%] left-[-2.1875%] h-[98.136%] w-[160%] max-w-none sm:w-[120%] lg:w-[87.708%]"
+      />
+
+      {/* Mobile crop puts the copy over the photo's bright side; keep it legible. */}
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#260202]/90 via-[#260202]/50 to-transparent lg:hidden" />
+
+      <motion.div {...reveal} className={`${shopContainer} relative py-20 text-[#ece6dd] lg:pt-[14rem] lg:pb-0`}>
+        <div className="flex max-w-[26.25rem] flex-col items-start gap-6">
+          <p className="text-sm font-semibold">COLECCIÓN / 01</p>
+          <h2 className="font-display text-[2.5rem] font-black leading-normal sm:text-[3.25rem]">
+            HECHA PARA <br />
+            SEGUIR <br />
+            AVANZANDO
+          </h2>
+          <p className="text-[0.9375rem] leading-[1.6] opacity-80">
+            Una colección construida alrededor del movimiento, la dirección y la idea de no permanecer en el mismo lugar.
+          </p>
+        </div>
+        <div className="mt-1 h-px w-[6.375rem] bg-[#ece6dd]/50" />
+      </motion.div>
+    </section>
+  );
+}
+
+function Details() {
+  return (
+    <section className={`${shopContainer} pt-20 lg:pt-[7.375rem]`}>
+      <motion.h2 {...reveal} className="font-display text-[1.75rem] font-extrabold leading-normal text-[#6d1212] sm:text-[2rem]">
+        DETALLES <br />
+        DE LA COLECCIÓN
+      </motion.h2>
+      <div className="mt-5 grid max-w-[76.3125rem] grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-[1.3125rem]">
+        {details.map((detail) => (
+          <div key={detail.title}>
+            <Crop src={detail.src} w={393} h={234} img={[...detail.img]} className="relative w-full" />
+            <div className="mt-4 flex flex-col gap-0.5 leading-normal text-[#332727] md:mt-[2.3125rem]">
+              <p className="font-display text-[0.9375rem] font-bold">{detail.title}</p>
+              <p className="text-xs">
+                {detail.lines[0]}
+                <br />
+                {detail.lines[1]}
               </p>
             </div>
-            <p className="shrink-0 text-[11px] font-bold text-[#a32b32]" style={geist}>
-              VER PRODUCTO →
-            </p>
           </div>
-        </motion.a>
-      ))}
-
-      <FrameFooter left={0} top={2812} />
-
-      <div className="absolute left-0 h-[617px] w-[1440px]" style={{ top: 983 }}>
-        <img alt="" src={shopHeroModel.src} className="pointer-events-none absolute inset-0 size-full max-w-none object-cover" />
+        ))}
       </div>
-      <div className="absolute left-0 h-[617px] w-[1440px]" style={{ top: 983 }}>
-        <img
-          alt="Modelo con camiseta VORA"
-          src={shopHeroModelCutout.src}
-          className="pointer-events-none absolute inset-0 size-full max-w-none object-cover"
-        />
-      </div>
-      <div className="absolute h-[605.5px] w-[1263px]" style={{ left: -31.5, top: 994 }}>
-        <img alt="" src={shopDiagonalVector.src} className="absolute inset-0 block size-full max-w-none" />
-      </div>
+    </section>
+  );
+}
 
-      <motion.div
-        {...reveal}
-        className="absolute flex w-[420px] flex-col items-start gap-[24px] text-[#ece6dd]"
-        style={{ left: 102, top: 1207 }}
-      >
-        <p className="whitespace-nowrap text-[14px] font-semibold leading-[normal]" style={geist}>
-          COLECCIÓN / 01
-        </p>
-        <div className="w-full text-[52px] font-black" style={archivo}>
-          <p className="leading-[normal]">HECHA PARA</p>
-          <p className="leading-[normal]">SEGUIR</p>
-          <p className="leading-[normal]">AVANZANDO</p>
-        </div>
-        <p className="w-full text-[15px] font-normal leading-[1.6] opacity-80" style={geist}>
-          Una colección construida alrededor del movimiento, la dirección y la idea de no permanecer
-          en el mismo lugar.
-        </p>
-      </motion.div>
-
-      <div className="absolute h-0 w-[102px]" style={{ left: 103, top: 1507 }}>
-        <div className="absolute inset-[-0.25px_0_0_0]">
-          <img alt="" src={line11.src} className="block size-full max-w-none" />
-        </div>
-      </div>
-
-      <motion.p
-        {...reveal}
-        className="absolute w-[357px] whitespace-pre-wrap text-[32px] font-extrabold leading-[normal] text-[#5c141a]"
-        style={{ left: 103, top: 2271, ...archivo }}
-      >
+function Lookbook() {
+  return (
+    <section className={`${shopContainer} pt-24 pb-20 lg:pt-[9.375rem] lg:pb-[6.125rem]`}>
+      <motion.h2 {...reveal} className="font-display whitespace-pre text-[1.75rem] font-extrabold leading-normal text-[#5c141a] sm:text-[2rem]">
         {`LOOKBOOK   /   01`}
-      </motion.p>
+      </motion.h2>
+      <div className="mt-[1.6875rem] grid max-w-[76.9375rem] grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-[1.625rem]">
+        {lookbook.map((look) => (
+          <Crop key={look.name} src={look.src} w={393} h={378} img={[...look.img]} className="relative w-full">
+            <div className="absolute inset-0 shadow-[inset_-0.0625rem_-3.125rem_2.5875rem_0_rgba(0,0,0,0.36)]" />
+            <div className="absolute bottom-[0.8125rem] left-4 flex flex-col gap-0.5 leading-normal text-white">
+              <p className="font-display text-[0.9375rem] font-bold">{look.name}</p>
+              <p className="text-xs">{look.tag}</p>
+            </div>
+          </Crop>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-      <motion.div
-        {...reveal}
-        className="absolute w-[419px] text-[32px] font-extrabold text-[#6d1212]"
-        style={{ left: 103, top: 1718, ...archivo }}
-      >
-        <p className="leading-[normal]">DETALLES</p>
-        <p className="leading-[normal]">DE LA COLECCIÓN</p>
-      </motion.div>
-
-      <motion.div
-        {...reveal}
-        className="pointer-events-none absolute h-[514px] w-[411px]"
-        style={{ left: 939, top: 2321, ...mask(shopLookbookMask.src, '3px 15px', '393px 378px') }}
-      >
-        <img alt="" src={shopPortrait2.src} className="absolute inset-0 size-full max-w-none object-cover" />
-        <div className="absolute inset-0" style={{ boxShadow: lookbookShadow }} />
-      </motion.div>
-
-      <motion.div
-        {...reveal}
-        className="pointer-events-none absolute h-[526px] w-[420.95px]"
-        style={{ left: 509, top: 2274, ...mask(shopLookbookMask.src, '14px 62px', '393px 378px') }}
-      >
-        <img alt="" src={shopPortrait3.src} className="absolute inset-0 size-full max-w-none object-cover" />
-        <div className="absolute inset-0" style={{ boxShadow: lookbookShadow }} />
-      </motion.div>
-
-      {lookbookCaptions.map((caption) => (
-        <div
-          key={caption.name}
-          className="absolute flex flex-col items-start gap-[2px] whitespace-nowrap leading-[normal] text-white"
-          style={{ left: caption.left, top: 2666 }}
-        >
-          <p className="text-[15px] font-bold" style={archivo}>
-            {caption.name}
-          </p>
-          <p className="text-[12px] font-normal" style={geist}>
-            {caption.tag}
-          </p>
-        </div>
-      ))}
-
-      <motion.div
-        {...reveal}
-        className="absolute size-[399px]"
-        style={{ left: 512, top: 1768, ...mask(shopDetailMask.src, '6px 47px', '393px 234px') }}
-      >
-        <img alt="" src={shopDetailFabric.src} className="pointer-events-none absolute inset-0 size-full max-w-none object-cover" />
-      </motion.div>
-
-      <motion.div
-        {...reveal}
-        className="absolute size-[399px]"
-        style={{ left: 926, top: 1768, ...mask(shopDetailMask.src, '6px 47px', '393px 234px') }}
-      >
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <img
-            alt=""
-            src={shopDetailLabel.src}
-            className="absolute left-[-8.86%] top-[-11.85%] h-[135.9%] w-[108.76%] max-w-none"
-          />
-        </div>
-      </motion.div>
-
-      {detailCopy.map((detail) => (
-        <div
-          key={detail.title}
-          className="absolute flex flex-col items-start gap-[2px] leading-[normal] text-[#332727]"
-          style={{ left: detail.left, top: 2086 }}
-        >
-          <p className="whitespace-nowrap text-[15px] font-bold" style={archivo}>
-            {detail.title}
-          </p>
-          <p className="whitespace-pre text-[12px] font-normal" style={geist}>
-            {detail.lines[0]}
-            <br />
-            {detail.lines[1]}
-          </p>
-        </div>
-      ))}
-
-      <motion.div
-        {...reveal}
-        className="absolute h-[518px] w-[414px]"
-        style={{ left: 92, top: 1658, ...mask(shopDetailMask.src, '12px 157px', '393px 234px') }}
-      >
-        <img alt="" src={shopDetailPrint.src} className="pointer-events-none absolute inset-0 size-full max-w-none object-cover" />
-      </motion.div>
-
+export default function ShopFrame() {
+  return (
+    <div className="relative overflow-x-clip bg-[#ece6dd]">
       <FrameNav active="coleccion" background={shopNavBg.src} theme="light" logo={voraLogoDark.src} />
+      <Products />
+      <Statement />
+      <Details />
+      <Lookbook />
     </div>
   );
 }

@@ -3,115 +3,86 @@ import footerSocial1 from '../../assets/vora/footer-social-1.png';
 import footerSocial2 from '../../assets/vora/footer-social-2.png';
 import footerSocial3 from '../../assets/vora/footer-social-3.png';
 import footerCopyrightIcon from '../../assets/vora/footer-copyright-icon.png';
-import line7 from '../../assets/vora/line-7.svg';
-import line8 from '../../assets/vora/line-8.svg';
-
-const archivo = { fontFamily: 'Archivo, sans-serif' } as const;
-const geist = { fontFamily: 'Geist, sans-serif' } as const;
 
 const explora = [
-  { label: 'Inicio', href: '/', top: 120, width: 39 },
-  { label: 'Colección', href: '/coleccion', top: 156, width: 65 },
-  { label: 'Sobre Vora', href: '#', top: 192, width: 74 },
-  { label: 'Contacto', href: '#', top: 228, width: 74 },
+  { label: 'Inicio', href: '/' },
+  { label: 'Colección', href: '/coleccion' },
+  { label: 'Sobre Vora', href: '#' },
+  { label: 'Contacto', href: '#' },
 ];
 
 const masDeVora = [
-  { label: 'Filosofía', href: '#', top: 120, width: 65 },
-  { label: 'Preguntas Frecuentes', href: '#', top: 156, width: 133 },
+  { label: 'Filosofía', href: '#' },
+  { label: 'Preguntas Frecuentes', href: '#' },
 ];
 
-export default function FrameFooter({ left, top }: { left: number; top: number }) {
+const socials = [
+  { label: 'WhatsApp', icon: footerSocial3.src, className: 'size-5' },
+  { label: 'Instagram', icon: footerSocial1.src, className: 'size-[1.3125rem]' },
+  { label: 'TikTok', icon: footerSocial2.src, className: 'h-5 w-[1.125rem]' },
+];
+
+// Figma column widths (341 / 232 / 291 / 209 px) kept as ratios on desktop.
+const column = 'flex flex-col gap-[1.1875rem] lg:mt-[1.375rem] lg:h-[10.0625rem] lg:border-l lg:border-white/25 lg:pl-[4.9375rem]';
+const linkClass = 'text-[0.8125rem] font-extralight capitalize text-white transition-opacity hover:opacity-70';
+
+function LinkColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
-    <footer id="contacto" className="absolute h-[394px] w-[1440px] overflow-clip bg-[#5c141a]" style={{ left, top }}>
-      <img alt="VORA" src={voraLogo.src} className="absolute h-[78px] w-[193px] max-w-none object-cover" style={{ left: 176, top: 62 }} />
-
-      <div className="absolute whitespace-nowrap text-[13px] capitalize leading-[normal] text-white" style={{ left: 192, top: 159, ...geist }}>
-        <p className="font-extralight">
-          Para <span className="lowercase">para quienes no se detienen.</span>
-        </p>
-        <p className="font-extralight">
-          una <span className="lowercase">mentalidad en constante movimiento.</span>
-        </p>
-      </div>
-
-      <p
-        className="absolute whitespace-nowrap text-[13px] font-normal uppercase leading-[normal] text-[#ece6dd]"
-        style={{ left: 192, top: 231, ...archivo }}
-      >
-        AMBICIÓN · PROPÓSITO · EVOLUCIÓN
-      </p>
-
-      <p className="absolute whitespace-nowrap text-[13px] font-medium uppercase leading-[normal] text-white" style={{ left: 612, top: 84, ...geist }}>
-        EXPLORA
-      </p>
-      {explora.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          className="absolute h-[17px] text-[13px] font-extralight capitalize leading-[normal] text-white"
-          style={{ left: 612, top: item.top, width: item.width, ...geist }}
-        >
+    <div className={column}>
+      <p className="text-[0.8125rem] font-medium uppercase text-white">{title}</p>
+      {items.map((item) => (
+        <a key={item.label} href={item.href} className={linkClass}>
           {item.label}
         </a>
       ))}
+    </div>
+  );
+}
 
-      <p className="absolute whitespace-nowrap text-[13px] font-medium uppercase leading-[normal] text-white" style={{ left: 844, top: 84, ...geist }}>
-        MÁS DE VORA
-      </p>
-      {masDeVora.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          className="absolute h-[17px] text-[13px] font-extralight capitalize leading-[normal] text-white"
-          style={{ left: 844, top: item.top, width: item.width, ...geist }}
-        >
-          {item.label}
-        </a>
-      ))}
+export default function FrameFooter() {
+  return (
+    <footer id="contacto" className="relative bg-[#5c141a]">
+      <div className="mx-auto w-full max-w-360 px-6 pt-14 pb-12 sm:px-10 lg:pr-[10.9375rem] lg:pl-[12rem] lg:pt-[3.875rem] lg:pb-[3.8125rem]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-12 lg:grid-cols-[341fr_232fr_291fr_209fr] lg:gap-0">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+            <img alt="VORA" src={voraLogo.src} className="-ml-4 h-[4.875rem] w-auto max-w-none" />
+            <div className="mt-[1.1875rem] text-[0.8125rem] font-extralight capitalize leading-normal text-white">
+              <p>
+                Para <span className="lowercase">quienes no se detienen.</span>
+              </p>
+              <p>
+                una <span className="lowercase">mentalidad en constante movimiento.</span>
+              </p>
+            </div>
+            <p className="font-display mt-10 text-[0.8125rem] uppercase text-[#ece6dd]">AMBICIÓN · PROPÓSITO · EVOLUCIÓN</p>
+          </div>
 
-      <div className="absolute h-[34px] w-[130px] text-[13px] font-extralight capitalize text-white" style={{ left: 1135, top: 120, ...geist }}>
-        <p className="leading-[normal]">sigamos avanzando</p>
-        <p className="leading-[normal]">
-          Encuéntranos <span className="lowercase">en</span>
-        </p>
-      </div>
-      <a href="#" aria-label="Instagram" className="absolute size-[20px]" style={{ left: 1135, top: 169 }}>
-        <img alt="" src={footerSocial3.src} className="absolute inset-0 size-full max-w-none object-cover" />
-      </a>
-      <a href="#" aria-label="TikTok" className="absolute size-[21px]" style={{ left: 1167, top: 169 }}>
-        <img alt="" src={footerSocial1.src} className="absolute inset-0 size-full max-w-none object-cover" />
-      </a>
-      <a href="#" aria-label="WhatsApp" className="absolute h-[20px] w-[18px]" style={{ left: 1199, top: 170 }}>
-        <img alt="" src={footerSocial2.src} className="absolute inset-0 size-full max-w-none object-cover" />
-      </a>
+          <LinkColumn title="EXPLORA" items={explora} />
+          <LinkColumn title="MÁS DE VORA" items={masDeVora} />
 
-      <div className="absolute h-0 w-[1073px]" style={{ left: 192, top: 293 }}>
-        <div className="absolute inset-[-0.25px_0_0_0]">
-          <img alt="" src={line7.src} className="block size-full max-w-none" />
-        </div>
-      </div>
-
-      {[533, 765, 1056].map((x) => (
-        <div key={x} className="absolute flex h-[161px] w-0 items-center justify-center" style={{ left: x, top: 84 }}>
-          <div className="flex-none rotate-90">
-            <div className="relative h-0 w-[161px]">
-              <div className="absolute inset-[-0.25px_0_0_0]">
-                <img alt="" src={line8.src} className="block size-full max-w-none" />
-              </div>
+          <div className={`col-span-2 sm:col-span-1 lg:col-span-1 ${column} gap-0! lg:pt-9`}>
+            <p className="text-[0.8125rem] font-extralight capitalize leading-normal text-white">sigamos avanzando</p>
+            <p className="text-[0.8125rem] font-extralight capitalize leading-normal text-white">
+              Encuéntranos <span className="lowercase">en</span>
+            </p>
+            <div className="mt-[0.9375rem] flex items-center gap-3">
+              {socials.map((s) => (
+                <a key={s.label} href="#" aria-label={s.label} className="transition-opacity hover:opacity-70">
+                  <img alt="" src={s.icon} className={`${s.className} max-w-none object-cover`} />
+                </a>
+              ))}
             </div>
           </div>
         </div>
-      ))}
 
-      <img alt="" src={footerCopyrightIcon.src} className="absolute size-[11px] max-w-none object-cover" style={{ left: 192, top: 322 }} />
-      <p
-        className="absolute h-[11px] w-[219px] text-[11px] font-thin uppercase leading-[normal] text-white"
-        style={{ left: 210, top: 322, ...archivo }}
-      >
-        2026 vora, <span className="capitalize">todos</span>
-        <span className="lowercase"> los derechos reservados.</span>
-      </p>
+        <div className="mt-12 flex items-center gap-[0.4375rem] border-t border-white/25 pt-[1.8125rem] lg:mt-12">
+          <img alt="" src={footerCopyrightIcon.src} className="size-[0.6875rem] max-w-none object-cover" />
+          <p className="font-display text-[0.6875rem] font-thin uppercase leading-none text-white">
+            2026 vora, <span className="capitalize">todos</span>
+            <span className="lowercase"> los derechos reservados.</span>
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }

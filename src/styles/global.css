@@ -11,35 +11,18 @@
   --color-vora-maroon: #5c141a;
 }
 
+/* Every size in the site is expressed in rem. Up to the 1440px design width the
+   root stays at the browser default and layouts reflow with breakpoints; past it
+   the root grows with the viewport, so a 27", 34" or 50" screen renders the same
+   proportions as the Figma frame. The vh term only kicks in on ultrawide screens,
+   where scaling by width alone would push the hero far below the fold. */
+@media (min-width: 90rem) {
+  html {
+    font-size: max(100%, min(100vw / 90, 2.25vh));
+  }
+}
+
 body {
   background-color: var(--color-vora-bg);
-}
-
-/* Figma frames are fixed 1440px canvases; scale them down proportionally
-   instead of reflowing, so the rendering stays identical to the prototype. */
-.vora-stage {
-  container-type: inline-size;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.vora-frame-box {
-  /* tan(atan2()) turns the two lengths into a unitless ratio; plain division
-     by a length is invalid CSS and silently kills the calc. */
-  --vora-scale: min(1, tan(atan2(100cqw, 1440px)));
-  position: relative;
-  width: 100%;
-  max-width: 1440px;
-  margin-inline: auto;
-  overflow: hidden;
-}
-
-.vora-frame {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1440px;
-  transform: scale(var(--vora-scale));
-  transform-origin: top left;
-  overflow: hidden;
+  overflow-x: clip;
 }

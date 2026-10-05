@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import VoraFrame from '../components/VoraFrame.astro';
 import HomeFrame from '../components/home/HomeFrame';
+import FrameFooter from '../components/vora/FrameFooter';
 ---
 
 <Layout title="VORA — Made to Move Forward">
-  <VoraFrame height={3604}>
-    <HomeFrame client:load />
-  </VoraFrame>
+  <HomeFrame client:load />
+  <FrameFooter />
 </Layout>

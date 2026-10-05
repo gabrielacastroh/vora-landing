@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
+import FrameNav from '../../components/vora/FrameNav';
+import FrameFooter from '../../components/vora/FrameFooter';
+import productNavBg from '../../assets/vora/product-nav-bg.png';
 import ProductHero from '../../components/product/ProductHero';
 import { products, getProduct } from '../../data/products';
 
@@ -18,9 +19,9 @@ if (!product) return Astro.redirect('/coleccion');
 ---
 
 <Layout title={`${product.name} — VORA`} description={product.description}>
-  <Nav theme="dark" />
+  <FrameNav active="coleccion" background={productNavBg.src} theme="dark" client:load />
   <main>
     <ProductHero product={product} client:load />
   </main>
-  <Footer />
+  <FrameFooter />
 </Layout>

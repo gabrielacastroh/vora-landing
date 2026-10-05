@@ -14,12 +14,12 @@ export function mask(src: string, position: string, size: string): CSSProperties
   };
 }
 
-export const archivo = { fontFamily: 'Archivo, sans-serif' } as const;
-export const geist = { fontFamily: 'Geist, sans-serif' } as const;
+/** Design pixels → length in a box that defines `--u` (its width / 1440). */
+export const u = (px: number) => `calc(${px} * var(--u))`;
 
-// No negative viewport margin: the frame is scaled down on narrow screens, so a
-// margin in screen px shrinks the trigger area enough to leave on-screen elements
-// stuck at opacity 0.
+/** Shared horizontal rhythm: full-bleed backgrounds, content capped at the 1440 design width. */
+export const container = 'mx-auto w-full max-w-360 px-6 sm:px-10 lg:px-15';
+
 export const reveal = {
   initial: { opacity: 0 },
   whileInView: { opacity: 1 },
