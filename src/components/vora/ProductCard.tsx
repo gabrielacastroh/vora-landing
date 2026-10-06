@@ -28,7 +28,7 @@ export default function ProductCard({ slug, name, variant, image, ratio, theme, 
         className={`relative w-full overflow-hidden ${
           light
             ? lg
-              ? 'shadow-[0.2973rem_0.8917rem_1.3375rem_0_rgba(0,0,0,0.11)] transition-[translate,box-shadow] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-safe:group-hover:-translate-y-2 group-hover:shadow-[0.5rem_1.75rem_2.75rem_0_rgba(36,4,7,0.2)]'
+              ? 'transition-[translate] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-safe:group-hover:-translate-y-2'
               : 'shadow-[0.25rem_0.75rem_1.125rem_0_rgba(0,0,0,0.11)]'
             : ''
         }`}
