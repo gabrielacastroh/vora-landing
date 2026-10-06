@@ -212,7 +212,9 @@ function lines() {
 /** Section banners: a rounded card that widens to full bleed while the photo settles from a zoom. */
 function banners() {
   for (const root of $$('[data-banner]')) {
-    const scrub = { trigger: root, start: 'top bottom', end: 'top 30%', scrub: true };
+    // Smoothed scrub: on load the banner glides from its CSS start state to the scroll position
+    // instead of snapping there.
+    const scrub = { trigger: root, start: 'top bottom', end: 'top 30%', scrub: 0.6 };
     gsap.fromTo(
       root,
       { clipPath: 'inset(0% 7% 0% 7% round 2rem)' },
@@ -222,7 +224,7 @@ function banners() {
     gsap.fromTo(
       root.querySelector('[data-banner-title]'),
       { xPercent: 12 },
-      { xPercent: -4, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', scrub: true } },
+      { xPercent: -4, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', scrub: 0.6 } },
     );
   }
 }
@@ -233,6 +235,8 @@ function counters() {
     const end = Number(final);
     const value = { n: 0 };
     el.textContent = final.replace(/\d/g, '0');
+    // Hidden by CSS until now, so the final value never shows before it resets to zero.
+    el.style.visibility = 'visible';
     gsap.to(value, {
       n: end,
       duration: 1.8,
@@ -291,7 +295,8 @@ function hero() {
 
   // Scale only: the hero image is the LCP element, so it must be painted from the first frame.
   gsap.fromTo('[data-hero-img]', { scale: 1.3 }, { scale: 1, duration: 2.6, ease: EASE });
-  gsap.fromTo('[data-nav]', { yPercent: -100 }, { yPercent: 0, duration: 1.2, ease: EASE, delay: 0.6 });
+  // y: 0 drops the CSS pre-hide (translateY(-100%)), which gsap would otherwise read as an extra offset.
+  gsap.fromTo('[data-nav]', { y: 0, yPercent: -100 }, { y: 0, yPercent: 0, duration: 1.2, ease: EASE, delay: 0.6 });
   gsap.fromTo(
     '[data-hero-item]',
     { autoAlpha: 0, y: '2rem' },
