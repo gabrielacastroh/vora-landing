@@ -1,4 +1,5 @@
 // @ts-check
+import { fileURLToPath } from 'node:url';
 import { defineConfig, envField } from 'astro/config';
 
 import react from '@astrojs/react';
@@ -25,6 +26,7 @@ export default defineConfig({
   build: { inlineStylesheets: 'always' },
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    resolve: { alias: { rolldown: fileURLToPath(new URL('./src/lib/rolldown-stub.mjs', import.meta.url)) } },
   }
 });
