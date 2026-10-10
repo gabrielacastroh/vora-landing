@@ -43,6 +43,12 @@ body {
   }
 }
 
+img,
+video {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 p {
   /* Longhand on purpose: the `text-wrap` shorthand also resets wrapping and breaks `whitespace-nowrap`. */
   text-wrap-style: pretty;

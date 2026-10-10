@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomeFrame from '../../components/home/HomeFrame';
+import FrameFooter from '../../components/vora/FrameFooter';
+import heroBg from '../../assets/vora/hero-couple.webp';
+import voraLogo from '../../assets/vora/vora-logo.png';
+import { getFeatured } from '../../data/catalog';
+import { isAuthed, login } from '../../lib/admin-auth';
+import { site } from '../../data/site';
+
+let authed = await isAuthed(Astro.cookies);
+let failed = false;
+
+if (!authed && Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  authed = await login(Astro.cookies, String(form.get('password') ?? ''));
+  failed = !authed;
+  // Post/redirect/get so a refresh never re-submits the password.
+  if (authed) return Astro.redirect('/admin-vora', 303);
+  Astro.response.status = 401;
+}
+
+const featured = authed ? await getFeatured() : [];
+---
+
+{
+  authed ? (
+    <Layout title={site.pages.home.title} preloadImage={heroBg.src} noindex>
+      <HomeFrame featured={featured} />
+      <FrameFooter />
+    </Layout>
+  ) : (
+    <Layout title="Acceso — VORA" noindex>
+      <main class="flex min-h-svh flex-col items-center justify-center gap-10 bg-[#0b0b0d] px-6">
+        <img alt="VORA" src={voraLogo.src} class="h-10 w-auto" />
+        <form method="post" class="flex w-full max-w-80 flex-col gap-4">
+          <label for="password" class="text-sm font-extralight uppercase tracking-widest text-white/70">Acceso privado</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            autofocus
+            autocomplete="current-password"
+            aria-invalid={failed}
+            aria-describedby={failed ? 'error' : undefined}
+            class="border-b border-white/40 bg-transparent py-3 text-white outline-none transition-colors focus:border-[#d9202b]"
+          />
+          {failed && (
+            <p id="error" role="alert" class="text-sm text-[#d9202b]">
+              Contraseña incorrecta.
+            </p>
+          )}
+          <button
+            type="submit"
+            class="mt-2 border border-[#ece6dd] py-3 text-sm uppercase tracking-widest text-[#ece6dd] transition-colors hover:bg-[#ece6dd] hover:text-[#0b0b0d]"
+          >
+            Entrar
+          </button>
+        </form>
+      </main>
+    </Layout>
+  )
+}

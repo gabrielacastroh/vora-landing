@@ -1,15 +1,206 @@
 ---
+// Public landing: prerendered even though the site is server-output.
+export const prerender = true;
 import Layout from '../layouts/Layout.astro';
-import HomeFrame from '../components/home/HomeFrame';
-import FrameFooter from '../components/vora/FrameFooter';
-import heroBg from '../assets/vora/hero-bg-node.webp';
-import { getFeatured } from '../data/catalog';
+import { container } from '../components/vora/mask';
 import { site } from '../data/site';
+import voraLogo from '../assets/vora/vora-logo.png';
+import spotlight from '../assets/vora/spotlight-1.svg';
+import divider from '../assets/vora/divider-rectangle.png';
+import label from '../assets/vora/expectativa-label.webp';
+import star from '../assets/vora/expectativa-star.webp';
+import globe from '../assets/vora/expectativa-globe.webp';
+import rings from '../assets/vora/expectativa-rings.webp';
+import trainPoster from '../assets/vora/expectativa-train-poster.webp';
+import instagram from '../assets/vora/expectativa-ig.webp';
+import tiktok from '../assets/vora/expectativa-tt.webp';
+import arrow from '../assets/vora/expectativa-arrow.svg';
+import heroPoster from '../assets/vora/expectativa-hero-poster.webp';
 
-const featured = await getFeatured();
+const pillars = [
+  { n: '01', title: 'AMBICIÓN', text: ['IDEAS', 'QUE IMPULSAN.'], icon: star, size: 'w-[12.5rem]' },
+  { n: '02', title: 'PROPÓSITO', text: ['LUGARES', 'QUE CONECTAN.'], icon: globe, size: 'w-[9.625rem]' },
+  { n: '03', title: 'EVOLUCIÓN', text: ['PERSONAS', 'QUE INSPIRAN.'], icon: rings, size: 'w-[12.625rem]' },
+];
 ---
 
-<Layout title={site.pages.home.title} preloadImage={heroBg.src}>
-  <HomeFrame featured={featured} />
-  <FrameFooter />
+<Layout title={site.pages.expectativa.title} preloadImage={heroPoster.src}>
+  <!-- 1 · Hero -->
+  <section class="relative flex min-h-svh flex-col overflow-hidden bg-[#0b0b0d]">
+    <video
+      src="/video/expectativa-hero.mp4"
+      poster={heroPoster.src}
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[72%_center] lg:object-center"
+    ></video>
+    <div class="pointer-events-none absolute inset-0 bg-black/26"></div>
+    <div class="pointer-events-none absolute left-[6.25rem] top-[9.375rem] size-[43.75rem] max-lg:-left-60">
+      <img alt="" src={spotlight.src} class="absolute inset-[-14.29%] block size-[128.58%] max-w-none" />
+    </div>
+    <img
+      alt=""
+      src={divider.src}
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-[8.4375rem] w-full max-w-none object-cover"
+    />
+
+    <header class={`${container} relative flex items-center justify-between py-8 lg:py-10`}>
+      <a href="/" aria-label="VORA — inicio" class="block h-[2.125rem] shrink-0 lg:h-[3.125rem]">
+        <img alt="VORA" src={voraLogo.src} class="h-full w-auto max-w-none" />
+      </a>
+      <p class="flex items-center gap-3 text-sm font-extralight text-white">
+        <span>01</span>
+        <span class="block h-px w-6 bg-white lg:w-[4.625rem]"></span>
+        <span>Origen</span>
+      </p>
+    </header>
+
+    <div class={`${container} relative my-auto flex flex-col items-start pb-28`}>
+      <span data-line class="mb-[1.9375rem] block h-px w-[4.625rem] bg-[#ece6dd]"></span>
+      <h1
+        data-split="lines"
+        data-delay="0.3"
+        class="font-mont italic leading-[0.8] text-[#ece6dd]"
+      >
+        <span class="block text-[1.75rem] font-normal lg:text-[3.371rem]">ALGO ESTA</span>
+        <span class="block text-[3.25rem] font-black lg:text-[6.336rem]">TOMANDO</span>
+        <span class="block text-[3.25rem] font-black lg:text-[6.336rem]">FORMA.</span>
+      </h1>
+      <p data-reveal class="mt-6 text-sm font-extralight uppercase text-white lg:text-xl">10 / 2026</p>
+    </div>
+  </section>
+
+  <!-- 2 · No todo se revela (pinned scene, see revealScene in motion.ts) -->
+  <section data-scene class="relative flex min-h-svh items-end overflow-hidden bg-[#0b0b0d] lg:items-center">
+    <img
+      alt="Etiqueta VORA en sudadera borgoña"
+      src={label.src}
+      data-scene-img
+      class="absolute inset-0 size-full max-w-none object-cover object-[16%_15%] lg:object-[30%_center]"
+    />
+    <div class="pointer-events-none absolute inset-0 bg-black/41 max-lg:bg-linear-to-t max-lg:from-black/85 max-lg:via-black/40 max-lg:via-55% max-lg:to-black/20"></div>
+    <div data-scene-dark class="scene-dark pointer-events-none absolute inset-0"></div>
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-[#0b0b0d] to-transparent"></div>
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-[#0b0b0d] to-transparent"></div>
+    <div class={`${container} relative pb-14 pt-24 lg:pb-0 lg:pt-0`}>
+      <div class="lg:ml-auto lg:w-[34.5rem]">
+        <h2 class="font-mont italic leading-[0.8] text-[#ece6dd]">
+          <span data-scene-line class="block text-[2.25rem] font-light lg:text-[4.23rem]">NO TODO</span>
+          <span data-scene-line class="block text-[2.25rem] font-light lg:text-[4.23rem]">SE REVELA</span>
+          <span data-scene-line class="block text-[2.4rem] font-black lg:text-[4.627rem]">DE UNA VEZ</span>
+        </h2>
+        <span data-scene-rule class="mb-5 mt-5 block h-0.5 w-[5.375rem] origin-left bg-[#d9202b]"></span>
+        <p data-scene-line class="max-w-[30.8rem] text-base font-extralight text-white lg:text-[1.453rem]">
+          Hay historias que se construyen en silencio. Detalles, ideas y propósitos que pronto cobrarán vida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Pilares -->
+  <section class="bg-[#0b0b0d] py-20 lg:py-[9.375rem]">
+    <ul
+      class={`${container} grid grid-cols-1 divide-y divide-white/25 lg:grid-cols-3 lg:divide-x lg:divide-y-0`}
+    >
+      {pillars.map((p, i) => (
+        <li class="flex flex-col items-center px-4 py-12 text-center text-white lg:py-0">
+          <div class="flex h-[10.375rem] items-end justify-center">
+            <span class="float block" style={`--float-delay:${-i * 1.7}s`}>
+              <img alt="" src={p.icon.src} data-reveal class={`${p.size} max-w-full object-contain`} />
+            </span>
+          </div>
+          <p data-reveal class="mt-8 text-[1.453rem] font-semibold leading-[0.8] text-[#d9202b]">{p.n}</p>
+          <p data-reveal class="mt-3 text-[1.453rem] font-semibold leading-[0.8]">{p.title}</p>
+          <span data-line class="mx-auto my-6 block h-px w-[2.4375rem] bg-white/70"></span>
+          <p data-reveal class="text-[1.453rem] font-normal leading-[0.94]">
+            {p.text[0]}<br />{p.text[1]}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 4 · Cierre -->
+  <section class="relative flex min-h-svh flex-col justify-end overflow-hidden bg-[#0b0b0d] lg:min-h-[51rem]">
+    <video
+      src="/video/expectativa-train.mp4"
+      poster={trainPoster.src}
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+      class="absolute inset-0 size-full max-w-none object-cover"
+    ></video>
+    <div class="pointer-events-none absolute inset-0 bg-black/54"></div>
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-linear-to-b from-[#0b0b0d] to-transparent"></div>
+
+    <div class={`${container} relative pt-24 lg:pl-[8.6875rem]`}>
+      <h2 data-split="lines" class="font-mont italic leading-[0.8] text-[#ece6dd]">
+        <span class="block text-[1.75rem] font-normal lg:text-[3.371rem]">EL MOVIMIENTO</span>
+        <span class="block text-[3.25rem] font-black lg:text-[6.336rem]">ESTA POR</span>
+        <span class="block text-[3.25rem] font-black lg:text-[6.336rem]">COMENZAR.</span>
+      </h2>
+      <p data-reveal class="mt-8 max-w-[30.8rem] text-base font-extralight text-white lg:text-[1.453rem]">
+        Sé parte de lo que viene.<br />Síguenos en nuestras redes y entérate primero.
+      </p>
+    </div>
+
+    <footer
+      class={`${container} relative flex flex-wrap items-center justify-between gap-x-8 gap-y-6 pb-10 pt-16 lg:pl-[8.6875rem] lg:pr-[4.25rem]`}
+    >
+      <div class="flex items-center gap-5 text-white lg:gap-[5.25rem]">
+        <img alt="VORA" src={voraLogo.src} class="h-[2.125rem] w-auto lg:h-[3.3rem]" />
+        <span class="flex items-center gap-4 text-base font-light lg:gap-[5.25rem] lg:text-[1.453rem]">
+          <span class="block h-px w-12 bg-white lg:w-[4.375rem]"></span>10/2026
+        </span>
+      </div>
+      <div class="flex items-center gap-6 lg:gap-8">
+        <a href="https://instagram.com/vora.co_" target="_blank" rel="noopener" class="group flex items-center gap-4 text-lg font-bold text-white lg:text-[1.393rem]">
+          <span class="relative">
+            @VORA.CO_
+            <span class="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[#d9202b] transition-transform duration-500 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"></span>
+          </span>
+          <img alt="" src={arrow.src} class="h-5 w-auto transition-transform duration-500 ease-out group-hover:translate-x-2 group-focus-visible:translate-x-2 lg:h-[1.567rem]" />
+        </a>
+        <a href="https://instagram.com/vora.co_" target="_blank" rel="noopener" aria-label="Instagram" class="block transition duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:drop-shadow-[0_0.5rem_1rem_rgb(217_32_43/0.6)] focus-visible:-translate-y-1.5 focus-visible:scale-110">
+          <img alt="" src={instagram.src} class="size-8 lg:size-[2.678rem]" />
+        </a>
+        <a href="https://tiktok.com/@vora.co_" target="_blank" rel="noopener" aria-label="TikTok" class="block transition duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:drop-shadow-[0_0.5rem_1rem_rgb(217_32_43/0.6)] focus-visible:-translate-y-1.5 focus-visible:scale-110">
+          <img alt="" src={tiktok.src} class="h-8 w-auto lg:h-[2.58rem]" />
+        </a>
+      </div>
+    </footer>
+  </section>
 </Layout>
+
+<style>
+  /* Darkness with a hole: GSAP animates --r (0 → 120) so light opens over the label. Fully open by default (no JS). */
+  .scene-dark {
+    --r: 120;
+    --x: 40%;
+    --y: 42%;
+    background: #050506;
+    mask-image: radial-gradient(circle at var(--x) var(--y), transparent calc(var(--r) * 1%), #000 calc(var(--r) * 1% + 32%));
+  }
+  @media (min-width: 64rem) {
+    .scene-dark { --x: 27%; --y: 57%; }
+  }
+  .float {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+    filter: drop-shadow(0 1.5rem 1.25rem rgb(0 0 0 / 0.55));
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0.5rem) rotate(-1.5deg); }
+    50% { transform: translateY(-0.75rem) rotate(1.5deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .float { animation: none; }
+  }
+</style>

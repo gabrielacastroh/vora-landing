@@ -7,16 +7,15 @@ import ProductHero from '../../components/product/ProductHero';
 import { getProducts } from '../../data/catalog';
 import { site } from '../../data/site';
 
-export async function getStaticPaths() {
-  const products = await getProducts();
-  const at = (i: number) => products[(i + products.length) % products.length];
-  return products.map((product, i) => ({
-    params: { slug: product.slug },
-    props: { product, prev: at(i - 1), next: at(i + 1), position: i + 1, total: products.length },
-  }));
-}
-
-const { product, prev, next, position, total } = Astro.props;
+const products = await getProducts();
+const i = products.findIndex((p) => p.slug === Astro.params.slug);
+if (i < 0) return new Response(null, { status: 404 });
+const at = (n: number) => products[(n + products.length) % products.length];
+const product = products[i];
+const prev = at(i - 1);
+const next = at(i + 1);
+const position = i + 1;
+const total = products.length;
 ---
 
 <Layout title={`${product.name} — ${site.name}`} description={product.description}>

@@ -14,6 +14,7 @@
  *   data-count                       number counts up from 0 (markup holds the final value)
  *   data-spot                        hover light that follows the cursor (sets --mx / --my)
  *   data-hero / data-statement       page-specific timelines
+ *   data-scene                       pinned scrub scene: light opens over the photo, then copy emerges
  */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -66,6 +67,7 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
   const swapped = document.documentElement.hasAttribute('data-swap');
   hero();
   statement();
+  revealScene();
   if (!swapped) {
     splits();
     reveals();
@@ -314,6 +316,25 @@ function statement() {
   if (!root) return;
   const range = { trigger: root, start: 'top bottom', end: 'bottom top', scrub: true };
   gsap.fromTo($$('[data-statement-photo]', root), { yPercent: -2.5, scale: 1.06 }, { yPercent: 2.5, scale: 1.06, ease: 'none', scrollTrigger: range });
+}
+
+function revealScene() {
+  const root = document.querySelector<HTMLElement>('[data-scene]');
+  if (!root) return;
+  // Plays once on arrival (no pin / no extra scroll).
+  const tl = gsap.timeline({
+    defaults: { ease: 'power2.inOut' },
+    scrollTrigger: { trigger: root, start: 'top 55%', toggleActions: 'play none none none' },
+  });
+  tl.fromTo('[data-scene-dark]', { '--r': 6 }, { '--r': 120, duration: 1.8 }, 0)
+    .fromTo('[data-scene-img]', { scale: 1.45, xPercent: -3 }, { scale: 1.05, xPercent: 0, duration: 2.6, ease: 'expo.out' }, 0)
+    .fromTo(
+      $$('[data-scene-line]', root),
+      { autoAlpha: 0, y: 50, filter: 'blur(12px)' },
+      { autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 1.1, stagger: 0.18 },
+      0.7,
+    )
+    .fromTo('[data-scene-rule]', { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: 'expo.out' }, 1.2);
 }
 
 function navAutoHide() {
