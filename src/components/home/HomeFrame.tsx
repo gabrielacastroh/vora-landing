@@ -5,7 +5,7 @@ import Crop from '../vora/Crop';
 import ProductCard from '../vora/ProductCard';
 import { mask, u, container } from '../vora/mask';
 
-import heroBg from '../../assets/vora/hero-bg-node.webp';
+import heroBg from '../../assets/vora/hero-couple.webp';
 import spotlight from '../../assets/vora/spotlight.svg';
 import spotlight1 from '../../assets/vora/spotlight-1.svg';
 import arrowRight from '../../assets/vora/arrow-right.svg';
@@ -151,7 +151,8 @@ function Hero() {
           alt=""
           src={heroBg.src}
           fetchPriority="high"
-          className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[72%_center] lg:object-center"
+          // Figma: the photo sits at 38% over the near-black hero, framed on the couple (right side).
+          className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[82%_top] opacity-[0.38]"
         />
       </div>
       <Spotlight src={spotlight1.src} className="left-[6.25rem] top-[9.375rem] size-[43.75rem] max-lg:-left-60" />
@@ -163,15 +164,18 @@ function Hero() {
 
       <div data-hero-content className={`${container} relative flex flex-1 flex-col pt-28 pb-14 lg:pt-[8.3125rem] lg:pb-20`}>
         <div className="my-auto flex max-w-[45rem] flex-col items-start gap-6 py-12">
-          <p data-split="chars" data-delay="0.3" className="text-sm font-semibold uppercase text-vora-red-bright">
+          {/* Figma uses #db1c28; this is the same red lifted to 4.7:1 so the small label stays legible on black. */}
+          <p data-split="chars" data-delay="0.3" className="text-sm font-semibold uppercase text-[#ef2a35]">
             MADE TO MOVE FORWARD
           </p>
           <h1
             data-split="lines"
             data-delay="0.5"
-            className="font-display text-[2.25rem] font-extrabold leading-[1.15] text-[#ece6dd] sm:text-5xl lg:text-[3.5rem]"
+            className="font-mont text-[2.25rem] italic leading-[1.15] text-[#ece6dd] sm:text-5xl lg:text-[3.5rem]"
           >
-            TODAVÍA NO HEMOS LLEGADO. PERO YA ESTAMOS AVANZANDO.
+            <span className="block font-normal">NO SIGAS</span>
+            <span className="block font-normal">LA RUTA.</span>
+            <span className="block font-black">MARCA LA TUYA.</span>
           </h1>
         </div>
 
