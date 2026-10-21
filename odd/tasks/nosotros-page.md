@@ -20,7 +20,7 @@ Implement the "Nosotros" page from Figma node 425:148 (file ODJLiz1LXxzxBjsKd5fX
 - [x] T3 Wire nav link, motion, verify build/render (60b4e33, 6c76ecb; astro build OK, 1440/390 screenshots checked)
 - [x] T4 Click-to-expand accordion cards (Figma variants 425:443/425:452/447:550; initCards in motion.ts) (0bf8d9a, 6c76ecb)
 - [x] T5 Floating prisms (data-float in motion.ts, ScrollTrigger-paused, no-op under reduced motion) (0bf8d9a, 6c76ecb)
-- [x] T6 Scroll reveal animations (data-seq/data-in choreography, data-parallax, data-ken; motion.ts + nosotros components) (f03211f)
+- [x] T6 Scroll reveal animations (data-seq/data-in choreography, data-parallax, data-ken; motion.ts + nosotros components) (d842225)
 
 ## Progress
 - Branch `feat/nosotros` created; commit 5e998fc (nav/footer prep).
