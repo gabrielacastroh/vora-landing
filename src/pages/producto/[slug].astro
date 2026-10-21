@@ -11,9 +11,18 @@ const products = await getProducts();
 const i = products.findIndex((p) => p.slug === Astro.params.slug);
 if (i < 0) return new Response(null, { status: 404 });
 const product = products[i];
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  description: product.description,
+  image: new URL(product.cardImage.src, Astro.site).href,
+  brand: { '@type': 'Brand', name: site.name },
+});
 ---
 
-<Layout title={`${product.name} — ${site.name}`} description={product.description} noindex>
+<Layout title={`${product.name} — ${site.name}`} description={product.description}>
+  <script type="application/ld+json" set:html={jsonLd} />
   <FrameNav active="coleccion" background={productNavBg.src} theme="dark" />
   <main>
     <ProductHero product={product} />
