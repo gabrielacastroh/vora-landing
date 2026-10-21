@@ -35,9 +35,6 @@ function LinkColumn({ title, items }: { title: string; items: { label: string; h
 export default function FrameFooter() {
   return (
     <footer id="contacto" className="relative bg-[#5c141a]">
-      <p className="absolute top-6 right-6 font-semibold text-[0.875rem] uppercase text-white/50 sm:right-10 lg:top-[2.375rem] lg:right-[calc(50%-45rem+10.9375rem)]">
-        MADE TO MOVE FORWARD
-      </p>
       <div className="mx-auto w-full max-w-360 px-6 pt-14 pb-12 sm:px-10 lg:pr-[10.9375rem] lg:pl-[12rem] lg:pt-[3.875rem] lg:pb-[3.8125rem]">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-12 lg:grid-cols-[341fr_232fr_291fr_209fr] lg:gap-0">
           <div data-reveal className="col-span-2 sm:col-span-3 lg:col-span-1">
