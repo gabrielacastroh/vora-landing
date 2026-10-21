@@ -338,23 +338,23 @@
     "variant": "Camiseta crop top / Negro",
     "line": "womens",
     "cardImage": "../assets/vora/card-built-for-bigger-things.webp",
-    "description": "Hecha para cosas más grandes. Negro profundo, silueta femenina y estampado gráfico en la espalda.",
+    "description": "Hay quienes nacieron para ir más allá de lo esperado. BUILT FOR BIGGER THINGS representa la ambición, la confianza y la determinación de construir algo extraordinario. Su diseño de alto contraste transmite una actitud firme frente a los retos y las oportunidades.",
     "details": [
       {
         "label": "Corte",
-        "value": "Women's fit"
+        "value": "Oversize Crop Top"
       },
       {
         "label": "Material",
-        "value": "100% algodón de alto gramaje"
+        "value": "100 % algodón"
       },
       {
         "label": "Color",
         "value": "Negro"
       },
       {
-        "label": "Estampado",
-        "value": "Serigrafía frontal y trasera"
+        "label": "Gramaje",
+        "value": "230 g/m²"
       }
     ],
     "sizes": [
