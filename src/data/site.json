@@ -21,7 +21,7 @@
       { "label": "Contacto", "href": "/contacto" }
     ],
     "legal": [
-      { "label": "Política De Privacidad", "href": "#" }
+      { "label": "Política De Privacidad", "href": "/politica-de-privacidad" }
     ]
   },
   "contact": { "email": "contacto@vora.com" },

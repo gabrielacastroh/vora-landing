@@ -78,7 +78,7 @@ const ogImage = new URL(image, Astro.site).href;
         const isProduct = (url) => !!url && path(url).startsWith('/producto/');
         // The nav only stays pinned across pages with the same theme; between dark and light
         // it must travel with the page, or the old nav lingers as a dark band over the new one.
-        const navTheme = (url) => (path(url).startsWith('/coleccion') ? 'light' : 'dark');
+        const navTheme = (url) => (path(url).startsWith('/coleccion') || path(url).startsWith('/politica-de-privacidad') ? 'light' : 'dark');
         const unpinNav = () => document.querySelector('[data-nav]')?.style.setProperty('view-transition-name', 'none');
         addEventListener('pageswap', (e) => {
           const to = e.activation?.entry?.url;

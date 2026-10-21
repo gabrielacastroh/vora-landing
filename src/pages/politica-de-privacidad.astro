@@ -1,0 +1,98 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import FrameNav from '../components/vora/FrameNav';
+import FrameFooter from '../components/vora/FrameFooter';
+import shopNavBg from '../assets/vora/shop-nav-bg.png';
+import voraLogoDark from '../assets/vora/vora-logo-dark.png';
+
+const sections: { title: string; paragraphs: string[] }[] = [
+  {
+    title: '1. Nuestra privacidad',
+    paragraphs: [
+      'En VORA valoramos la privacidad de quienes visitan nuestro sitio web. Nos comprometemos a ofrecer una experiencia digital segura, transparente y respetuosa con la información de nuestros usuarios.',
+    ],
+  },
+  {
+    title: '2. Información y navegación',
+    paragraphs: [
+      'Actualmente, nuestro sitio web tiene como finalidad presentar la identidad de VORA, compartir novedades y conectar a nuestra comunidad con nuestros canales oficiales.',
+      'No solicitamos registros, contraseñas, información de pago ni datos personales mediante formularios.',
+      'Durante la navegación pueden generarse datos técnicos necesarios para el funcionamiento y la seguridad del sitio.',
+    ],
+  },
+  {
+    title: '3. Uso de la información',
+    paragraphs: [
+      'La información técnica que se procese se utilizará únicamente para mantener la seguridad, estabilidad y correcto funcionamiento de la página, conforme a la legislación aplicable.',
+    ],
+  },
+  {
+    title: '4. Cookies',
+    paragraphs: [
+      'Nuestro sitio puede utilizar cookies técnicas necesarias para su funcionamiento.',
+      'Si en el futuro incorporamos herramientas de análisis, personalización o publicidad, actualizaremos esta política e implementaremos los mecanismos de información y autorización que correspondan.',
+    ],
+  },
+  {
+    title: '5. Enlaces externos',
+    paragraphs: [
+      'Nuestra página puede incluir enlaces a plataformas como Instagram y TikTok.',
+      'Al ingresar a estos servicios, los usuarios estarán sujetos a las políticas de privacidad de cada plataforma.',
+    ],
+  },
+  {
+    title: '6. Protección de la información',
+    paragraphs: [
+      'VORA busca mantener un entorno digital seguro mediante medidas razonables destinadas a prevenir accesos no autorizados y proteger la información que pudiera tratarse durante la navegación.',
+    ],
+  },
+  {
+    title: '7. Derechos de los usuarios',
+    paragraphs: [
+      'Los usuarios podrán ejercer los derechos que les reconoce la legislación colombiana en materia de protección de datos personales, incluidos los de consulta, actualización, rectificación y supresión cuando correspondan.',
+    ],
+  },
+  {
+    title: '8. Actualizaciones',
+    paragraphs: [
+      'Esta política podrá modificarse cuando se incorporen nuevas funcionalidades, servicios o herramientas digitales. Las actualizaciones se publicarán en nuestro sitio web.',
+    ],
+  },
+];
+---
+
+<Layout
+  title="Política de privacidad — VORA"
+  description="Política de privacidad de VORA: qué información tratamos al navegar nuestro sitio web, cookies, enlaces externos y derechos de los usuarios."
+  canvas="#ece6dd"
+>
+  <div class="relative overflow-x-clip bg-[#ece6dd]">
+    <FrameNav active="" background={shopNavBg.src} theme="light" logo={voraLogoDark.src} />
+    <main class="mx-auto w-full max-w-[56rem] px-6 pt-36 pb-24 text-[#1c1c1c] sm:px-10 lg:pt-44">
+      <h1 class="font-mont text-[2rem] leading-[1.1] font-extrabold text-[#5c141a] uppercase sm:text-[2.75rem]">Política de privacidad</h1>
+      <p class="mt-4 text-base text-[#1c1c1c] uppercase">VORA — Made to Move Forward</p>
+      <p class="mt-6 text-sm text-[#1c1c1c]/60">Última actualización: 12 de octubre de 2026</p>
+      <hr class="mt-8 border-0 border-t-2 border-[#5c141a]" />
+
+      {
+        sections.map((s) => (
+          <section class="mt-10">
+            <h2 class="font-mont text-xl font-bold text-[#5c141a]">{s.title}</h2>
+            {s.paragraphs.map((p) => (
+              <p class="mt-3 text-base leading-[1.7] text-[#1c1c1c]">{p}</p>
+            ))}
+          </section>
+        ))
+      }
+
+      <hr class="mt-16 border-0 border-t-2 border-[#5c141a]" />
+      <div class="mt-8 text-center">
+        <p class="font-mont text-lg font-bold text-[#5c141a]">VORA</p>
+        <p class="mt-1 text-base uppercase">Made to Move Forward</p>
+        <p class="mt-1 text-base text-[#5c141a]">www.vora-col.com</p>
+      </div>
+    </main>
+  </div>
+  <FrameFooter />
+</Layout>
