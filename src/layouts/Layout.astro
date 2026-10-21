@@ -19,18 +19,40 @@ interface Props {
   noindex?: boolean;
   /** The first paint uses the italic faces (nosotros hero): preload them, since motion waits on document.fonts.ready. */
   italics?: boolean;
+  /** Social-share overrides; default to title/description. */
+  ogTitle?: string;
+  ogDescription?: string;
+  /** Share image path or absolute URL (1200x630). */
+  image?: string;
 }
 
-const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex, italics } = Astro.props;
+const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex, italics, ogTitle = title, ogDescription = description, image = '/og-image.jpg' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="es" style={`background-color: ${canvas}`}>
+<html lang="es-CO" style={`background-color: ${canvas}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VORA" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="VORA Colombia" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

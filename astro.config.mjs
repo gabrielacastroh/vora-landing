@@ -8,6 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  // Canonical production origin (apex redirects to www).
+  site: 'https://www.vora-col.com',
   // Server output so the middleware can gate /admin-vora, /coleccion and /producto/*.
   // The public landing (src/pages/index.astro) opts back into prerendering.
   output: 'server',
