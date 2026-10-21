@@ -125,6 +125,11 @@
     "variant": "Camiseta / Negro",
     "line": "unisex",
     "cardImage": "../assets/vora/card-make-your-own-luck.webp",
+    "gallery": [
+      { "image": "../assets/vora/make-your-own-luck-1.webp", "position": "center top" },
+      { "image": "../assets/vora/make-your-own-luck-2.webp", "position": "center top" },
+      { "image": "../assets/vora/make-your-own-luck-3.webp", "position": "center top" }
+    ],
     "description": "La suerte no siempre aparece, también se construye. MAKE YOUR OWN LUCK representa la disciplina, la perseverancia y la confianza en el propio camino. Su diseño incorpora una herradura como símbolo de oportunidades creadas a través de nuestras decisiones.",
     "details": [
       {
