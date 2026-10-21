@@ -199,6 +199,11 @@
     "variant": "Camiseta / Blanco",
     "line": "unisex",
     "cardImage": "../assets/vora/card-ambition-club.webp",
+    "gallery": [
+      { "image": "../assets/vora/ambition-club-1.webp", "position": "center top" },
+      { "image": "../assets/vora/ambition-club-2.webp", "position": "center top" },
+      { "image": "../assets/vora/ambition-club-3.webp", "position": "center top" }
+    ],
     "description": "Para quienes piensan en grande y trabajan por sus objetivos. AMBITION CLUB representa una mentalidad de crecimiento constante, donde la ambición se convierte en acción. Una propuesta tipográfica que combina carácter, identidad y una visión de futuro.",
     "details": [
       {
