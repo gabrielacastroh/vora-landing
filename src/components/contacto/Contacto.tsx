@@ -24,8 +24,8 @@ export default function Contacto() {
   return (
     <section data-hero className="relative flex min-h-svh flex-col gap-12 overflow-hidden px-6 pt-32 pb-16 sm:px-10 lg:block lg:h-svh lg:min-h-[46rem] lg:p-0">
       <div data-hero-bg className="absolute inset-0">
-        {/* Figma frame 460:1502 is 1441x1201 and starts 135px above the page: same box so the shirt lands behind the copy. */}
-        <div data-pan className="absolute inset-0 lg:right-auto lg:bottom-auto lg:-top-[8.4375rem] lg:-left-px lg:h-[75.0625rem] lg:w-full">
+        {/* Figma frame 460:1502 is 1441x1201 and starts 135px above the page. 108% wide: data-pan drifts +-3% of the width, so the extra 4% per side keeps the edges covered. */}
+        <div data-pan className="absolute inset-y-0 -left-[4%] w-[108%] lg:inset-y-auto lg:-top-[8.4375rem] lg:h-[75.0625rem]">
           <img
             data-hero-img
             alt=""
