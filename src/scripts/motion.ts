@@ -50,6 +50,7 @@ let lenis: Lenis | null = null;
 initMenu();
 initSliders();
 initCards();
+initLazyVideos();
 
 // Card → product morph: name only the clicked card's image right before the old page is captured.
 for (const el of $$('[data-vt]')) {
@@ -534,6 +535,28 @@ function initCards() {
       set(card, open);
     });
   }
+}
+
+/**
+ * Videos below the fold keep their source in data-src (+ data-src-mobile) so nothing downloads at load.
+ * The source is set and playback starts near the viewport and pauses far from it. Deliberately outside the
+ * reduced-motion matchMedia blocks: these videos already autoplayed under reduced motion, so behaviour is unchanged.
+ */
+function initLazyVideos() {
+  const mobile = matchMedia('(max-width: 48rem)').matches;
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const { target, isIntersecting } of entries) {
+        const video = target as HTMLVideoElement;
+        if (isIntersecting) {
+          if (!video.getAttribute('src')) video.src = (mobile && video.dataset.srcMobile) || video.dataset.src!;
+          video.play().catch(() => {});
+        } else video.pause();
+      }
+    },
+    { rootMargin: '300px 0px' },
+  );
+  $$<HTMLVideoElement>('video[data-src]').forEach((v) => io.observe(v));
 }
 
 function initMenu() {
