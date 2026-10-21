@@ -10,6 +10,9 @@
  *   data-drift                       lines slide in at different speeds (scrubbed)
  *   data-skew                        skews with scroll velocity
  *   data-glow                        slow breathing light
+ *   data-float                       red prisms hover and tilt endlessly while on screen
+ *   data-card                        accordion card: [data-card-toggle] opens [data-card-panel], [data-card-text] staggers in
+ *   data-pan                         endless slow side-to-side drift (hero backgrounds)
  *   data-banner                      banner opens from card to full bleed (scrubbed); [data-banner-title] slides
  *   data-count                       number counts up from 0 (markup holds the final value)
  *   data-spot                        hover light that follows the cursor (sets --mx / --my)
@@ -34,6 +37,7 @@ let lenis: Lenis | null = null;
 
 initMenu();
 initSliders();
+initCards();
 
 // Card → product morph: name only the clicked card's image right before the old page is captured.
 for (const el of $$('[data-vt]')) {
@@ -77,6 +81,8 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
   lines();
   drift();
   glow();
+  pan();
+  float();
   banners();
   counters();
   skew(lenis);
@@ -280,6 +286,30 @@ function glow() {
   }
 }
 
+function pan() {
+  for (const el of $$('[data-pan]')) {
+    gsap.fromTo(el, { xPercent: -3 }, { xPercent: 3, duration: 16, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+  }
+}
+
+/** Glass prisms hover and tilt, each on its own period; paused while off screen. */
+function float() {
+  $$('[data-float]').forEach((el, i) => {
+    const flip = i % 2 ? -1 : 1;
+    const drift = gsap.to(el, {
+      xPercent: 3 * flip,
+      yPercent: -6 * flip,
+      rotation: 5 * flip,
+      duration: 4.5 + i * 1.7,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+      paused: true,
+    });
+    ScrollTrigger.create({ trigger: el, start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? drift.play() : drift.pause()) });
+  });
+}
+
 function skew(scroller: Lenis) {
   const targets = $$('[data-skew]');
   if (!targets.length) return;
@@ -347,6 +377,45 @@ function navAutoHide() {
     onUpdate: (self) => show(self.direction === -1),
     onLeaveBack: () => show(true),
   });
+}
+
+/** Accordion cards: one open at a time; height reveal with a word stagger. Instant under reduced motion. */
+function initCards() {
+  const cards = $$('[data-card]');
+  if (!cards.length) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const words = new Map<HTMLElement, Element[]>();
+
+  const set = (card: HTMLElement, open: boolean) => {
+    const toggle = card.querySelector<HTMLElement>('[data-card-toggle]')!;
+    const panel = card.querySelector<HTMLElement>('[data-card-panel]')!;
+    const text = card.querySelector<HTMLElement>('[data-card-text]')!;
+    if (toggle.getAttribute('aria-expanded') === String(open)) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    card.toggleAttribute('data-open', open);
+
+    if (!words.has(card)) words.set(card, SplitText.create(text, { type: 'words', aria: 'hidden' }).words);
+    gsap.killTweensOf([panel, words.get(card)!]);
+    if (open) gsap.set(panel, { visibility: 'visible' });
+    const duration = reduce ? 0 : 0.8;
+    gsap.to(panel, {
+      height: open ? 'auto' : 0,
+      duration,
+      ease: 'expo.inOut',
+      onComplete: () => void (open || gsap.set(panel, { visibility: 'hidden' })),
+    });
+    if (open) {
+      gsap.fromTo(words.get(card)!, { autoAlpha: 0, y: '0.7em' }, { autoAlpha: 1, y: 0, duration: reduce ? 0 : 0.9, ease: EASE, stagger: reduce ? 0 : 0.035, delay: reduce ? 0 : 0.25 });
+    }
+  };
+
+  for (const card of cards) {
+    card.querySelector('[data-card-toggle]')!.addEventListener('click', () => {
+      const open = card.querySelector('[data-card-toggle]')!.getAttribute('aria-expanded') !== 'true';
+      if (open) cards.forEach((other) => other !== card && set(other, false));
+      set(card, open);
+    });
+  }
 }
 
 function initMenu() {
