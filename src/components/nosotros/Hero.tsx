@@ -38,7 +38,7 @@ export default function Hero() {
         <a
           data-hero-item
           href="#adn"
-          className="mt-10 inline-flex h-[1.875rem] items-center rounded-[2px] bg-[#6d1212] px-3.5 font-mont text-base font-bold leading-[0.8] text-white transition-colors hover:bg-[#8a1717] lg:mt-[10.875rem] lg:w-[14.495rem]"
+          className="mt-10 inline-flex h-[1.875rem] items-center rounded-[2px] bg-[#6d1212] px-3.5 font-mont text-base font-bold leading-[0.8] text-white transition-colors hover:bg-[#8a1717] lg:mt-[3.5rem] lg:w-[14.495rem]"
         >
           CONOCE NUESTRO ADN
         </a>
