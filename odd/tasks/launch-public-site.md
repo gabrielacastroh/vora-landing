@@ -16,10 +16,17 @@ Branch: feat/launch-public-site. Route: delegated writer (middleware/auth remova
 - Final home title/description copy (neutral placeholder from site.json for now).
 
 ## Tasks
-- [ ] T1 routes + nav + remove gate/auth/env
-- [ ] T2 SEO (meta per page, robots, sitemap endpoint)
-- [ ] T3 prerender static pages
-- [ ] T4 verify: build, every route 200 without cookie, screenshots, head tags per page
+- [x] T1 routes + nav + remove gate/auth/env
+- [x] T2 SEO (meta per page, robots, sitemap endpoint)
+- [x] T3 prerender static pages
+- [x] T4 verify: build, every route 200 without cookie, screenshots, head tags per page
 
 ## Evidence
-(pending)
+- T1 930370e, T2 d02d7fa, T3 (perf commit after d02d7fa). Route: delegated writer, inline.
+- `npx astro build`: passes; dist/client has index/coleccion/nosotros/contacto + 16 producto/<slug>/index.html + sitemap.xml (static).
+- Dev :4322, no cookie: all 20 pages 200 (/, /coleccion, /nosotros, /contacto, 16 products), 20/20 unique titles, self canonical on www.vora-col.com, robots "index, follow", 1 h1 each, 10 og tags each; /sitemap.xml 200 application/xml with 20 <loc>; /robots.txt 200; /admin-vora 301 -> /.
+- Screenshots (mobile 440x956@2, desktop 1440x900@1) of /, /coleccion, /producto/first-step reviewed: home identical to old authed home; nav "inicio" from /nosotros lands on /.
+- grep astro:env / ADMIN_PASSWORD (excluding .env*, odd): none.
+- Product og:image kept as default og-image.jpg (Layout declares 1200x630); card image only in Product JSON-LD.
+- Unused after teaser removal (not deleted): public/video/expectativa-{hero,train,train-mobile}.mp4 (~2.8 MB), src/assets/vora/expectativa-*.webp/svg (9 files). Last commit with teaser: c5f1140.
+- Vercel: ADMIN_PASSWORD env can be removed after launch.
