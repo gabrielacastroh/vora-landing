@@ -9,7 +9,8 @@
     "gallery": [
       { "image": "../assets/vora/first-step-1.webp", "position": "center 26%" },
       { "image": "../assets/vora/first-step-2.webp", "position": "center top" },
-      { "image": "../assets/vora/first-step-3.webp", "position": "center top" }
+      { "image": "../assets/vora/first-step-3.webp", "position": "center top" },
+      { "image": "../assets/vora/first-step-4.webp", "position": "center top" }
     ],
     "description": "Todo comienza con una decisión. FIRST STEP representa el inicio de un camino lleno de posibilidades. Su diseño combina elementos gráficos, tipografía y símbolos de dirección que reflejan el valor de dar el primer paso hacia algo más grande.",
     "details": [
