@@ -4,19 +4,18 @@
   "pages": {
     "home": { "title": "VORA — Made to Move Forward" },
     "coleccion": { "title": "Colección / 01 — VORA" },
-    "expectativa": { "title": "VORA Colombia | Moda contemporánea" },
     "nosotros": { "title": "Nosotros — VORA" },
     "contacto": { "title": "Contacto — VORA" }
   },
   "nav": [
-    { "key": "inicio", "label": "inicio", "href": "/admin-vora" },
+    { "key": "inicio", "label": "inicio", "href": "/" },
     { "key": "coleccion", "label": "colección", "href": "/coleccion" },
     { "key": "nosotros", "label": "nosotros", "href": "/nosotros" },
     { "key": "contacto", "label": "contacto", "href": "/contacto" }
   ],
   "footer": {
     "explora": [
-      { "label": "Inicio", "href": "/admin-vora" },
+      { "label": "Inicio", "href": "/" },
       { "label": "Colección", "href": "/coleccion" },
       { "label": "Sobre Vora", "href": "/nosotros" },
       { "label": "Contacto", "href": "/contacto" }

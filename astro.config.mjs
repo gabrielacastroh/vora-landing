@@ -1,6 +1,6 @@
 // @ts-check
 import { fileURLToPath } from 'node:url';
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig } from 'astro/config';
 
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
@@ -10,19 +10,12 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   // Canonical production origin (apex redirects to www).
   site: 'https://www.vora-col.com',
-  // Server output so the middleware can gate /admin-vora, /coleccion and /producto/*.
-  // The public landing (src/pages/index.astro) opts back into prerendering.
+  // Server output kept for the Vercel adapter; every page opts into prerendering.
   output: 'server',
   adapter: vercel({ imageService: true }),
   integrations: [react()],
 
-  redirects: { '/expectativa': '/' },
-
-  env: {
-    schema: {
-      ADMIN_PASSWORD: envField.string({ context: 'server', access: 'secret' }),
-    },
-  },
+  redirects: { '/expectativa': '/', '/admin-vora': '/' },
 
   // One small stylesheet for the whole site: inlining it removes a render-blocking request.
   build: { inlineStylesheets: 'always' },

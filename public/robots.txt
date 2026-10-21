@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin-vora
-Disallow: /coleccion
-Disallow: /producto/
 
 Sitemap: https://www.vora-col.com/sitemap.xml
