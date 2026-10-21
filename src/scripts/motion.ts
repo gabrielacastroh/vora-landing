@@ -15,6 +15,8 @@
  *   data-pan                         endless slow side-to-side drift (hero backgrounds)
  *   data-banner                      banner opens from card to full bleed (scrubbed); [data-banner-title] slides
  *   data-count                       number counts up from 0 (markup holds the final value)
+ *   data-mouse="28"                  drifts against the cursor (px at the screen edge, negative = with it); mouse only
+ *   data-magnet                      pulled toward the cursor while its parent link is hovered; mouse only
  *   data-spot                        hover light that follows the cursor (sets --mx / --my)
  *   data-hero / data-statement       page-specific timelines
  *   data-scene                       pinned scrub scene: light opens over the photo, then copy emerges
@@ -124,6 +126,43 @@ gsap.matchMedia().add('(hover: hover) and (pointer: fine)', () => {
     el.addEventListener('pointermove', move);
     return () => el.removeEventListener('pointermove', move);
   });
+  return () => offs.forEach((off) => off());
+});
+
+// Cursor-driven depth: layers drift against the pointer and arrow buttons lean toward it.
+gsap.matchMedia().add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+  const offs: (() => void)[] = [];
+  const layers = $$('[data-mouse]').map((el) => ({
+    amount: Number(el.dataset.mouse),
+    x: gsap.quickTo(el, 'x', { duration: 1.2, ease: 'power3' }),
+    y: gsap.quickTo(el, 'y', { duration: 1.2, ease: 'power3' }),
+  }));
+  if (layers.length) {
+    const move = (e: PointerEvent) => {
+      const nx = e.clientX / innerWidth - 0.5;
+      const ny = e.clientY / innerHeight - 0.5;
+      for (const l of layers) {
+        l.x(-nx * l.amount * 2);
+        l.y(-ny * l.amount * 2);
+      }
+    };
+    addEventListener('pointermove', move);
+    offs.push(() => removeEventListener('pointermove', move));
+  }
+  for (const el of $$('[data-magnet]')) {
+    const host = el.closest<HTMLElement>('a')!;
+    const x = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' });
+    const y = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });
+    const move = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      x(gsap.utils.clamp(-14, 14, (e.clientX - (r.left + r.width / 2 - (gsap.getProperty(el, 'x') as number))) * 0.3));
+      y(gsap.utils.clamp(-14, 14, (e.clientY - (r.top + r.height / 2 - (gsap.getProperty(el, 'y') as number))) * 0.3));
+    };
+    const leave = () => (x(0), y(0));
+    host.addEventListener('pointermove', move);
+    host.addEventListener('pointerleave', leave);
+    offs.push(() => (host.removeEventListener('pointermove', move), host.removeEventListener('pointerleave', leave)));
+  }
   return () => offs.forEach((off) => off());
 });
 
