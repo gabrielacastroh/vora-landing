@@ -199,11 +199,11 @@
     "variant": "Camiseta / Blanco",
     "line": "unisex",
     "cardImage": "../assets/vora/card-ambition-club.webp",
-    "description": "Para quienes buscan más. Blanco limpio, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "description": "Para quienes piensan en grande y trabajan por sus objetivos. AMBITION CLUB representa una mentalidad de crecimiento constante, donde la ambición se convierte en acción. Una propuesta tipográfica que combina carácter, identidad y una visión de futuro.",
     "details": [
       {
         "label": "Corte",
-        "value": "Oversize unisex"
+        "value": "Oversize"
       },
       {
         "label": "Material",
@@ -214,8 +214,8 @@
         "value": "Blanco"
       },
       {
-        "label": "Estampado",
-        "value": "Serigrafía frontal y trasera"
+        "label": "Gramaje",
+        "value": "230 g/m²"
       }
     ],
     "sizes": [
