@@ -32,9 +32,9 @@ export default function Contacto() {
             alt=""
             src={bg.src}
             fetchPriority="high"
-            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover opacity-[0.47]"
+            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[12%_center] opacity-[0.47] max-lg:opacity-[0.6] lg:object-center"
           />
-          <div className="absolute inset-0 bg-black/68" />
+          <div className="absolute inset-0 bg-black/68 max-lg:bg-black/45" />
           <div data-glow aria-hidden="true" className="pointer-events-none absolute bottom-[8%] left-[4%] size-[34rem] max-w-[80%] rounded-full bg-[#d40732]/20 blur-[7rem]" />
         </div>
       </div>
