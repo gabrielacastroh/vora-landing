@@ -15,6 +15,7 @@ const schema = z.object({
     home: z.object({ title: z.string() }),
     coleccion: z.object({ title: z.string() }),
     expectativa: z.object({ title: z.string() }),
+    nosotros: z.object({ title: z.string() }),
   }),
   /** `key` is what a page passes as `active` to highlight its own link. */
   nav: z.array(link.extend({ key: z.string() })),

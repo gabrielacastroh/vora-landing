@@ -4,19 +4,20 @@
   "pages": {
     "home": { "title": "VORA — Made to Move Forward" },
     "coleccion": { "title": "Colección / 01 — VORA" },
-    "expectativa": { "title": "Algo está tomando forma — VORA" }
+    "expectativa": { "title": "Algo está tomando forma — VORA" },
+    "nosotros": { "title": "Nosotros — VORA" }
   },
   "nav": [
     { "key": "inicio", "label": "inicio", "href": "/admin-vora" },
     { "key": "coleccion", "label": "colección", "href": "/coleccion" },
-    { "key": "nosotros", "label": "nosotros", "href": "#" },
+    { "key": "nosotros", "label": "nosotros", "href": "/nosotros" },
     { "key": "contacto", "label": "contacto", "href": "#contacto" }
   ],
   "footer": {
     "explora": [
       { "label": "Inicio", "href": "/admin-vora" },
       { "label": "Colección", "href": "/coleccion" },
-      { "label": "Sobre Vora", "href": "#" },
+      { "label": "Sobre Vora", "href": "/nosotros" },
       { "label": "Contacto", "href": "#" }
     ],
     "legal": [
