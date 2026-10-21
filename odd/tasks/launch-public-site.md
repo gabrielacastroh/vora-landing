@@ -22,7 +22,7 @@ Branch: feat/launch-public-site. Route: delegated writer (middleware/auth remova
 - [x] T4 verify: build, every route 200 without cookie, screenshots, head tags per page
 
 ## Evidence
-- T1 930370e, T2 d02d7fa, T3 (perf commit after d02d7fa). Route: delegated writer, inline.
+- T1 930370e, T2 d02d7fa, T3 c2a885d. Route: delegated writer, inline.
 - `npx astro build`: passes; dist/client has index/coleccion/nosotros/contacto + 16 producto/<slug>/index.html + sitemap.xml (static).
 - Dev :4322, no cookie: all 20 pages 200 (/, /coleccion, /nosotros, /contacto, 16 products), 20/20 unique titles, self canonical on www.vora-col.com, robots "index, follow", 1 h1 each, 10 og tags each; /sitemap.xml 200 application/xml with 20 <loc>; /robots.txt 200; /admin-vora 301 -> /.
 - Screenshots (mobile 440x956@2, desktop 1440x900@1) of /, /coleccion, /producto/first-step reviewed: home identical to old authed home; nav "inicio" from /nosotros lands on /.
