@@ -375,23 +375,23 @@
     "variant": "Camiseta crop top / Azul celeste",
     "line": "womens",
     "cardImage": "../assets/vora/card-good-things.webp",
-    "description": "Lo bueno llega. Azul celeste, silueta femenina y algodón de alto gramaje con estampado gráfico trasero.",
+    "description": "Las mejores cosas toman tiempo. GOOD THINGS representa la paciencia, la confianza en el proceso y la importancia de disfrutar cada etapa. Su diseño tipográfico combina una estética fresca y contemporánea con un mensaje que invita a avanzar sin perder de vista el presente.",
     "details": [
       {
         "label": "Corte",
-        "value": "Women's fit"
+        "value": "Oversize Crop Top"
       },
       {
         "label": "Material",
-        "value": "100% algodón de alto gramaje"
+        "value": "100 % algodón"
       },
       {
         "label": "Color",
-        "value": "Azul celeste"
+        "value": "Azul Celeste"
       },
       {
-        "label": "Estampado",
-        "value": "Serigrafía frontal y trasera"
+        "label": "Gramaje",
+        "value": "230 g/m²"
       }
     ],
     "sizes": [
