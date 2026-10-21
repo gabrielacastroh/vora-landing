@@ -105,12 +105,12 @@
     "line": "unisex",
     "cardImage": "../assets/vora/card-beyond-ordinary.webp",
     "featured": 3,
-    "description": "Para quien decide ir más allá. Beige, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "description": "Ser diferente es atreverse a ir más allá de lo establecido. BEYOND ORDINARY combina elegancia tipográfica y una estética contemporánea para representar la individualidad, la ambición y el propósito de quienes no se conforman con lo común.",
     "details": [
-      { "label": "Corte", "value": "Oversize unisex" },
+      { "label": "Corte", "value": "Oversize" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
       { "label": "Color", "value": "Beige" },
-      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+      { "label": "Gramaje", "value": "230 g/m²" }
     ],
     "sizes": ["S", "M", "L", "XL"]
   },
