@@ -10,6 +10,7 @@ import bannerUnisex from '../../assets/vora/shop-banner-unisex.webp';
 import bannerWomens from '../../assets/vora/shop-banner-womens.webp';
 import statementPhoto from '../../assets/vora/shop-statement.webp';
 import numbersPhoto from '../../assets/vora/shop-numbers.webp';
+import numbersPhotoMobile from '../../assets/vora/shop-numbers-mobile.webp';
 import statCard1 from '../../assets/vora/stat-card-1.svg';
 import statCard2 from '../../assets/vora/stat-card-2.svg';
 import statCard3 from '../../assets/vora/stat-card-3.svg';
@@ -216,10 +217,14 @@ function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
   return (
     <section className="pt-24 pb-20 lg:pt-[10.1875rem] lg:pb-[7.6875rem]">
       <div className="relative overflow-hidden lg:h-[30.125rem]">
-        <img alt="Modelo con la camiseta ON MY WAY señalando al cielo" src={numbersPhoto.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[20%_center]" />
-        <div className="relative mx-auto flex w-full max-w-360 flex-col items-center px-6 pt-64 pb-12 sm:px-10 lg:items-end lg:px-[6.5rem] lg:pt-[6.1875rem] lg:pb-0">
+        {/* Below lg the section uses its own portrait photo (sky on top for the copy, model at the bottom). */}
+        <picture>
+          <source media="(min-width: 64rem)" srcSet={numbersPhoto.src} />
+          <img alt="Modelo con la camiseta ON MY WAY señalando al cielo" src={numbersPhotoMobile.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-bottom lg:object-[20%_center]" />
+        </picture>
+        <div className="relative mx-auto flex min-h-[calc(100vw*1672/941)] w-full max-w-360 flex-col items-center px-6 pt-[12%] pb-12 sm:px-10 lg:min-h-0 lg:items-end lg:px-[6.5rem] lg:pt-[6.1875rem] lg:pb-0">
           <div className="flex flex-col items-center">
-            <div className="text-center font-mont leading-normal text-[#332727]">
+            <div className="text-center font-mont leading-normal text-white lg:text-[#332727]">
               <p data-reveal className="text-[1.1838rem] font-medium">
                 LA COLECCIÓN
               </p>
@@ -227,7 +232,8 @@ function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
                 EN NÚMEROS
               </h2>
             </div>
-            <div className="mt-[1.8rem] grid grid-cols-2 gap-[1.4375rem] sm:flex">
+            {/* Phone: cards at 0.73 of their size (the Figma mobile frame), a wide column gap so the model stays visible between them. */}
+            <div className="mt-[1.3rem] grid grid-cols-2 gap-x-[5.25rem] gap-y-[1.5rem] max-sm:[zoom:0.73] sm:mt-[1.8rem] sm:flex sm:gap-[1.4375rem]">
               {stats.map((stat, i) => (
                 <StatCard key={i} stat={stat} i={i} />
               ))}
