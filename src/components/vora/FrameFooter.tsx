@@ -19,9 +19,9 @@ const socials: { network: SocialNetwork; label: string; icon: string; className:
 const column = 'flex flex-col gap-[1.1875rem] lg:mt-[1.375rem] lg:h-[10.0625rem] lg:border-l lg:border-white/25 lg:pl-[4.9375rem]';
 const linkClass = 'text-[0.8125rem] font-extralight capitalize text-white transition-opacity hover:opacity-70';
 
-function LinkColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+function LinkColumn({ title, items, className = '' }: { title: string; items: { label: string; href: string }[]; className?: string }) {
   return (
-    <div data-reveal className={column}>
+    <div data-reveal className={`${column} ${className}`}>
       <p className="text-[0.8125rem] font-medium uppercase text-white">{title}</p>
       {items.map((item) => (
         <a key={item.label} href={item.href} className={linkClass}>
@@ -36,7 +36,7 @@ export default function FrameFooter() {
   return (
     <footer id="contacto" className="relative bg-[#5c141a]">
       <div className="mx-auto w-full max-w-360 px-6 pt-14 pb-12 sm:px-10 lg:pr-[10.9375rem] lg:pl-[12rem] lg:pt-[3.875rem] lg:pb-[3.8125rem]">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-12 lg:grid-cols-[341fr_232fr_291fr_209fr] lg:gap-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10 lg:grid-cols-[341fr_232fr_291fr_209fr] lg:gap-0">
           <div data-reveal className="col-span-2 sm:col-span-3 lg:col-span-1">
             <img alt="VORA" src={voraLogo.src} className="-ml-4 h-[4.875rem] w-auto max-w-none" />
             <div className="mt-[1.1875rem] text-[0.8125rem] font-extralight capitalize leading-normal text-white">
@@ -47,13 +47,14 @@ export default function FrameFooter() {
                 una <span className="lowercase">mentalidad en constante movimiento.</span>
               </p>
             </div>
-            <p className="font-display mt-10 text-[0.8125rem] uppercase text-[#ece6dd]">AMBICIÓN · PROPÓSITO · EVOLUCIÓN</p>
+            <p className="font-display mt-7 text-[0.8125rem] uppercase text-[#ece6dd] lg:mt-10">AMBICIÓN · PROPÓSITO · EVOLUCIÓN</p>
           </div>
 
-          <LinkColumn title="EXPLORA" items={explora} />
+          {/* Below sm: EXPLORA spans two rows, LEGAL and the socials stack beside it. */}
+          <LinkColumn title="EXPLORA" items={explora} className="max-sm:row-span-2" />
           <LinkColumn title="LEGAL" items={legal} />
 
-          <div data-reveal className={`col-span-2 sm:col-span-1 lg:col-span-1 ${column} gap-0! lg:pt-9`}>
+          <div data-reveal className={`sm:col-span-1 lg:col-span-1 ${column} gap-0! lg:pt-9`}>
             <p className="text-[0.8125rem] font-extralight capitalize leading-normal text-white">sigamos avanzando</p>
             <p className="text-[0.8125rem] font-extralight capitalize leading-normal text-white">
               Encuéntranos <span className="lowercase">en</span>
