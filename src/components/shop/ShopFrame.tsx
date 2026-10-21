@@ -220,7 +220,7 @@ function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
           <source media="(min-width: 64rem)" srcSet={numbersPhoto.src} />
           <img alt="Modelo con la camiseta ON MY WAY señalando al cielo" src={numbersPhotoMobile.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-bottom lg:object-[20%_center]" />
         </picture>
-        <div className="relative mx-auto flex min-h-[calc(100vw*1672/941)] w-full max-w-360 flex-col items-center px-6 pt-[12%] pb-12 sm:px-10 lg:min-h-0 lg:items-end lg:px-[6.5rem] lg:pt-[6.1875rem] lg:pb-0">
+        <div className="relative mx-auto flex min-h-[calc(100vw*1322/649)] w-full max-w-360 flex-col items-center px-6 pt-[10%] pb-12 sm:px-10 lg:min-h-0 lg:items-end lg:px-[6.5rem] lg:pt-[6.1875rem] lg:pb-0">
           <div className="flex flex-col items-center">
             <div className="text-center font-mont leading-normal text-white">
               <p data-reveal className="text-[1.1838rem] font-medium">
@@ -231,7 +231,7 @@ function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
               </h2>
             </div>
             {/* Phone: cards at 0.73 of their size (the Figma mobile frame), a wide column gap so the model stays visible between them. */}
-            <div className="mt-[1.3rem] grid grid-cols-2 gap-x-[5.25rem] gap-y-[1.5rem] max-sm:[zoom:0.73] sm:mt-[1.8rem] sm:flex sm:gap-[1.4375rem]">
+            <div className="mt-[0.2rem] grid grid-cols-2 gap-x-[5.25rem] gap-y-[1.5rem] max-sm:[zoom:0.73] sm:mt-[1.8rem] sm:flex sm:gap-[1.4375rem]">
               {stats.map((stat, i) => (
                 <StatCard key={i} stat={stat} i={i} />
               ))}
