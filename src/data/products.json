@@ -104,6 +104,11 @@
     "variant": "Camiseta / Beige",
     "line": "unisex",
     "cardImage": "../assets/vora/card-beyond-ordinary.webp",
+    "gallery": [
+      { "image": "../assets/vora/beyond-ordinary-1.webp", "position": "center top" },
+      { "image": "../assets/vora/beyond-ordinary-2.webp", "position": "center top" },
+      { "image": "../assets/vora/beyond-ordinary-3.webp", "position": "center top" }
+    ],
     "featured": 3,
     "description": "Ser diferente es atreverse a ir más allá de lo establecido. BEYOND ORDINARY combina elegancia tipográfica y una estética contemporánea para representar la individualidad, la ambición y el propósito de quienes no se conforman con lo común.",
     "details": [
