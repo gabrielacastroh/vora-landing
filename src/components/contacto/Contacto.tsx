@@ -22,23 +22,24 @@ const arrow = (
 /** /contacto: copy on the left, four channel cards on the right, over a dimmed stadium photo. */
 export default function Contacto() {
   return (
-    <section data-hero className="relative flex min-h-svh flex-col gap-12 overflow-hidden px-6 pt-32 pb-16 sm:px-10 lg:block lg:h-[75rem] lg:min-h-0 lg:p-0">
+    <section data-hero className="relative flex min-h-svh flex-col gap-12 overflow-hidden px-6 pt-32 pb-16 sm:px-10 lg:block lg:h-[62.5rem] lg:min-h-0 lg:p-0">
       <div data-hero-bg className="absolute inset-0">
-        <div data-pan className="absolute inset-0">
+        {/* Figma frame 460:1502 is 1441x1201 and starts 135px above the page: same box so the shirt lands behind the copy. */}
+        <div data-pan className="absolute inset-0 lg:right-auto lg:bottom-auto lg:-top-[8.4375rem] lg:-left-px lg:h-[75.0625rem] lg:w-full">
           <img
             data-hero-img
             alt=""
             src={bg.src}
             fetchPriority="high"
-            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[30%_center] opacity-[0.47]"
+            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover opacity-[0.47]"
           />
+          <div className="absolute inset-0 bg-black/68" />
         </div>
-        <div className="absolute inset-0 bg-black/45" />
       </div>
 
       <div data-hero-content className="relative mx-auto w-full max-w-360 lg:absolute lg:inset-x-0 lg:top-[22.625rem] lg:pl-[5.5rem]">
         <div className="flex items-center gap-4">
-          <span className="font-display text-[1.4375rem] font-bold leading-none tracking-[0.1875rem] text-[#d51424]">CONTACTO</span>
+          <span className="font-['Barlow_Condensed'] text-[1.4375rem] font-bold leading-none tracking-[0.1875rem] text-[#d51424]">CONTACTO</span>
           <span data-line className="h-px w-[22.1875rem] max-w-[40vw] bg-linear-to-r from-[#d40732] to-transparent" />
         </div>
         <h1 data-split="lines" data-delay="0.3" className="mt-4 font-mont italic leading-[0.9] text-[#ece6dd]">
@@ -47,11 +48,13 @@ export default function Contacto() {
             EN MOVIMIENTO<span className="text-[#6d1212]">.</span>
           </span>
         </h1>
-        <p data-hero-item className="mt-6 max-w-[30.5rem] text-[1.0625rem] leading-[1.4] text-[#b7b7b5]">
-          ¿Tienes preguntas sobre una prenda, disponibilidad, pedidos o colaboraciones?
+        <p data-hero-item className="mt-6 max-w-[32.8rem] text-[1.0625rem] leading-[1.4] text-[#b7b7b5]">
+          ¿Tienes preguntas sobre una prenda, disponibilidad, <br className="max-lg:hidden" />
+          pedidos o colaboraciones?
           <br />
           <br />
-          Puedes comunicarte con <strong className="font-bold text-[#ece6dd]">VORA</strong> directamente a través de nuestros canales oficiales.
+          Puedes comunicarte con <strong className="font-bold text-[#ece6dd]">VORA</strong> directamente a <br className="max-lg:hidden" />
+          través de nuestros canales oficiales.
         </p>
       </div>
 
@@ -64,13 +67,13 @@ export default function Contacto() {
                 href={c.href || '#'}
                 {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 aria-label={c.label}
-                className="group flex h-[9.866rem] items-center gap-[1.1rem] border-[0.051rem] border-[#55534f] bg-[#080909]/50 pr-5 pl-5 outline-none backdrop-blur-[2px] transition-[border-color,background-color] duration-500 hover:border-[#d40732] hover:bg-[#1a1213]/70 focus-visible:border-[#d40732] focus-visible:bg-[#1a1213]/70 focus-visible:ring-2 focus-visible:ring-[#d40732] sm:pr-[1.9rem] sm:pl-[1.9rem] motion-reduce:transition-none"
+                className="group relative flex h-[9.866rem] items-center gap-[1.1rem] border-[0.051rem] border-[#55534f] bg-[#080909]/50 pr-5 pl-5 outline-none backdrop-blur-[2px] transition-[border-color,background-color] duration-500 hover:border-[#d40732] hover:bg-[#1a1213]/70 focus-visible:border-[#d40732] focus-visible:bg-[#1a1213]/70 focus-visible:ring-2 focus-visible:ring-[#d40732] sm:pr-[1.9rem] sm:pl-[1.9rem] motion-reduce:transition-none"
               >
                 <span className="flex w-[3.0625rem] shrink-0 items-center justify-center transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110 motion-reduce:transition-none">
                   <img alt="" src={c.icon} className={`${c.iconClass} max-w-none object-contain`} />
                 </span>
                 <span aria-hidden="true" className="h-[6.9375rem] w-[0.051rem] shrink-0 bg-[#55534f]" />
-                <span className="flex min-w-0 flex-1 flex-col">
+                <span className="flex min-w-0 flex-1 flex-col lg:w-[16.869rem] lg:flex-none">
                   <span className="text-[0.6125rem] font-bold leading-none text-[#d40732]">{String(i + 1).padStart(2, '0')}</span>
                   <span className="mt-1.5 font-mont text-[1.3rem] font-bold leading-[1.1] text-[#e5e3e0] sm:text-[1.53rem]">{c.title}</span>
                   <span className="mt-1.5 font-mont text-[0.769rem] leading-[1.4] text-[#b7b7b5]">{c.text}</span>
@@ -81,7 +84,7 @@ export default function Contacto() {
                 </span>
                 <span
                   aria-hidden="true"
-                  className="flex size-[2.556rem] shrink-0 items-center justify-center rounded-full border border-[#b7b7b5] text-[#b7b7b5] transition-[background-color,border-color,color,transform] duration-500 group-hover:-rotate-45 group-hover:border-[#d40732] group-hover:bg-[#d40732] group-hover:text-white group-focus-visible:-rotate-45 group-focus-visible:border-[#d40732] group-focus-visible:bg-[#d40732] group-focus-visible:text-white motion-reduce:transition-none"
+                  className="flex size-[2.556rem] shrink-0 items-center max-lg:ml-auto lg:absolute lg:top-[3.322rem] lg:left-[27.4rem] justify-center rounded-full border border-[#b7b7b5] text-[#b7b7b5] transition-[background-color,border-color,color,transform] duration-500 group-hover:-rotate-45 group-hover:border-[#d40732] group-hover:bg-[#d40732] group-hover:text-white group-focus-visible:-rotate-45 group-focus-visible:border-[#d40732] group-focus-visible:bg-[#d40732] group-focus-visible:text-white motion-reduce:transition-none"
                 >
                   <svg viewBox="0 0 19 16" fill="none" stroke="currentColor" strokeWidth="1.23" className="h-[0.9688rem] w-[1.175rem]">
                     <path d="M0 7.76H18M11.7 15.12 18 7.76 11.7.4" />
