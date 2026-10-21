@@ -8,14 +8,9 @@ const info = (name: string) => ({ viewTransitionName: name, viewTransitionClass:
 
 interface Props {
   product: Product;
-  prev: Product;
-  next: Product;
-  /** 1-based position in the catalog and catalog size, for the "02 / 05" counter. */
-  position: number;
-  total: number;
 }
 
-export default function ProductHero({ product, prev, next, position, total }: Props) {
+export default function ProductHero({ product }: Props) {
   // Garment first, then the photos: the gallery when there is one, else the single model shot.
   const photos = product.gallery ?? (product.heroImage ? [{ image: product.heroImage, position: product.heroPosition }] : []);
   const images = [
@@ -147,33 +142,12 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
         </div>
 
         {/* Sticky bottom bar: when the copy fits it rests at the column's end (= viewport bottom), when it
-            doesn't it sticks to the viewport bottom. Either way the arrows land on the same spot for every
-            product, so the cursor never has to chase them. */}
+            doesn't it sticks to the viewport bottom. Either way the buy button lands on the same spot for every
+            product. */}
         <div
           data-reveal
           className="sticky bottom-0 z-10 -mx-6 mt-auto flex flex-col gap-6 bg-vora-bg px-6 pt-4 pb-6 sm:-mx-10 sm:px-10 lg:-mx-20 lg:gap-4 lg:px-20 lg:pt-3 lg:pb-5"
         >
-          <div className="flex items-center gap-5">
-            <p className="font-display text-[0.9375rem] tabular-nums text-vora-cream" style={info('product-count')}>
-              {pad(position)} <span className="text-vora-muted">/ {pad(total)}</span>
-            </p>
-            <div className="flex gap-2">
-              {[
-                { dir: 'prev', target: prev, label: 'anterior', glyph: '<' },
-                { dir: 'next', target: next, label: 'siguiente', glyph: '>' },
-              ].map(({ dir, target, label, glyph }) => (
-                <a
-                  key={dir}
-                  href={`/producto/${target.slug}`}
-                  data-dir={dir}
-                  aria-label={`Producto ${label}: ${target.name}`}
-                  className="flex size-8 items-center justify-center border border-vora-cream/60 text-xs text-vora-cream transition-colors hover:border-vora-cream hover:bg-vora-cream hover:text-vora-bg"
-                >
-                  <span aria-hidden="true">{glyph}</span>
-                </a>
-              ))}
-            </div>
-          </div>
           <a
             href={buyHref}
             {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
