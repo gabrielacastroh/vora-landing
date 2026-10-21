@@ -125,11 +125,11 @@
     "variant": "Camiseta / Negro",
     "line": "unisex",
     "cardImage": "../assets/vora/card-make-your-own-luck.webp",
-    "description": "La suerte también se construye. Negro profundo, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "description": "La suerte no siempre aparece, también se construye. MAKE YOUR OWN LUCK representa la disciplina, la perseverancia y la confianza en el propio camino. Su diseño incorpora una herradura como símbolo de oportunidades creadas a través de nuestras decisiones.",
     "details": [
       {
         "label": "Corte",
-        "value": "Oversize unisex"
+        "value": "Oversize"
       },
       {
         "label": "Material",
@@ -140,8 +140,8 @@
         "value": "Negro"
       },
       {
-        "label": "Estampado",
-        "value": "Serigrafía frontal y trasera"
+        "label": "Gramaje",
+        "value": "230 g/m²"
       }
     ],
     "sizes": [
