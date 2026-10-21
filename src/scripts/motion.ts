@@ -18,6 +18,10 @@
  *   data-spot                        hover light that follows the cursor (sets --mx / --my)
  *   data-hero / data-statement       page-specific timelines
  *   data-scene                       pinned scrub scene: light opens over the photo, then copy emerges
+ *   data-seq="top 70%"               choreographed group: its [data-in] children play in order once the group reaches that start
+ *   data-in="fade|slide|pop|drop|draw|wipe"  step inside a data-seq (data-from="left|right|up|down" sets the wipe side, data-settle adds a tilt)
+ *   data-parallax="0.06"             xl-only scrubbed vertical drift (percent of own height, negative = opposite way)
+ *   data-ken                         photo inside its section: scrubbed slow zoom + drift
  */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -27,6 +31,12 @@ import Lenis from 'lenis';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const EASE = 'expo.out';
+const WIPE: Record<string, string> = {
+  left: 'inset(0% 100% 0% 0%)',
+  right: 'inset(0% 0% 0% 100%)',
+  up: 'inset(100% 0% 0% 0%)',
+  down: 'inset(0% 0% 100% 0%)',
+};
 const $$ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = document) => [...root.querySelectorAll<T>(sel)];
 
 let lenis: Lenis | null = null;
@@ -76,8 +86,11 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
     splits();
     reveals();
   }
+  sequences();
   clips();
   parallax();
+  parallaxXl();
+  ken();
   lines();
   drift();
   glow();
@@ -88,7 +101,12 @@ gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
   skew(lenis);
   navAutoHide();
 
+  // Lazy images change the page height after the first measure: re-measure every trigger once all are in.
+  const refresh = () => ScrollTrigger.refresh();
+  addEventListener('load', refresh, { once: true });
+
   return () => {
+    removeEventListener('load', refresh);
     gsap.ticker.remove(raf);
     lenis?.destroy();
     lenis = null;
@@ -196,6 +214,67 @@ function parallax() {
         ease: 'none',
         scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
       },
+    );
+  }
+}
+
+/** Choreographed groups: the [data-in] steps of a [data-seq] play in DOM order, one timeline per group. */
+function sequences() {
+  let flip = 1;
+  for (const root of $$('[data-seq]')) {
+    // A display:contents wrapper has no box to trigger from; its parent stands in.
+    const trigger = getComputedStyle(root).display === 'contents' ? root.parentElement! : root;
+    const tl = gsap.timeline({
+      defaults: { ease: EASE },
+      scrollTrigger: { trigger, start: root.dataset.seq || 'top 70%', toggleActions: 'play none none none' },
+    });
+    $$('[data-in]', root).forEach((el, i) => {
+      const at = i * 0.16;
+      const kind = el.dataset.in;
+      flip = -flip;
+      // gsap folds a CSS `rotate` into its own rotation, so tilt relative to it: the Figma angle is where it lands.
+      const tilt = (deg: number, duration: number, ease: string) => tl.from(el, { rotation: `+=${deg}`, duration, ease }, at);
+      if (kind === 'wipe') {
+        const img = el.querySelector('img');
+        tl.set(el, { autoAlpha: 1 }, at)
+          .fromTo(el, { clipPath: WIPE[el.dataset.from || 'up'] }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.inOut', clearProps: 'clipPath' }, at);
+        // data-settle: the piece also straightens up from a slight tilt (added on top of any CSS rotate).
+        if ('settle' in el.dataset) tilt(4 * flip, 1.8, 'power3.out');
+        if (img) tl.fromTo(img, { scale: 1.2 }, { scale: 1, duration: 2, clearProps: 'transform' }, at);
+      } else if (kind === 'draw') {
+        tl.set(el, { autoAlpha: 1 }, at).fromTo(el, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 1.2, ease: 'expo.inOut' }, at);
+      } else if (kind === 'pop') {
+        tl.fromTo(el, { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, duration: 1.5, ease: 'back.out(1.8)' }, at);
+        tilt(-35 * flip, 1.5, 'back.out(1.8)');
+      } else if (kind === 'drop') {
+        tl.fromTo(el, { autoAlpha: 0, y: -70, scale: 1.08 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1.5, ease: 'power4.out' }, at);
+        tilt(7 * flip, 1.5, 'power4.out');
+      } else if (kind === 'slide') {
+        tl.fromTo(el, { autoAlpha: 0, x: 90 }, { autoAlpha: 1, x: 0, duration: 1.4 }, at);
+      } else {
+        tl.fromTo(el, { autoAlpha: 0, y: '2.5rem' }, { autoAlpha: 1, y: 0, duration: 1.2 }, at);
+      }
+    });
+  }
+}
+
+/** Desktop stage only: stacked mobile layouts skip scrub parallax to stay smooth. */
+function parallaxXl() {
+  gsap.matchMedia().add('(min-width: 80rem) and (prefers-reduced-motion: no-preference)', () => {
+    for (const el of $$('[data-parallax]')) {
+      const f = Number(el.dataset.parallax) * 100;
+      gsap.fromTo(el, { yPercent: -f }, { yPercent: f, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
+    }
+  });
+}
+
+/** Section photos breathe: slow zoom-out and drift while the section crosses the screen. */
+function ken() {
+  for (const img of $$('[data-ken]')) {
+    gsap.fromTo(
+      img,
+      { scale: 1.32, yPercent: -6 },
+      { scale: 1.16, yPercent: 6, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.6 } },
     );
   }
 }

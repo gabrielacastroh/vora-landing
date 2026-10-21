@@ -30,20 +30,26 @@ const shade = <div className="absolute inset-0 bg-black/20" />;
 
 function Collage({ className = '', style }: { className?: string; style?: CSSProperties }) {
   return (
-    <div className={`relative mx-auto w-full max-w-[36.25rem] ${className}`} style={{ aspectRatio: `${W} / ${H}`, ...style }}>
-      <Crop src={backpack.src} w={290} h={265} img={[-79, -40.3, 397, 345.6]} className="absolute" style={box(12, 44, 290)}>
-        {shade}
-      </Crop>
-      <Crop src={couple.src} w={292.569} h={438.854} className="absolute" style={{ ...box(113.7, 117.5, 292.569), rotate: '6.32deg' }}>
-        {shade}
-      </Crop>
-      <Crop src={road.src} w={143.4} h={209.4} img={[-190.74, -172.5, 373.1, 555]} className="absolute" style={box(306.6, 433.05, 143.4)}>
-        {shade}
-      </Crop>
-      <div data-speed="0.06" className="pointer-events-none absolute" style={{ ...box(282.2, 10.3, 289.345), rotate: '2.5deg' }}>
+    <div data-seq="top 65%" className={`relative mx-auto w-full max-w-[36.25rem] ${className}`} style={{ aspectRatio: `${W} / ${H}`, ...style }}>
+      <div data-in="wipe" data-settle data-from="left" data-parallax="0.04" className="absolute" style={box(12, 44, 290)}>
+        <Crop src={backpack.src} w={290} h={265} img={[-79, -40.3, 397, 345.6]} reveal={false} className="relative">
+          {shade}
+        </Crop>
+      </div>
+      <div data-in="wipe" data-settle data-from="up" data-parallax="-0.03" className="absolute" style={{ ...box(113.7, 117.5, 292.569), rotate: '6.32deg' }}>
+        <Crop src={couple.src} w={292.569} h={438.854} reveal={false} className="relative">
+          {shade}
+        </Crop>
+      </div>
+      <div data-in="wipe" data-settle data-from="right" data-parallax="0.08" className="absolute" style={box(306.6, 433.05, 143.4)}>
+        <Crop src={road.src} w={143.4} h={209.4} img={[-190.74, -172.5, 373.1, 555]} reveal={false} className="relative">
+          {shade}
+        </Crop>
+      </div>
+      <div data-in="pop" data-speed="0.06" className="pointer-events-none absolute" style={{ ...box(282.2, 10.3, 289.345), rotate: '2.5deg' }}>
         <img alt="" src={star.src} data-float loading="lazy" decoding="async" className="block h-auto w-full max-w-none" />
       </div>
-      <div data-speed="-0.05" className="pointer-events-none absolute" style={{ ...box(20.1, 445.5, 156.989), rotate: '-6.53deg' }}>
+      <div data-in="pop" data-speed="-0.05" className="pointer-events-none absolute" style={{ ...box(20.1, 445.5, 156.989), rotate: '-6.53deg' }}>
         <img alt="" src={star.src} data-float loading="lazy" decoding="async" className="block h-auto w-full max-w-none" />
       </div>
     </div>
@@ -58,7 +64,7 @@ function Pillar({ n, title, bg, text }: (typeof pillars)[number]) {
   const id = `adn-${n}`;
   return (
     <div
-      data-reveal
+      data-in="slide"
       data-card
       className="@container group w-full max-w-[22rem] transition-[filter] duration-700 data-open:drop-shadow-[-3px_7px_7px_rgb(0_0_0/0.4)] xl:max-w-none"
     >
@@ -96,9 +102,9 @@ export default function Adn() {
           className="relative mx-auto flex w-full max-w-360 flex-col gap-12 px-6 py-20 sm:px-10 xl:block xl:aspect-[1440/763] xl:p-0"
           style={stageVars}
         >
-          <div className="flex flex-col gap-6 xl:contents">
+          <div data-seq="top 75%" className="flex flex-col gap-6 xl:contents">
             <p
-              data-reveal
+              data-in="fade"
               className={`font-sans text-sm font-semibold text-white xl:w-(--w) xl:text-(length:--fs) ${place}`}
               style={at(79, 210, { w: 645.215, fs: 14 })}
             >
@@ -114,7 +120,7 @@ export default function Adn() {
               <span className="block text-[2.75rem] text-[#6e161b] sm:text-[4.25rem] xl:text-[length:inherit]">EVOLUCIÓN</span>
             </h2>
             <p
-              data-reveal
+              data-in="fade"
               className={`max-w-[27.0625rem] font-mont text-base leading-[1.27] text-[#ece6dd] xl:w-(--w) xl:max-w-none xl:text-(length:--fs) ${place}`}
               style={at(79, 481, { w: 433, fs: 16.057 })}
             >
@@ -125,6 +131,7 @@ export default function Adn() {
           <Collage className={`xl:w-(--w) xl:max-w-none ${place}`} style={at(500, 31, { w: 580 })} />
 
           <div
+            data-seq="top 80%"
             className={`flex flex-col items-center gap-6 sm:items-start xl:w-(--w) xl:items-stretch xl:gap-(--gap) ${place}`}
             style={{ ...at(1056, 207, { w: 273.667 }), '--gap': u(48.753) } as CSSProperties}
           >

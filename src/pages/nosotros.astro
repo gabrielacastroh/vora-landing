@@ -24,3 +24,13 @@ import { site } from '../data/site';
   </div>
   <FrameFooter />
 </Layout>
+
+
+<style is:global>
+  /* Initial state of choreographed steps; only with JS + motion on (same rule as global.css). */
+  @media (prefers-reduced-motion: no-preference) {
+    .js-motion [data-in] {
+      visibility: hidden;
+    }
+  }
+</style>

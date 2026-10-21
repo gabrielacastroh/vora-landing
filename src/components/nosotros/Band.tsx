@@ -7,10 +7,10 @@ import sequence from '../../assets/vora/nosotros-secuencia.gif';
 export default function Band() {
   return (
     <>
-      <section data-statement className="@container relative isolate overflow-hidden bg-[#2a0a0c]">
+      <section data-seq="top 35%" className="@container relative isolate overflow-hidden bg-[#2a0a0c]">
       {/* Figma: photo with a rgba(107,1,1,.26) tint. */}
       <img
-        data-statement-photo
+        data-ken
         alt="Camiseta Keep Going vista de espaldas bajo luz urbana"
         src={band.src}
         loading="lazy"
@@ -25,7 +25,7 @@ export default function Band() {
         >
           <div className="relative xl:contents">
             <p
-              data-reveal
+              data-in="fade"
               className={`font-sans text-xl font-semibold text-[#d51722] xl:text-(length:--fs) ${place}`}
               style={at(743, 183, { fs: 20 })}
             >
@@ -42,12 +42,12 @@ export default function Band() {
               </span>
             </h2>
             <span
-              data-line
+              data-in="draw"
               className={`my-5 block h-px w-[8.375rem] bg-[#fb000f] xl:my-0 xl:h-px xl:w-(--w) ${place}`}
               style={at(743, 365, { w: 134 })}
             />
             <p
-              data-reveal
+              data-in="fade"
               className={`max-w-[36.75rem] text-base leading-[1.6] font-medium text-white/80 sm:text-lg xl:w-(--w) xl:max-w-none xl:text-(length:--fs) ${place}`}
               style={at(743, 390, { w: 588, fs: 18.321 })}
             >
@@ -58,13 +58,17 @@ export default function Band() {
       </section>
 
       {/* Animated GIF, 1440 × 150: below md it is cropped around the centred word instead of shrinking it. */}
-      <img
-        alt="AMBICIÓN"
-        src={sequence.src}
-        loading="lazy"
-        decoding="async"
-        className="block h-20 w-full max-w-none bg-[#c8102e] object-cover object-center md:h-auto md:aspect-[1440/150]"
-      />
+      <div data-seq="top 90%" className="overflow-hidden bg-[#c8102e]">
+        <div data-in="wipe" data-from="up">
+          <img
+            alt="AMBICIÓN"
+            src={sequence.src}
+            loading="lazy"
+            decoding="async"
+            className="block h-20 w-full max-w-none object-cover object-center md:h-auto md:aspect-[1440/150]"
+          />
+        </div>
+      </div>
     </>
   );
 }

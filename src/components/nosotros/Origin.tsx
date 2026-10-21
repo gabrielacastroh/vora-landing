@@ -33,7 +33,7 @@ function Piece({ src, x, y, w, h, r, shadow, alt = '', className = '', children 
   if (shadow) style.filter = `drop-shadow(0 ${u(shadow[0])} ${u(shadow[1])} rgb(0 0 0 / ${shadow[2]}))`;
   return (
     <div
-      data-reveal
+      data-in="drop"
       className={`relative w-full xl:w-(--w) ${h ? 'xl:h-(--h)' : ''} ${r ? 'xl:rotate-(--r)' : ''} ${place} ${className}`}
       style={style}
     >
@@ -52,9 +52,9 @@ export default function Origin() {
           className="relative mx-auto flex w-full max-w-360 flex-col gap-12 px-6 py-20 sm:px-10 xl:block xl:aspect-[1440/898] xl:p-0"
           style={stageVars}
         >
-          <div className="flex flex-col xl:contents">
+          <div data-seq="top 70%" className="flex flex-col xl:contents">
             <p
-              data-reveal
+              data-in="fade"
               className={`text-[0.9375rem] leading-[1.6] font-light tracking-[0.27em] text-black/80 uppercase xl:w-(--w) xl:text-(length:--fs) ${place}`}
               style={at(122, 228, { w: 212.18, fs: 15 })}
             >
@@ -69,7 +69,8 @@ export default function Origin() {
               <span className="block text-[#6d1212]">AQUÍ.</span>
             </h2>
             <div
-              data-reveal
+              data-in="wipe"
+              data-from="left"
               className={`mt-6 flex items-center gap-[0.5625rem] xl:mt-0 xl:gap-(--gap) ${place}`}
               style={{ ...at(122, 428), '--gap': u(9) } as CSSProperties}
             >
@@ -82,7 +83,7 @@ export default function Origin() {
               </span>
             </div>
             <p
-              data-reveal
+              data-in="fade"
               className={`mt-10 max-w-[24rem] text-base leading-[1.6] text-black/80 xl:mt-0 xl:w-(--w) xl:max-w-none xl:text-(length:--fs) ${place}`}
               style={at(122, 539, { w: 384, fs: 16 })}
             >
@@ -96,7 +97,7 @@ export default function Origin() {
           </div>
 
           {/* Mobile: two-up grid. xl: the Figma collage, clipped to the section (the port polaroid is not). */}
-          <div className="grid grid-cols-2 items-start gap-4 xl:contents">
+          <div data-seq="top 65%" className="grid grid-cols-2 items-start gap-4 xl:contents">
             <div className="contents xl:absolute xl:inset-0 xl:block xl:overflow-hidden">
               <Piece src={map.src} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} />
               <Piece src={portrait.src} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} />
