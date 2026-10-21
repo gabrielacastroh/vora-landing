@@ -11,12 +11,12 @@
       { "image": "../assets/vora/first-step-2.webp", "position": "center top" },
       { "image": "../assets/vora/first-step-3.webp", "position": "center top" }
     ],
-    "description": "Una camiseta que representa el inicio del camino. Su lenguaje gráfico toma referencias de señalización, dirección y movimiento para construir una composición que transmite la idea de avanzar desde un punto inicial.",
+    "description": "Todo comienza con una decisión. FIRST STEP representa el inicio de un camino lleno de posibilidades. Su diseño combina elementos gráficos, tipografía y símbolos de dirección que reflejan el valor de dar el primer paso hacia algo más grande.",
     "details": [
-      { "label": "Corte", "value": "Oversize contemporáneo" },
+      { "label": "Corte", "value": "Oversize" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
       { "label": "Color", "value": "Rojo" },
-      { "label": "Estampado", "value": "DTF premium de alta definición" }
+      { "label": "Gramaje", "value": "230 g/m²" }
     ],
     "sizes": ["S", "M", "L", "XL"]
   },

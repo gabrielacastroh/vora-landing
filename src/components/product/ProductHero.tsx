@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { Product } from '../../data/catalog';
+import { site } from '../../data/site';
+import whatsappIcon from '../../assets/vora/contacto-whatsapp.webp';
 
 /** Named View Transition layer; `.info` blocks are choreographed when paging between products. */
 const info = (name: string) => ({ viewTransitionName: name, viewTransitionClass: 'info' }) as CSSProperties;
@@ -21,6 +23,10 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
     ...photos.map((p, i) => ({ src: p.image.src, packshot: false, position: p.position, label: `foto ${i + 1}` })),
   ];
   const pad = (n: number) => String(n).padStart(2, '0');
+  // "Camiseta crop top / Rojo" renders as "CAMISETA CROP TOP / Rojo": only the garment type is capitalised.
+  const [kind, ...color] = product.variant.split(' / ');
+  const wa = site.social.whatsapp;
+  const buyHref = wa ? `${wa}${wa.includes('?') ? '&' : '?'}text=${encodeURIComponent(`Hola, quiero comprar ${product.name}`)}` : '#';
 
   return (
     <section className="flex min-h-svh flex-col bg-vora-bg lg:flex-row">
@@ -106,14 +112,17 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
             {product.name}
           </h1>
           <div className="flex flex-col items-start gap-3" style={info('product-copy')}>
-            <p data-reveal className="text-sm font-semibold uppercase text-vora-red-bright">{product.variant}</p>
-            <p data-reveal className="text-sm leading-relaxed text-vora-muted">{product.description}</p>
+            <p data-reveal className="text-sm font-semibold text-vora-red-bright">
+              <span className="uppercase">{kind}</span>
+              {color.length > 0 && ` / ${color.join(' / ')}`}
+            </p>
+            <p data-reveal className="text-[0.9375rem] leading-relaxed text-vora-muted">{product.description}</p>
           </div>
         </div>
 
-        <div data-reveal className="flex flex-col items-start gap-3 text-[0.8125rem]" style={info('product-details')}>
-          <p className="font-display font-bold text-vora-cream">Detalles</p>
-          <div className="flex w-full flex-col gap-2 border-t border-[#525256] pt-3">
+        <div data-reveal className="flex flex-col items-start gap-3 text-[0.9375rem]" style={info('product-details')}>
+          <p className="font-display font-bold uppercase text-vora-cream">Detalles</p>
+          <div className="flex w-full flex-col gap-3 border-t border-[#525256] pt-4">
             {product.details.map((d) => (
               <div key={d.label} className="flex items-start justify-between">
                 <span className="text-vora-muted">{d.label}</span>
@@ -124,7 +133,7 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
         </div>
 
         <div data-reveal className="flex flex-col items-start gap-3" style={info('product-sizes')}>
-          <p className="font-display text-[0.8125rem] font-bold text-vora-cream">Tallas</p>
+          <p className="font-display text-[0.9375rem] font-bold uppercase text-vora-cream">Tallas</p>
           <div className="flex gap-2">
             {product.sizes.map((size) => (
               <button
@@ -142,36 +151,39 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
             product, so the cursor never has to chase them. */}
         <div
           data-reveal
-          className="sticky bottom-0 z-10 -mx-6 mt-auto flex items-center justify-between border-t border-[#525256] bg-vora-bg px-6 py-5 sm:-mx-10 sm:px-10 lg:-mx-20 lg:px-20 lg:py-6"
+          className="sticky bottom-0 z-10 -mx-6 mt-auto flex flex-col gap-6 bg-vora-bg px-6 pt-4 pb-6 sm:-mx-10 sm:px-10 lg:-mx-20 lg:px-20"
         >
           <div className="flex items-center gap-5">
-            <p className="font-display text-[0.8125rem] tabular-nums text-vora-cream" style={info('product-count')}>
+            <p className="font-display text-[0.9375rem] tabular-nums text-vora-cream" style={info('product-count')}>
               {pad(position)} <span className="text-vora-muted">/ {pad(total)}</span>
             </p>
             <div className="flex gap-2">
               {[
-                { dir: 'prev', target: prev, label: 'anterior', path: 'M10 3 5 8l5 5' },
-                { dir: 'next', target: next, label: 'siguiente', path: 'm6 3 5 5-5 5' },
-              ].map(({ dir, target, label, path }) => (
+                { dir: 'prev', target: prev, label: 'anterior', glyph: '<' },
+                { dir: 'next', target: next, label: 'siguiente', glyph: '>' },
+              ].map(({ dir, target, label, glyph }) => (
                 <a
                   key={dir}
                   href={`/producto/${target.slug}`}
                   data-dir={dir}
                   aria-label={`Producto ${label}: ${target.name}`}
-                  className="flex size-11 items-center justify-center rounded-full border border-vora-cream/40 text-vora-cream transition-colors hover:border-vora-cream hover:bg-vora-cream hover:text-vora-bg"
+                  className="flex size-8 items-center justify-center border border-vora-cream/60 text-xs text-vora-cream transition-colors hover:border-vora-cream hover:bg-vora-cream hover:text-vora-bg"
                 >
-                  <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                    <path d={path} />
-                  </svg>
+                  <span aria-hidden="true">{glyph}</span>
                 </a>
               ))}
             </div>
           </div>
-          <a href="/coleccion" className="group flex items-center gap-2 text-xs font-bold uppercase text-vora-red-bright">
-            Ver colección
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
+          <a
+            href={buyHref}
+            {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            className="group mx-auto flex h-[3.25rem] w-full max-w-[26rem] items-center justify-between gap-4 rounded-2xl border-[1.5px] border-vora-red-bright/80 px-6 font-mont text-[1.0625rem] font-bold text-vora-red-bright shadow-[0_0_2rem_rgb(163_43_50/0.22)] transition-shadow duration-500 hover:shadow-[0_0_2.5rem_rgb(163_43_50/0.45)] sm:w-[78%]"
+          >
+            <img alt="" src={whatsappIcon.src} className="size-6 object-contain" />
+            COMPRAR POR WHATSAPP
+            <svg aria-hidden="true" viewBox="0 0 19 16" fill="none" stroke="currentColor" strokeWidth="1.23" className="h-4 w-[1.175rem] shrink-0 transition-transform duration-500 group-hover:translate-x-1.5 motion-reduce:transition-none">
+              <path d="M0 7.76H18M11.7 15.12 18 7.76 11.7.4" />
+            </svg>
           </a>
         </div>
       </div>
