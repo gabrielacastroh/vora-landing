@@ -22,7 +22,7 @@ const arrow = (
 /** /contacto: copy on the left, four channel cards on the right, over a dimmed stadium photo. */
 export default function Contacto() {
   return (
-    <section data-hero className="relative flex min-h-svh flex-col gap-12 overflow-hidden px-6 pt-32 pb-16 sm:px-10 lg:block lg:h-[62.5rem] lg:min-h-0 lg:p-0">
+    <section data-hero className="relative flex min-h-svh flex-col gap-12 overflow-hidden px-6 pt-32 pb-16 sm:px-10 lg:block lg:h-svh lg:min-h-[46rem] lg:p-0">
       <div data-hero-bg className="absolute inset-0">
         {/* Figma frame 460:1502 is 1441x1201 and starts 135px above the page: same box so the shirt lands behind the copy. */}
         <div data-pan className="absolute inset-0 lg:right-auto lg:bottom-auto lg:-top-[8.4375rem] lg:-left-px lg:h-[75.0625rem] lg:w-full">
@@ -58,7 +58,7 @@ export default function Contacto() {
         </p>
       </div>
 
-      <ul data-seq="top 85%" className="relative mx-auto flex w-full max-w-lg flex-col gap-[1.7375rem] lg:absolute lg:top-[12.125rem] lg:right-[calc(50%-45rem+6rem)] lg:mx-0 lg:w-[32rem] lg:max-w-none">
+      <ul data-seq="top 85%" className="relative mx-auto flex w-full max-w-lg flex-col gap-[1.7375rem] lg:absolute lg:top-[8.5rem] lg:right-[calc(50%-45rem+6rem)] lg:mx-0 lg:w-[32rem] lg:max-w-none lg:gap-[1.2rem]">
         {channels.map((c, i) => {
           const external = !!c.href && !c.href.startsWith('mailto:');
           return (
@@ -67,7 +67,7 @@ export default function Contacto() {
                 href={c.href || '#'}
                 {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 aria-label={c.label}
-                className="group relative flex h-[9.866rem] items-center gap-[1.1rem] border-[0.051rem] border-[#55534f] bg-[#080909]/50 pr-5 pl-5 outline-none backdrop-blur-[2px] transition-[border-color,background-color] duration-500 hover:border-[#d40732] hover:bg-[#1a1213]/70 focus-visible:border-[#d40732] focus-visible:bg-[#1a1213]/70 focus-visible:ring-2 focus-visible:ring-[#d40732] sm:pr-[1.9rem] sm:pl-[1.9rem] motion-reduce:transition-none"
+                className="group relative flex h-[9.866rem] lg:h-[clamp(7.25rem,calc((100svh_-_10rem_-_3.6rem)/4),9.866rem)] items-center gap-[1.1rem] border-[0.051rem] border-[#55534f] bg-[#080909]/50 pr-5 pl-5 outline-none backdrop-blur-[2px] transition-[border-color,background-color] duration-500 hover:border-[#d40732] hover:bg-[#1a1213]/70 focus-visible:border-[#d40732] focus-visible:bg-[#1a1213]/70 focus-visible:ring-2 focus-visible:ring-[#d40732] sm:pr-[1.9rem] sm:pl-[1.9rem] motion-reduce:transition-none"
               >
                 <span className="flex w-[3.0625rem] shrink-0 items-center justify-center transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110 motion-reduce:transition-none">
                   <img alt="" src={c.icon} className={`${c.iconClass} max-w-none object-contain`} />
