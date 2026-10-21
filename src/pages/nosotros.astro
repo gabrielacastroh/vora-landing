@@ -1,0 +1,26 @@
+---
+import '@fontsource-variable/archivo/wght-italic.css';
+import Layout from '../layouts/Layout.astro';
+import FrameNav from '../components/vora/FrameNav';
+import FrameFooter from '../components/vora/FrameFooter';
+import Hero from '../components/nosotros/Hero';
+import Adn from '../components/nosotros/Adn';
+import Band from '../components/nosotros/Band';
+import Origin from '../components/nosotros/Origin';
+import heroBg from '../assets/vora/nosotros-hero-bg.webp';
+import navBg from '../assets/vora/nav-bg.png';
+import { site } from '../data/site';
+---
+
+<Layout title={site.pages.nosotros.title} canvas="#0b0b0d" preloadImage={heroBg.src}>
+  <div class="relative overflow-x-clip bg-[#0b0b0d]">
+    <FrameNav active="nosotros" background={navBg.src} theme="dark" />
+    <main>
+      <Hero />
+      <Adn />
+      <Band />
+      <Origin />
+    </main>
+  </div>
+  <FrameFooter />
+</Layout>
