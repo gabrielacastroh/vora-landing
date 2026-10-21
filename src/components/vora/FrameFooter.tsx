@@ -6,7 +6,7 @@ import footerCopyrightIcon from '../../assets/vora/footer-copyright-icon.png';
 
 import { site, type SocialNetwork } from '../../data/site';
 
-const { explora, masDeVora } = site.footer;
+const { explora, legal } = site.footer;
 
 // Icons live here; the profile URLs live in site.json (empty = placeholder link).
 const socials: { network: SocialNetwork; label: string; icon: string; className: string }[] = [
@@ -51,7 +51,7 @@ export default function FrameFooter() {
           </div>
 
           <LinkColumn title="EXPLORA" items={explora} />
-          <LinkColumn title="MÁS DE VORA" items={masDeVora} />
+          <LinkColumn title="LEGAL" items={legal} />
 
           <div data-reveal className={`col-span-2 sm:col-span-1 lg:col-span-1 ${column} gap-0! lg:pt-9`}>
             <p className="text-[0.8125rem] font-extralight capitalize leading-normal text-white">sigamos avanzando</p>

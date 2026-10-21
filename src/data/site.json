@@ -9,8 +9,6 @@
   "nav": [
     { "key": "inicio", "label": "inicio", "href": "/admin-vora" },
     { "key": "coleccion", "label": "colección", "href": "/coleccion" },
-    { "key": "expectativa", "label": "expectativa", "href": "/" },
-    { "key": "ropa", "label": "ropa", "href": "#" },
     { "key": "nosotros", "label": "nosotros", "href": "#" },
     { "key": "contacto", "label": "contacto", "href": "#contacto" }
   ],
@@ -21,9 +19,8 @@
       { "label": "Sobre Vora", "href": "#" },
       { "label": "Contacto", "href": "#" }
     ],
-    "masDeVora": [
-      { "label": "Filosofía", "href": "#" },
-      { "label": "Preguntas Frecuentes", "href": "#" }
+    "legal": [
+      { "label": "Política De Privacidad", "href": "#" }
     ]
   },
   "social": {

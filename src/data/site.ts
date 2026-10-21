@@ -18,7 +18,7 @@ const schema = z.object({
   }),
   /** `key` is what a page passes as `active` to highlight its own link. */
   nav: z.array(link.extend({ key: z.string() })),
-  footer: z.object({ explora: z.array(link), masDeVora: z.array(link) }),
+  footer: z.object({ explora: z.array(link), legal: z.array(link) }),
   social: z.object({ whatsapp: socialUrl, instagram: socialUrl, tiktok: socialUrl }),
 });
 
