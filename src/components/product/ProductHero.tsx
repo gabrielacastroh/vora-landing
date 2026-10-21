@@ -101,8 +101,8 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
         )}
       </div>
 
-      <div className="flex w-full flex-col gap-8 px-6 pt-16 sm:px-10 lg:w-1/2 lg:px-20 lg:pt-[11.5rem]">
-        <div className="flex flex-col items-start gap-3 pt-10">
+      <div className="flex w-full flex-col gap-8 px-6 pt-16 sm:px-10 lg:w-1/2 lg:gap-5 lg:px-20 lg:pt-[clamp(7rem,9svh,11.5rem)]">
+        <div className="flex flex-col items-start gap-3 pt-10 lg:pt-0">
           <h1
             data-split="chars"
             data-delay="0.35"
@@ -151,7 +151,7 @@ export default function ProductHero({ product, prev, next, position, total }: Pr
             product, so the cursor never has to chase them. */}
         <div
           data-reveal
-          className="sticky bottom-0 z-10 -mx-6 mt-auto flex flex-col gap-6 bg-vora-bg px-6 pt-4 pb-6 sm:-mx-10 sm:px-10 lg:-mx-20 lg:px-20"
+          className="sticky bottom-0 z-10 -mx-6 mt-auto flex flex-col gap-6 bg-vora-bg px-6 pt-4 pb-6 sm:-mx-10 sm:px-10 lg:-mx-20 lg:gap-4 lg:px-20 lg:pt-3 lg:pb-5"
         >
           <div className="flex items-center gap-5">
             <p className="font-display text-[0.9375rem] tabular-nums text-vora-cream" style={info('product-count')}>
