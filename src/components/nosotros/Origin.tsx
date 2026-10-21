@@ -22,19 +22,22 @@ interface PieceProps {
   r?: number;
   /** drop-shadow() of the Figma effect, in design px: [y, blur, alpha]. */
   shadow?: [number, number, number];
+  /** Mobile mosaic placement, in % of the collage width: [left, top, width, rotation deg]. left/width are % of the collage width, top is % of its height (aspect-[100/208]); the photo keeps its own ratio. */
+  mob?: [number, number, number, number];
   alt?: string;
   className?: string;
   children?: ReactNode;
 }
 
 /** One collage piece: a plain image on mobile, an absolutely placed (and rotated) photo from xl. */
-function Piece({ src, x, y, w, h, r, shadow, alt = '', className = '', children }: PieceProps) {
+function Piece({ src, x, y, w, h, r, shadow, mob, alt = '', className = '', children }: PieceProps) {
   const style: CSSProperties = at(x, y, { w, h, r });
+  if (mob) Object.assign(style, { '--mx': `${mob[0]}%`, '--my': `${mob[1]}%`, '--mw': `${mob[2]}%`, '--mr': `${mob[3]}deg` });
   if (shadow) style.filter = `drop-shadow(0 ${u(shadow[0])} ${u(shadow[1])} rgb(0 0 0 / ${shadow[2]}))`;
   return (
     <div
       data-in="drop"
-      className={`relative w-full xl:w-(--w) ${h ? 'xl:h-(--h)' : ''} ${r ? 'xl:rotate-(--r)' : ''} ${place} ${className}`}
+      className={`relative w-full max-xl:absolute max-xl:top-(--my) max-xl:left-(--mx) max-xl:w-(--mw) max-xl:rotate-(--mr) xl:w-(--w) ${h ? 'xl:h-(--h)' : ''} ${r ? 'xl:rotate-(--r)' : ''} ${place} ${className}`}
       style={style}
     >
       <img alt={alt} src={src} loading="lazy" decoding="async" className="block h-auto w-full max-w-none object-cover xl:size-full" />
@@ -96,11 +99,11 @@ export default function Origin() {
             </p>
           </div>
 
-          {/* Mobile: two-up grid. xl: the Figma collage, clipped to the section (the port polaroid is not). */}
-          <div data-seq="top 65%" className="grid grid-cols-2 items-center gap-3 xl:contents">
+          {/* Mobile: overlapping mosaic (aspect box, pieces placed in % of its width). xl: the Figma collage, clipped to the section (the port polaroid is not). */}
+          <div data-seq="top 65%" className="relative aspect-[100/208] xl:contents">
             <div className="contents xl:absolute xl:inset-0 xl:block xl:overflow-hidden">
-              <Piece src={map.src} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} />
-              <Piece src={portrait.src} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} />
+              <Piece src={map.src} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} mob={[0, 0, 52, -1.5]} />
+              <Piece src={portrait.src} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} mob={[47, 2.9, 51, 3.5]} />
               <Piece
                 src={palms.src}
                 alt="Palmas de cera entre montañas y niebla"
@@ -109,7 +112,7 @@ export default function Origin() {
                 w={639.862}
                 h={281.187}
                 r={1.6}
-                className="col-span-2"
+                mob={[0, 29.8, 100, 1.2]}
               >
                 {/* Figma inset shadow: darkens the bottom of the photo under the caption. */}
                 <div className="absolute inset-0" style={{ boxShadow: `inset 0 ${u(-88)} ${u(13.4)} 0 rgb(0 0 0 / 0.73)` }} />
@@ -123,9 +126,9 @@ export default function Origin() {
                 h={723.476}
                 r={5.69}
                 shadow={[16, 5.9, 0.31]}
-                className="max-xl:row-span-2"
+                mob={[0, 49.5, 40, -3]}
               />
-              <Piece src={label.src} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} className="max-xl:self-end" />
+              <Piece src={label.src} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} mob={[36, 53.8, 62, -4]} />
               <Piece src={ellipse.src} x={686.45} y={616.64} w={138.141} r={17.52} className="max-xl:hidden" />
               <p
                 className={`pointer-events-none text-sm font-semibold text-white/50 uppercase max-xl:hidden xl:text-(length:--fs) ${place}`}
@@ -142,7 +145,7 @@ export default function Origin() {
               w={402}
               h={288}
               shadow={[16, 10.3, 0.25]}
-              className="max-xl:self-start"
+              mob={[35, 77.4, 63, 2.5]}
             />
           </div>
         </div>
