@@ -26,7 +26,6 @@
     "variant": "Camiseta / Verde oliva",
     "line": "unisex",
     "cardImage": "../assets/vora/card-desde-cero.webp",
-    "featured": 2,
     "description": "Para quien decide empezar de nuevo. Verde oliva, corte oversize y algodón de alto gramaje con una caída natural.",
     "details": [
       { "label": "Corte", "value": "Oversize unisex" },
@@ -42,7 +41,7 @@
     "variant": "Camiseta / Blanco",
     "line": "unisex",
     "cardImage": "../assets/vora/card-keep-going.webp",
-    "featured": 3,
+    "featured": 2,
     "description": "Un recordatorio para seguir avanzando. Blanco limpio, corte oversize y estampado gráfico en la espalda.",
     "details": [
       { "label": "Corte", "value": "Oversize unisex" },
@@ -73,7 +72,6 @@
     "variant": "Camiseta / Blanco",
     "line": "womens",
     "cardImage": "../assets/vora/card-take-your-time.webp",
-    "featured": 3,
     "description": "Avanzar también es darse tiempo. Blanco con estampado floral, silueta femenina y algodón suave de alto gramaje.",
     "details": [
       { "label": "Corte", "value": "Women's fit" },
@@ -89,7 +87,6 @@
     "variant": "Camiseta / Azul claro",
     "line": "womens",
     "cardImage": "../assets/vora/card-keep-becoming.webp",
-    "featured": 1,
     "description": "En constante evolución. Azul claro con estampado de mariposa, silueta femenina y caída natural.",
     "details": [
       { "label": "Corte", "value": "Women's fit" },
@@ -102,17 +99,17 @@
   {
     "id": "on-my-way",
     "name": "ON MY WAY",
-    "variant": "Camiseta / Arena",
+    "variant": "Camiseta crop top / Beige",
     "line": "womens",
     "cardImage": "../assets/vora/card-on-my-way.webp",
     "heroImage": "../assets/vora/shop-numbers.webp",
     "heroPosition": "20% center",
     "featured": 2,
-    "description": "Ya en camino. Tono arena con tipografía editorial, silueta femenina y algodón de alto gramaje.",
+    "description": "Ya en camino. Tono beige con tipografía editorial, silueta femenina y algodón de alto gramaje.",
     "details": [
       { "label": "Corte", "value": "Women's fit" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
-      { "label": "Color", "value": "Arena" },
+      { "label": "Color", "value": "Beige" },
       { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
     ],
     "sizes": ["S", "M", "L", "XL"]
@@ -120,16 +117,49 @@
   {
     "id": "still-becoming",
     "name": "STILL BECOMING",
-    "variant": "Camiseta / Lyla",
+    "variant": "Camiseta crop top / Rosa pastel",
     "line": "womens",
     "cardImage": "../assets/vora/card-still-becoming.webp",
-    "description": "Todavía en proceso, y está bien. Lila suave, silueta femenina y estampado gráfico trasero.",
+    "description": "Todavía en proceso, y está bien. Rosa pastel, silueta femenina y estampado gráfico trasero.",
     "details": [
       { "label": "Corte", "value": "Women's fit" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
-      { "label": "Color", "value": "Lila" },
+      { "label": "Color", "value": "Rosa pastel" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "featured": 3
+  },
+  {
+    "id": "beyond-ordinary",
+    "name": "BEYOND ORDINARY",
+    "variant": "Camiseta / Beige",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-beyond-ordinary.webp",
+    "featured": 3,
+    "description": "Para quien decide ir más allá. Beige, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "details": [
+      { "label": "Corte", "value": "Oversize unisex" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Beige" },
       { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
     ],
     "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "bloom-your-own-way",
+    "name": "BLOOM YOUR OWN WAY",
+    "variant": "Camiseta crop top / Blanco",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-bloom-your-own-way.webp",
+    "description": "Florecer a tu manera. Blanco con estampado floral, silueta femenina y algodón suave de alto gramaje.",
+    "details": [
+      { "label": "Corte", "value": "Women's fit" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Blanco" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "featured": 1
   }
 ]

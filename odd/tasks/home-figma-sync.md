@@ -18,8 +18,19 @@ Objective: sync home (Figma 1:248) images/copy into admin-vora home. Rule: only 
 ## Copy
 No differences found vs HomeFrame.tsx. Figma typos not copied: "MOVIMIENRO", "TAMBÍEN" (in a caption).
 
-## Pending (needs product decision)
-Add products BEYOND ORDINARY and BLOOM YOUR OWN WAY; decide STILL BECOMING (pink crop) and featured order.
+## Featured rows (added)
+Home now matches Figma 1:248. Unisex: FIRST STEP(1), KEEP GOING(2), BEYOND ORDINARY(3). Women's fit: BLOOM YOUR OWN WAY(1), ON MY WAY(2), STILL BECOMING(3).
+- `featured` removed from DESDE CERO, TAKE YOUR TIME, KEEP BECOMING (still in /coleccion).
+- New products appended at end of products.json (/coleccion: BEYOND ORDINARY = unisex 05, BLOOM YOUR OWN WAY = womens 05; existing numbering unchanged).
+- Images: card-beyond-ordinary.webp (1080x850), card-bloom-your-own-way.webp (1080x1350), card-still-becoming.webp now the pink crop top (1080x1350). Figma labels were swapped for two nodes; mapped by content.
+- STILL BECOMING: single-color product, no other assets -> variant "Camiseta crop top / Rosa pastel", color + description updated. ON MY WAY variant -> "Camiseta crop top / Beige" (Figma label).
+
+## PLACEHOLDER (needs real copy/price from user)
+- beyond-ordinary: description, details (cut, material, print), sizes, copied from KEEP GOING; no gallery/heroImage (card image only).
+- bloom-your-own-way: description, details, sizes copied from TAKE YOUR TIME; no gallery/heroImage.
+- Prices do not exist in the schema.
 
 ## Verification
-- npx astro build: pass. GET /admin-vora (dev): 200.
+- npx astro build: pass.
+- Dev (auth cookie): /admin-vora, /coleccion, /producto/{beyond-ordinary,bloom-your-own-way,still-becoming} all 200; /admin-vora lists the six names in Figma order.
+- Note: /coleccion and /producto redirect (302) to /admin-vora without the admin cookie.
