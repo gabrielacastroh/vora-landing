@@ -22,7 +22,7 @@ interface PieceProps {
   r?: number;
   /** drop-shadow() of the Figma effect, in design px: [y, blur, alpha]. */
   shadow?: [number, number, number];
-  /** Mobile mosaic placement, in % of the collage width: [left, top, width, rotation deg]. left/width are % of the collage width, top is % of its height (aspect-[100/208]); the photo keeps its own ratio. */
+  /** Mobile mosaic placement, in % of the collage width: [left, top, width, rotation deg]. left/width are % of the collage width, top is % of its height (aspect-[100/122]); the photo keeps its own ratio. */
   mob?: [number, number, number, number];
   alt?: string;
   className?: string;
@@ -99,11 +99,11 @@ export default function Origin() {
             </p>
           </div>
 
-          {/* Mobile: overlapping mosaic (aspect box, pieces placed in % of its width). xl: the Figma collage, clipped to the section (the port polaroid is not). */}
-          <div data-seq="top 65%" className="relative aspect-[100/208] xl:contents">
+          {/* Mobile: the web collage rebuilt for a portrait box (aspect box, clipped, pieces placed in % of its width). xl: the Figma collage, clipped to the section (the port polaroid is not). */}
+          <div data-seq="top 65%" className="relative aspect-[100/122] max-xl:overflow-hidden xl:contents">
             <div className="contents xl:absolute xl:inset-0 xl:block xl:overflow-hidden">
-              <Piece src={map.src} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} mob={[0, 0, 52, -1.5]} />
-              <Piece src={portrait.src} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} mob={[47, 2.9, 51, 3.5]} />
+              <Piece src={map.src} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} mob={[30, 0, 72, 4.5]} />
+              <Piece src={portrait.src} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} mob={[-2, 0, 50, -3]} />
               <Piece
                 src={palms.src}
                 alt="Palmas de cera entre montañas y niebla"
@@ -112,7 +112,7 @@ export default function Origin() {
                 w={639.862}
                 h={281.187}
                 r={1.6}
-                mob={[0, 29.8, 100, 1.2]}
+                mob={[36, 72.1, 70, 1.6]}
               >
                 {/* Figma inset shadow: darkens the bottom of the photo under the caption. */}
                 <div className="absolute inset-0" style={{ boxShadow: `inset 0 ${u(-88)} ${u(13.4)} 0 rgb(0 0 0 / 0.73)` }} />
@@ -126,9 +126,9 @@ export default function Origin() {
                 h={723.476}
                 r={5.69}
                 shadow={[16, 5.9, 0.31]}
-                mob={[0, 49.5, 40, -3]}
+                mob={[78, -3.3, 26, 5.7]}
               />
-              <Piece src={label.src} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} mob={[36, 53.8, 62, -4]} />
+              <Piece src={label.src} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} mob={[-3, 37.7, 50, -4]} />
               <Piece src={ellipse.src} x={686.45} y={616.64} w={138.141} r={17.52} className="max-xl:hidden" />
               <p
                 className={`pointer-events-none text-sm font-semibold text-white/50 uppercase max-xl:hidden xl:text-(length:--fs) ${place}`}
@@ -145,7 +145,7 @@ export default function Origin() {
               w={402}
               h={288}
               shadow={[16, 10.3, 0.25]}
-              mob={[35, 77.4, 63, 2.5]}
+              mob={[1, 68.9, 50, 3]}
             />
           </div>
         </div>
