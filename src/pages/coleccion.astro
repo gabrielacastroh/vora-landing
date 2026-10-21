@@ -8,7 +8,7 @@ import { site } from '../data/site';
 const [unisex, womens, details] = await Promise.all([getLine('unisex'), getLine('womens'), getDetails()]);
 ---
 
-<Layout title={site.pages.coleccion.title} canvas="#ece6dd">
+<Layout title={site.pages.coleccion.title} canvas="#ece6dd" noindex>
   <ShopFrame unisex={unisex} womens={womens} details={details} />
   <FrameFooter />
 </Layout>

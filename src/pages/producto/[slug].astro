@@ -13,7 +13,7 @@ if (i < 0) return new Response(null, { status: 404 });
 const product = products[i];
 ---
 
-<Layout title={`${product.name} — ${site.name}`} description={product.description}>
+<Layout title={`${product.name} — ${site.name}`} description={product.description} noindex>
   <FrameNav active="coleccion" background={productNavBg.src} theme="dark" />
   <main>
     <ProductHero product={product} />
