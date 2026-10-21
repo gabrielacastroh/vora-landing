@@ -1,12 +1,12 @@
 import type { APIRoute } from 'astro';
-import { getProducts } from '../data/catalog';
+import { getListed } from '../data/catalog';
 
 export const prerender = true;
 
 const escapeXml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 export const GET: APIRoute = async ({ site }) => {
-  const paths = ['/', '/coleccion', '/nosotros', '/contacto', ...(await getProducts()).map((p) => `/producto/${p.slug}`)];
+  const paths = ['/', '/coleccion', '/nosotros', '/contacto', ...(await getListed()).map((p) => `/producto/${p.slug}`)];
   const lastmod = new Date().toISOString().slice(0, 10);
   const urls = paths
     .map((p) => `  <url><loc>${escapeXml(new URL(p, site).href)}</loc><lastmod>${lastmod}</lastmod></url>`)

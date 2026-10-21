@@ -35,6 +35,11 @@ export async function getFeatured(): Promise<Product[]> {
 }
 
 /** Products of one /coleccion group, in products.json order (that order is the 01, 02… numbering). */
+/** Products shown in the store (they belong to a line). The rest stay in products.json but have no public page. */
+export async function getListed(): Promise<Product[]> {
+  return (await getProducts()).filter((p) => p.line);
+}
+
 export async function getLine(line: NonNullable<Product['line']>): Promise<Product[]> {
   return (await getProducts()).filter((p) => p.line === line);
 }

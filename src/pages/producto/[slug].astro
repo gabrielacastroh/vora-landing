@@ -5,14 +5,14 @@ import FrameNav from '../../components/vora/FrameNav';
 import FrameFooter from '../../components/vora/FrameFooter';
 import productNavBg from '../../assets/vora/product-nav-bg.png';
 import ProductHero from '../../components/product/ProductHero';
-import { getProducts } from '../../data/catalog';
+import { getListed } from '../../data/catalog';
 import { site } from '../../data/site';
 
 export async function getStaticPaths() {
-  return (await getProducts()).map((p) => ({ params: { slug: p.slug } }));
+  return (await getListed()).map((p) => ({ params: { slug: p.slug } }));
 }
 
-const products = await getProducts();
+const products = await getListed();
 const i = products.findIndex((p) => p.slug === Astro.params.slug);
 if (i < 0) return new Response(null, { status: 404 });
 const product = products[i];
