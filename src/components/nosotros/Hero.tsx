@@ -5,17 +5,17 @@ export default function Hero() {
   return (
     <section data-hero className="relative flex min-h-svh flex-col justify-center overflow-hidden lg:block lg:h-[66.1875rem] lg:min-h-0">
       <div data-hero-bg className="absolute inset-0">
-        {/* Figma frame 425:150 is 1868 wide, shifted 264px left of the page: the extra width is the pan range. */}
+        {/* Figma frame 425:150 is 1868 wide, shifted 264px left of the page: the extra width is the pan range (lg). Below lg the box overscans 4% per side, because data-pan drifts +-3% of its width. */}
         <div
           data-pan
-          className="absolute inset-0 opacity-[0.38] lg:right-auto lg:bottom-auto lg:-left-[18.33%] lg:top-[0.7%] lg:h-[104.47%] lg:w-[129.72%]"
+          className="absolute inset-y-0 -left-[4%] w-[108%] opacity-[0.38] lg:right-auto lg:bottom-auto lg:-left-[18.33%] lg:top-[0.7%] lg:h-[104.47%] lg:w-[129.72%]"
         >
           <img
             data-hero-img
             alt=""
             src={heroBg.src}
             fetchPriority="high"
-            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[72%_center] opacity-[0.84] lg:object-center"
+            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[77%_center] opacity-[0.84] lg:object-center"
           />
           <div className="absolute inset-0 bg-black/26" />
         </div>
