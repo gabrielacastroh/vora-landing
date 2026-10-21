@@ -99,6 +99,8 @@ function Line({ id, index, title, blurb, image, frame, overlay, dark, products }
             name={`${pad(i + 1)} — ${product.name}`}
             variant={product.variant}
             image={product.cardImage.src}
+            srcSet={product.sets.card}
+            sizes="(min-width: 1024px) 406px, (min-width: 640px) 50vw, 100vw"
             ratio="405 / 285"
             theme="light"
             size="lg"

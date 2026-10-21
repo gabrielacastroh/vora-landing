@@ -12,8 +12,14 @@ import label from '../../assets/vora/nosotros-origin-label.webp';
 import ellipse from '../../assets/vora/nosotros-origin-ellipse.svg';
 import port from '../../assets/vora/nosotros-origin-port.webp';
 
+/** Collage photos that get a `srcset`; nosotros.astro builds it (async) and passes it back as `sets`. */
+export const originImages = { map, portrait, palms, triptych, label, port };
+export type OriginSets = Partial<Record<keyof typeof originImages, string>>;
+
 interface PieceProps {
   src: string;
+  /** WebP renditions of `src` (lib/srcset.ts). */
+  set?: string;
   /** Un-rotated design-px rect inside the 1440 × 898 stage. */
   x: number;
   y: number;
@@ -30,7 +36,7 @@ interface PieceProps {
 }
 
 /** One collage piece: a plain image on mobile, an absolutely placed (and rotated) photo from xl. */
-function Piece({ src, x, y, w, h, r, shadow, mob, alt = '', className = '', children }: PieceProps) {
+function Piece({ src, set, x, y, w, h, r, shadow, mob, alt = '', className = '', children }: PieceProps) {
   const style: CSSProperties = at(x, y, { w, h, r });
   if (mob) Object.assign(style, { '--mx': `${mob[0]}%`, '--my': `${mob[1]}%`, '--mw': `${mob[2]}%`, '--mr': `${mob[3]}deg` });
   if (shadow) style.filter = `drop-shadow(0 ${u(shadow[0])} ${u(shadow[1])} rgb(0 0 0 / ${shadow[2]}))`;
@@ -40,14 +46,20 @@ function Piece({ src, x, y, w, h, r, shadow, mob, alt = '', className = '', chil
       className={`relative w-full max-xl:absolute max-xl:top-(--my) max-xl:left-(--mx) max-xl:w-(--mw) max-xl:rotate-(--mr) xl:w-(--w) ${h ? 'xl:h-(--h)' : ''} ${r ? 'xl:rotate-(--r)' : ''} ${place} ${className}`}
       style={style}
     >
-      <img alt={alt} src={src} loading="lazy" decoding="async" className="block h-auto w-full max-w-none object-cover xl:size-full" />
+      <img
+        alt={alt}
+        src={src}
+        srcSet={set}
+        // From xl the piece is w/1440 of the stage (capped at 1440px); below it is mob[2]% of the collage, about the viewport.
+        sizes={set ? `(min-width: 80rem) ${Math.round((w / 1440) * 100)}vw, ${mob ? mob[2] : 100}vw` : undefined}
+        loading="lazy" decoding="async" className="block h-auto w-full max-w-none object-cover xl:size-full" />
       {children}
     </div>
   );
 }
 
 /** "DESDE AQUÍ.": cream section with the Colombia origin story and a rotated photo / map collage. */
-export default function Origin() {
+export default function Origin({ sets = {} }: { sets?: OriginSets }) {
   return (
     <section className="relative z-10 bg-[#e3d9cf]">
       <div className="@container">
@@ -102,10 +114,11 @@ export default function Origin() {
           {/* Mobile: the web collage rebuilt for a portrait box (aspect box, clipped, pieces placed in % of its width). xl: the Figma collage, clipped to the section (the port polaroid is not). */}
           <div data-seq="top 65%" className="relative aspect-[100/122] max-xl:overflow-hidden xl:contents">
             <div className="contents xl:absolute xl:inset-0 xl:block xl:overflow-hidden">
-              <Piece src={map.src} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} mob={[30, 0, 72, 4.5]} />
-              <Piece src={portrait.src} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} mob={[-2, 0, 50, -3]} />
+              <Piece src={map.src} set={sets.map} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} mob={[30, 0, 72, 4.5]} />
+              <Piece src={portrait.src} set={sets.portrait} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} mob={[-2, 0, 50, -3]} />
               <Piece
                 src={palms.src}
+              set={sets.palms}
                 alt="Palmas de cera entre montañas y niebla"
                 x={897.29}
                 y={638.92}
@@ -119,6 +132,7 @@ export default function Origin() {
               </Piece>
               <Piece
                 src={triptych.src}
+              set={sets.triptych}
                 alt="Tríptico andino en película retro"
                 x={1280.63}
                 y={-36.45}
@@ -128,7 +142,7 @@ export default function Origin() {
                 shadow={[16, 5.9, 0.31]}
                 mob={[78, -3.3, 26, 5.7]}
               />
-              <Piece src={label.src} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} mob={[-3, 37.7, 50, -4]} />
+              <Piece src={label.src} set={sets.label} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} mob={[-3, 37.7, 50, -4]} />
               <Piece src={ellipse.src} x={686.45} y={616.64} w={138.141} r={17.52} className="max-xl:hidden" />
               <p
                 className={`pointer-events-none text-sm font-semibold text-white/50 uppercase max-xl:hidden xl:text-(length:--fs) ${place}`}
@@ -139,6 +153,7 @@ export default function Origin() {
             </div>
             <Piece
               src={port.src}
+              set={sets.port}
               alt="Polaroid vintage del puerto colonial"
               x={575.5}
               y={657}

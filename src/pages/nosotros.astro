@@ -6,20 +6,25 @@ import FrameFooter from '../components/vora/FrameFooter';
 import Hero from '../components/nosotros/Hero';
 import Adn from '../components/nosotros/Adn';
 import Band from '../components/nosotros/Band';
-import Origin from '../components/nosotros/Origin';
+import Origin, { originImages, type OriginSets } from '../components/nosotros/Origin';
+import { srcSet } from '../lib/srcset';
 import heroBg from '../assets/vora/nosotros-hero-bg.webp';
 import navBg from '../assets/vora/nav-bg.png';
 import { site } from '../data/site';
+
+const originSets: OriginSets = Object.fromEntries(
+  await Promise.all(Object.entries(originImages).map(async ([k, img]) => [k, await srcSet(img, [640, 1080, 1920])])),
+);
 ---
 
-<Layout title={site.pages.nosotros.title} canvas="#0b0b0d" preloadImage={heroBg.src}>
+<Layout title={site.pages.nosotros.title} canvas="#0b0b0d" preloadImage={heroBg.src} italics>
   <div class="relative overflow-x-clip bg-[#0b0b0d]">
     <FrameNav active="nosotros" background={navBg.src} theme="dark" />
     <main>
       <Hero />
       <Adn />
       <Band />
-      <Origin />
+      <Origin sets={originSets} />
     </main>
   </div>
   <FrameFooter />

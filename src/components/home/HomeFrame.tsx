@@ -231,6 +231,8 @@ function FeaturedCollection({ products }: { products: Product[] }) {
                   name={product.name}
                   variant={product.variant}
                   image={product.cardImage.src}
+                  srcSet={product.sets.card}
+                  sizes="(min-width: 1024px) 382px, (min-width: 640px) 50vw, 100vw"
                   ratio="382 / 286"
                   theme="dark"
                 />

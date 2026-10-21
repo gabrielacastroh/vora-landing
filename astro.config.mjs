@@ -11,7 +11,7 @@ export default defineConfig({
   // Server output so the middleware can gate /admin-vora, /coleccion and /producto/*.
   // The public landing (src/pages/index.astro) opts back into prerendering.
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({ imageService: true }),
   integrations: [react()],
 
   redirects: { '/expectativa': '/' },

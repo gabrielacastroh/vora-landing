@@ -3,6 +3,9 @@ interface Props {
   name: string;
   variant: string;
   image: string;
+  /** WebP renditions of `image` (see lib/srcset.ts) and the rendered width they are picked against. */
+  srcSet?: string;
+  sizes?: string;
   /** Image box ratio from the Figma card, e.g. "280 / 286". */
   ratio: string;
   theme: 'dark' | 'light';
@@ -11,7 +14,7 @@ interface Props {
   className?: string;
 }
 
-export default function ProductCard({ slug, name, variant, image, ratio, theme, size = 'md', className = '' }: Props) {
+export default function ProductCard({ slug, name, variant, image, srcSet, sizes, ratio, theme, size = 'md', className = '' }: Props) {
   const light = theme === 'light';
   const lg = size === 'lg';
   return (
@@ -37,6 +40,8 @@ export default function ProductCard({ slug, name, variant, image, ratio, theme, 
         <img
           alt={`${name} — ${variant}`}
           src={image}
+          srcSet={srcSet}
+          sizes={srcSet ? sizes : undefined}
           loading="lazy"
           decoding="async"
           className={`pointer-events-none absolute inset-0 size-full max-w-none object-cover transition-[scale] group-hover:scale-105 ${lg ? 'duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)]' : 'duration-500'}`}

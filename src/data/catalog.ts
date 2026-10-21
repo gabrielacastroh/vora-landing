@@ -1,13 +1,32 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import productsFile from './products.json';
+import { srcSet } from '../lib/srcset';
 
-export type Product = CollectionEntry<'products'>['data'] & { slug: string };
+const CARD_WIDTHS = [640, 1080];
+const PHOTO_WIDTHS = [640, 1080, 1920];
+
+/** `srcset` strings for the card image and for each product photo (gallery, else the model shot), in slide order. */
+export type ProductSets = { card?: string; /** The card image at slide size (first product slide). */ slide?: string; photos: (string | undefined)[] };
+
+export type Product = CollectionEntry<'products'>['data'] & { slug: string; sets: ProductSets };
 
 /** Every product, in products.json order (getCollection() orders by id, so the file sets it). */
 export async function getProducts(): Promise<Product[]> {
   const fileOrder = productsFile.map((p) => p.id);
   const entries = await getCollection('products');
-  return entries.map((entry) => ({ slug: entry.id, ...entry.data })).sort((a, b) => fileOrder.indexOf(a.slug) - fileOrder.indexOf(b.slug));
+  const products = await Promise.all(
+    entries.map(async (entry) => {
+      const { cardImage, gallery, heroImage } = entry.data;
+      const photos = gallery?.map((g) => g.image) ?? (heroImage ? [heroImage] : []);
+      const sets: ProductSets = {
+        card: await srcSet(cardImage, CARD_WIDTHS),
+        slide: await srcSet(cardImage, PHOTO_WIDTHS),
+        photos: await Promise.all(photos.map((p) => srcSet(p, PHOTO_WIDTHS))),
+      };
+      return { slug: entry.id, ...entry.data, sets };
+    }),
+  );
+  return products.sort((a, b) => fileOrder.indexOf(a.slug) - fileOrder.indexOf(b.slug));
 }
 
 /** Products flagged `featured` in products.json, in that order (home groups them by `line`). */
