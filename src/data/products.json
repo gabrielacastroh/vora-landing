@@ -42,12 +42,12 @@
     "line": "unisex",
     "cardImage": "../assets/vora/card-keep-going.webp",
     "featured": 2,
-    "description": "Un recordatorio para seguir avanzando. Blanco limpio, corte oversize y estampado gráfico en la espalda.",
+    "description": "Seguir avanzando también es una forma de crecer. KEEP GOING representa la constancia, la determinación y la capacidad de superar nuestros propios límites. Su composición artística combina una figura clásica en movimiento con elementos gráficos que simbolizan evolución y progreso.",
     "details": [
-      { "label": "Corte", "value": "Oversize unisex" },
+      { "label": "Corte", "value": "Oversize" },
       { "label": "Material", "value": "100% algodón de alto gramaje" },
       { "label": "Color", "value": "Blanco" },
-      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+      { "label": "Gramaje", "value": "230 g/m²" }
     ],
     "sizes": ["S", "M", "L", "XL"]
   },
