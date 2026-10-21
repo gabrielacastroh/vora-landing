@@ -63,6 +63,8 @@ export default function Band() {
           <img
             alt="AMBICIÓN"
             src={sequence.src}
+            width={sequence.width}
+            height={sequence.height}
             loading="lazy"
             decoding="async"
             className="block h-20 w-full max-w-none object-cover object-center md:h-auto md:aspect-[1440/150]"

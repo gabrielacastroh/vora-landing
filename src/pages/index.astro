@@ -40,9 +40,9 @@ const pillars = [
     ></video>
     <div class="pointer-events-none absolute inset-0 bg-black/26"></div>
     <div class="pointer-events-none absolute left-[6.25rem] top-[9.375rem] size-[43.75rem] max-lg:-left-60">
-      <img alt="" src={spotlight.src} class="absolute inset-[-14.29%] block size-[128.58%] max-w-none" />
+      <img decoding="async" alt="" src={spotlight.src} class="absolute inset-[-14.29%] block size-[128.58%] max-w-none" />
     </div>
-    <img
+    <img decoding="async"
       alt=""
       src={divider.src}
       class="pointer-events-none absolute inset-x-0 bottom-0 h-[8.4375rem] w-full max-w-none object-cover"
@@ -50,7 +50,7 @@ const pillars = [
 
     <header class={`${container} relative flex items-center justify-between py-8 lg:py-10`}>
       <a href="/" aria-label="VORA — inicio" class="block h-[2.125rem] shrink-0 lg:h-[3.125rem]">
-        <img alt="VORA" src={voraLogo.src} class="h-full w-auto max-w-none" />
+        <img decoding="async" alt="VORA" src={voraLogo.src} class="h-full w-auto max-w-none" />
       </a>
       <p class="flex items-center gap-3 text-sm font-extralight text-white">
         <span>01</span>
@@ -79,6 +79,10 @@ const pillars = [
     <img
       alt="Etiqueta VORA en sudadera borgoña"
       src={label.src}
+      loading="lazy"
+      decoding="async"
+      width={label.width}
+      height={label.height}
       data-scene-img
       class="absolute inset-0 size-full max-w-none object-cover object-[16%_15%] lg:object-[30%_center]"
     />
@@ -110,7 +114,7 @@ const pillars = [
         <li class="flex flex-col items-center px-4 py-12 text-center text-white lg:py-0">
           <div class="flex h-[10.375rem] items-end justify-center">
             <span class="float block" style={`--float-delay:${-i * 1.7}s`}>
-              <img alt="" src={p.icon.src} data-reveal class={`${p.size} max-w-full object-contain`} />
+              <img loading="lazy" decoding="async" alt="" src={p.icon.src} data-reveal class={`${p.size} max-w-full object-contain`} />
             </span>
           </div>
           <p data-reveal class="mt-8 text-[1.453rem] font-semibold leading-[0.8] text-[#d9202b]">{p.n}</p>
@@ -155,7 +159,7 @@ const pillars = [
       class={`${container} relative flex flex-wrap items-center justify-between gap-x-8 gap-y-6 pb-10 pt-16 lg:pl-[8.6875rem] lg:pr-[4.25rem]`}
     >
       <div class="flex items-center gap-5 text-white lg:gap-[5.25rem]">
-        <img alt="VORA" src={voraLogo.src} class="h-[2.125rem] w-auto lg:h-[3.3rem]" />
+        <img loading="lazy" decoding="async" alt="VORA" src={voraLogo.src} class="h-[2.125rem] w-auto lg:h-[3.3rem]" />
         <span class="flex items-center gap-4 text-base font-light lg:gap-[5.25rem] lg:text-[1.453rem]">
           <span class="block h-px w-12 bg-white lg:w-[4.375rem]"></span>10/2026
         </span>
@@ -166,13 +170,13 @@ const pillars = [
             @VORA.CO_
             <span class="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[#d9202b] transition-transform duration-500 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"></span>
           </span>
-          <img alt="" src={arrow.src} class="h-5 w-auto transition-transform duration-500 ease-out group-hover:translate-x-2 group-focus-visible:translate-x-2 lg:h-[1.567rem]" />
+          <img loading="lazy" decoding="async" alt="" src={arrow.src} class="h-5 w-auto transition-transform duration-500 ease-out group-hover:translate-x-2 group-focus-visible:translate-x-2 lg:h-[1.567rem]" />
         </a>
         <a href="https://instagram.com/vora.co_" target="_blank" rel="noopener" aria-label="Instagram" class="block transition duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:drop-shadow-[0_0.5rem_1rem_rgb(217_32_43/0.6)] focus-visible:-translate-y-1.5 focus-visible:scale-110">
-          <img alt="" src={instagram.src} class="size-8 lg:size-[2.678rem]" />
+          <img loading="lazy" decoding="async" alt="" src={instagram.src} class="size-8 lg:size-[2.678rem]" />
         </a>
         <a href="https://tiktok.com/@vora.co_" target="_blank" rel="noopener" aria-label="TikTok" class="block transition duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:drop-shadow-[0_0.5rem_1rem_rgb(217_32_43/0.6)] focus-visible:-translate-y-1.5 focus-visible:scale-110">
-          <img alt="" src={tiktok.src} class="h-8 w-auto lg:h-[2.58rem]" />
+          <img loading="lazy" decoding="async" alt="" src={tiktok.src} class="h-8 w-auto lg:h-[2.58rem]" />
         </a>
       </div>
     </footer>

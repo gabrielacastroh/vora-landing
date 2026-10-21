@@ -32,7 +32,7 @@ const featured = authed ? await getFeatured() : [];
   ) : (
     <Layout title="Acceso — VORA" noindex>
       <main class="flex min-h-svh flex-col items-center justify-center gap-10 bg-[#0b0b0d] px-6">
-        <img alt="VORA" src={voraLogo.src} class="h-10 w-auto" />
+        <img decoding="async" alt="VORA" src={voraLogo.src} class="h-10 w-auto" />
         <form method="post" class="flex w-full max-w-80 flex-col gap-4">
           <label for="password" class="text-sm font-extralight uppercase tracking-widest text-white/70">Acceso privado</label>
           <input

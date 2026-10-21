@@ -38,7 +38,7 @@ export default function FrameFooter() {
       <div className="mx-auto w-full max-w-360 px-6 pt-14 pb-12 sm:px-10 lg:pr-[10.9375rem] lg:pl-[12rem] lg:pt-[3.875rem] lg:pb-[3.8125rem]">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10 lg:grid-cols-[341fr_232fr_291fr_209fr] lg:gap-0">
           <div data-reveal className="col-span-2 sm:col-span-3 lg:col-span-1">
-            <img alt="VORA" src={voraLogo.src} className="-ml-4 h-[4.875rem] w-auto max-w-none" />
+            <img loading="lazy" decoding="async" alt="VORA" src={voraLogo.src} className="-ml-4 h-[4.875rem] w-auto max-w-none" />
             <div className="mt-[1.1875rem] text-[0.8125rem] font-extralight capitalize leading-normal text-white">
               <p>
                 Para <span className="lowercase">quienes no se detienen.</span>
@@ -68,7 +68,7 @@ export default function FrameFooter() {
                   aria-label={s.label}
                   className="transition-opacity hover:opacity-70"
                 >
-                  <img alt="" src={s.icon} className={`${s.className} max-w-none object-cover`} />
+                  <img loading="lazy" decoding="async" alt="" src={s.icon} className={`${s.className} max-w-none object-cover`} />
                 </a>
               ))}
             </div>
@@ -77,7 +77,7 @@ export default function FrameFooter() {
 
         <div data-line className="mt-12 h-px bg-white/25" />
         <div data-reveal className="flex items-center gap-[0.4375rem] pt-[1.8125rem]">
-          <img alt="" src={footerCopyrightIcon.src} className="size-[0.6875rem] max-w-none object-cover" />
+          <img loading="lazy" decoding="async" alt="" src={footerCopyrightIcon.src} className="size-[0.6875rem] max-w-none object-cover" />
           <p className="font-display text-[0.6875rem] font-thin uppercase leading-none text-white">
             2026 vora, <span className="capitalize">todos</span>
             <span className="lowercase"> los derechos reservados.</span>

@@ -26,7 +26,7 @@ export default function Contacto() {
       <div data-hero-bg className="absolute inset-0">
         {/* Figma frame 460:1502 is 1441x1201 and starts 135px above the page. 108% wide: data-pan drifts +-3% of the width, so the extra 4% per side keeps the edges covered. */}
         <div data-pan className="absolute inset-y-0 -left-[4%] w-[108%] lg:inset-y-auto lg:-top-[8.4375rem] lg:h-[75.0625rem]">
-          <img
+          <img decoding="async"
             data-hero-img
             data-mouse="28"
             alt=""
@@ -74,7 +74,7 @@ export default function Contacto() {
               >
                 <span aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none" style={{ background: 'radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgb(212 7 50 / 0.22), transparent 55%)' }} />
                 <span className="flex w-[3.0625rem] shrink-0 items-center justify-center transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110 motion-reduce:transition-none">
-                  <img alt="" src={c.icon} className={`${c.iconClass} max-w-none object-contain`} />
+                  <img loading="lazy" decoding="async" alt="" src={c.icon} className={`${c.iconClass} max-w-none object-contain`} />
                 </span>
                 <span aria-hidden="true" className="h-[6.9375rem] w-[0.051rem] shrink-0 bg-[#55534f]" />
                 <span className="flex min-w-0 flex-1 flex-col lg:w-[16.869rem] lg:flex-none">

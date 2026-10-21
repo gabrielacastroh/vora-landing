@@ -77,7 +77,7 @@ export default function Origin() {
               className={`mt-6 flex items-center gap-[0.5625rem] xl:mt-0 xl:gap-(--gap) ${place}`}
               style={{ ...at(122, 428), '--gap': u(9) } as CSSProperties}
             >
-              <img alt="" src={flag.src} className="size-[1.5625rem] max-w-none xl:size-(--w)" style={at(0, 0, { w: 25 })} />
+              <img loading="lazy" decoding="async" alt="" src={flag.src} className="size-[1.5625rem] max-w-none xl:size-(--w)" style={at(0, 0, { w: 25 })} />
               <span
                 className="text-lg leading-[1.6] font-extrabold tracking-[0.8em] text-black/80 xl:text-(length:--fs)"
                 style={at(0, 0, { fs: 18.321 })}

@@ -85,7 +85,7 @@ function GalleryCrop({ id, desktop, className = '', children }: { id: GalleryKey
 function Spotlight({ src, className = '', style }: { src: string; className?: string; style?: CSSProperties }) {
   return (
     <div className={`pointer-events-none absolute ${className}`} style={style}>
-      <img alt="" src={src} data-glow className="absolute inset-[-14.29%] block size-[128.58%] max-w-none" />
+      <img decoding="async" alt="" src={src} data-glow className="absolute inset-[-14.29%] block size-[128.58%] max-w-none" />
     </div>
   );
 }
@@ -146,7 +146,7 @@ function Hero() {
   return (
     <section data-hero className="relative flex min-h-svh flex-col overflow-hidden">
       <div data-hero-bg className="absolute inset-0">
-        <img
+        <img decoding="async"
           data-hero-img
           alt=""
           src={heroBg.src}
@@ -156,7 +156,7 @@ function Hero() {
         />
       </div>
       <Spotlight src={spotlight1.src} className="left-[6.25rem] top-[9.375rem] size-[43.75rem] max-lg:-left-60" />
-      <img
+      <img decoding="async"
         alt=""
         src={dividerRect.src}
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[8.4375rem] w-full max-w-none object-cover"
@@ -187,7 +187,7 @@ function Hero() {
             </p>
             <a href="/coleccion" className="group flex items-center gap-2">
               <span className="text-sm font-bold uppercase text-[#ece6dd]">Ver Colección</span>
-              <img alt="" src={arrowRight.src} className="size-3.5 transition-transform group-hover:translate-x-1" />
+              <img decoding="async" alt="" src={arrowRight.src} className="size-3.5 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
           <p data-hero-item className="font-display text-[0.8125rem] font-semibold uppercase text-[#ece6dd]">
@@ -241,7 +241,7 @@ function FeaturedCollection({ products }: { products: Product[] }) {
 
       <a data-reveal href="/coleccion" className="group mx-auto mt-16 flex w-fit items-center gap-2 lg:mt-[8.3125rem]">
         <span className="text-sm font-bold uppercase text-vora-red-bright">EXPLORAR COLECCIÓN</span>
-        <img alt="" src={arrowRight1.src} className="size-3.5 transition-transform group-hover:translate-x-1" />
+        <img loading="lazy" decoding="async" alt="" src={arrowRight1.src} className="size-3.5 transition-transform group-hover:translate-x-1" />
       </a>
     </section>
   );

@@ -113,7 +113,7 @@ function Line({ id, index, title, blurb, image, frame, overlay, dark, products }
 function Statement() {
   return (
     <section data-statement className="relative flex min-h-[32rem] flex-col justify-end overflow-hidden lg:h-[30.125rem] lg:min-h-0 lg:justify-start">
-      <img
+      <img decoding="async"
         data-statement-photo
         alt="Equipo VORA con las camisetas de la colección en el estudio"
         src={statementPhoto.src}
@@ -181,7 +181,7 @@ function StatCard({ stat, i }: { stat: Stat; i: number }) {
       data-reveal
       className="relative block h-[9.8584rem] w-[9.6237rem] shrink-0 overflow-hidden rounded-[1.115rem] bg-[#ece6dd] font-mont leading-normal text-[#1c1c1c] shadow-[-0.4401rem_0.4988rem_0.4019rem_-0.088rem_rgba(0,0,0,0.25)]"
     >
-      <img alt="" src={stat.header} width={153.979} height={79.0889} className="absolute top-0 left-0 h-[4.943rem] w-full" />
+      <img loading="lazy" decoding="async" alt="" src={stat.header} width={153.979} height={79.0889} className="absolute top-0 left-0 h-[4.943rem] w-full" />
       <span className="absolute top-[0.54rem] left-[0.85rem] text-[0.4334rem] font-light text-white">{pad(i + 1)}</span>
       <span className="absolute top-[1.6138rem] left-[1.1875rem] text-[2.4316rem] font-semibold text-white" data-count>
         {pad(stat.value)}
@@ -194,7 +194,7 @@ function StatCard({ stat, i }: { stat: Stat; i: number }) {
           </span>
         ))}
       </span>
-      <img
+      <img loading="lazy" decoding="async"
         alt=""
         src={statArrow.src}
         width={17.3696}
@@ -218,7 +218,7 @@ function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
         {/* Below lg the section uses its own portrait photo (sky on top for the copy, model at the bottom). */}
         <picture>
           <source media="(min-width: 64rem)" srcSet={numbersPhoto.src} />
-          <img alt="Modelo con la camiseta ON MY WAY señalando al cielo" src={numbersPhotoMobile.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-bottom lg:object-[20%_center]" />
+          <img decoding="async" alt="Modelo con la camiseta ON MY WAY señalando al cielo" src={numbersPhotoMobile.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-bottom lg:object-[20%_center]" />
         </picture>
         <div className="relative mx-auto flex min-h-[calc(100vw*1322/649)] w-full max-w-360 flex-col items-center px-6 pt-[10%] pb-12 sm:px-10 lg:min-h-0 lg:items-end lg:px-[6.5rem] lg:pt-[6.1875rem] lg:pb-0">
           <div className="flex flex-col items-center">

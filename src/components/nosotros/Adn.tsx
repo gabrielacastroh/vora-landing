@@ -47,10 +47,10 @@ function Collage({ className = '', style }: { className?: string; style?: CSSPro
         </Crop>
       </div>
       <div data-in="pop" data-speed="0.06" className="pointer-events-none absolute" style={{ ...box(282.2, 10.3, 289.345), rotate: '2.5deg' }}>
-        <img alt="" src={star.src} data-float loading="lazy" decoding="async" className="block h-auto w-full max-w-none" />
+        <img alt="" src={star.src} width={star.width} height={star.height} data-float loading="lazy" decoding="async" className="block h-auto w-full max-w-none" />
       </div>
       <div data-in="pop" data-speed="-0.05" className="pointer-events-none absolute" style={{ ...box(20.1, 445.5, 156.989), rotate: '-6.53deg' }}>
-        <img alt="" src={star.src} data-float loading="lazy" decoding="async" className="block h-auto w-full max-w-none" />
+        <img alt="" src={star.src} width={star.width} height={star.height} data-float loading="lazy" decoding="async" className="block h-auto w-full max-w-none" />
       </div>
     </div>
   );
@@ -75,7 +75,7 @@ function Pillar({ n, title, bg, text }: (typeof pillars)[number]) {
         aria-controls={id}
         className="relative block aspect-[273.667/82.247] w-full text-left transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       >
-        <img alt="" src={bg} className="absolute inset-0 block size-full max-w-none" />
+        <img loading="lazy" decoding="async" alt="" src={bg} className="absolute inset-0 block size-full max-w-none" />
         <span className="absolute top-[10.7%] left-[9.15%] w-[4.57%] text-center font-mont text-[2.64cqw] leading-[normal] font-light text-white">{n}</span>
         <span className="absolute top-[35.7%] left-[11.27%] font-mont text-[11.45cqw] leading-[normal] font-extrabold whitespace-nowrap text-white">{title}</span>
       </button>

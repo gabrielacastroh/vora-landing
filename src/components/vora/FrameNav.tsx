@@ -22,11 +22,11 @@ export default function FrameNav({ active, background, theme, logo = voraLogo.sr
     <>
       <nav data-nav className="fixed inset-x-0 top-0 z-30">
         {background && (
-          <img alt="" src={background} className="pointer-events-none absolute inset-0 size-full max-w-none object-cover" />
+          <img decoding="async" alt="" src={background} className="pointer-events-none absolute inset-0 size-full max-w-none object-cover" />
         )}
         <div className={`${container} relative flex items-center justify-between py-6 sm:py-8 lg:py-10`}>
           <a href="/admin-vora" aria-label="VORA — inicio" className="block h-10 shrink-0 sm:h-[3.3125rem]">
-            <img alt="VORA" src={logo} className="h-full w-auto max-w-none" />
+            <img decoding="async" alt="VORA" src={logo} className="h-full w-auto max-w-none" />
           </a>
 
           <div className="hidden items-center gap-10 whitespace-nowrap text-[0.8125rem] font-medium uppercase md:flex">

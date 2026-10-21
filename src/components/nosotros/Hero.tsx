@@ -10,7 +10,7 @@ export default function Hero() {
           data-pan
           className="absolute inset-y-0 -left-[4%] w-[108%] opacity-[0.38] lg:right-auto lg:bottom-auto lg:-left-[18.33%] lg:top-[0.7%] lg:h-[104.47%] lg:w-[129.72%]"
         >
-          <img
+          <img decoding="async"
             data-hero-img
             alt=""
             src={heroBg.src}
