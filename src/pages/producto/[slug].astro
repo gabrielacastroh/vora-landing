@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import FrameNav from '../../components/vora/FrameNav';
 import FrameFooter from '../../components/vora/FrameFooter';
@@ -6,6 +7,10 @@ import productNavBg from '../../assets/vora/product-nav-bg.png';
 import ProductHero from '../../components/product/ProductHero';
 import { getProducts } from '../../data/catalog';
 import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  return (await getProducts()).map((p) => ({ params: { slug: p.slug } }));
+}
 
 const products = await getProducts();
 const i = products.findIndex((p) => p.slug === Astro.params.slug);
