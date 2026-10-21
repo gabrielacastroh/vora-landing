@@ -16,10 +16,12 @@ const schema = z.object({
     coleccion: z.object({ title: z.string() }),
     expectativa: z.object({ title: z.string() }),
     nosotros: z.object({ title: z.string() }),
+    contacto: z.object({ title: z.string() }),
   }),
   /** `key` is what a page passes as `active` to highlight its own link. */
   nav: z.array(link.extend({ key: z.string() })),
   footer: z.object({ explora: z.array(link), legal: z.array(link) }),
+  contact: z.object({ email: z.email() }),
   social: z.object({ whatsapp: socialUrl, instagram: socialUrl, tiktok: socialUrl }),
 });
 
