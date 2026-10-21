@@ -3,6 +3,9 @@ import '../styles/global.css';
 import { site } from '../data/site';
 import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import archivoItalicLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-italic.woff2?url';
+import montserratLatin from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url';
+import montserratItalicLatin from '@fontsource-variable/montserrat/files/montserrat-latin-wght-italic.woff2?url';
 
 interface Props {
   title: string;
@@ -14,9 +17,11 @@ interface Props {
   preloadImage?: string;
   /** Keep private pages out of search results. */
   noindex?: boolean;
+  /** The first paint uses the italic faces (nosotros hero): preload them, since motion waits on document.fonts.ready. */
+  italics?: boolean;
 }
 
-const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex } = Astro.props;
+const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex, italics } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,6 +36,15 @@ const { title, description = site.description, canvas = '#0b0b0d', preloadImage,
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={montserratLatin} as="font" type="font/woff2" crossorigin />
+    {
+      italics && (
+        <>
+          <link rel="preload" href={montserratItalicLatin} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={archivoItalicLatin} as="font" type="font/woff2" crossorigin />
+        </>
+      )
+    }
     {preloadImage && <link rel="preload" href={preloadImage} as="image" fetchpriority="high" />}
     <title>{title}</title>
     <script is:inline>
