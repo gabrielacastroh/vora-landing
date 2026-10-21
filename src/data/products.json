@@ -24,7 +24,6 @@
     "id": "desde-cero",
     "name": "DESDE CERO",
     "variant": "Camiseta / Verde oliva",
-    "line": "unisex",
     "cardImage": "../assets/vora/card-desde-cero.webp",
     "description": "Para quien decide empezar de nuevo. Verde oliva, corte oversize y algodón de alto gramaje con una caída natural.",
     "details": [
@@ -55,7 +54,6 @@
     "id": "good-luck",
     "name": "GOOD LUCK",
     "variant": "Camiseta / Negro",
-    "line": "unisex",
     "cardImage": "../assets/vora/card-good-luck.webp",
     "description": "Para lo inesperado que también forma parte del camino. Negro profundo, corte oversize y algodón de alto gramaje.",
     "details": [
@@ -70,7 +68,6 @@
     "id": "take-your-time",
     "name": "TAKE YOUR TIME",
     "variant": "Camiseta / Blanco",
-    "line": "womens",
     "cardImage": "../assets/vora/card-take-your-time.webp",
     "description": "Avanzar también es darse tiempo. Blanco con estampado floral, silueta femenina y algodón suave de alto gramaje.",
     "details": [
@@ -85,7 +82,6 @@
     "id": "keep-becoming",
     "name": "KEEP BECOMING",
     "variant": "Camiseta / Azul claro",
-    "line": "womens",
     "cardImage": "../assets/vora/card-keep-becoming.webp",
     "description": "En constante evolución. Azul claro con estampado de mariposa, silueta femenina y caída natural.",
     "details": [
@@ -95,6 +91,166 @@
       { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
     ],
     "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "beyond-ordinary",
+    "name": "BEYOND ORDINARY",
+    "variant": "Camiseta / Beige",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-beyond-ordinary.webp",
+    "featured": 3,
+    "description": "Para quien decide ir más allá. Beige, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "details": [
+      { "label": "Corte", "value": "Oversize unisex" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Beige" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "make-your-own-luck",
+    "name": "MAKE YOUR OWN LUCK",
+    "variant": "Camiseta / Negro",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-make-your-own-luck.webp",
+    "description": "La suerte también se construye. Negro profundo, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "details": [
+      {
+        "label": "Corte",
+        "value": "Oversize unisex"
+      },
+      {
+        "label": "Material",
+        "value": "100% algodón de alto gramaje"
+      },
+      {
+        "label": "Color",
+        "value": "Negro"
+      },
+      {
+        "label": "Estampado",
+        "value": "Serigrafía frontal y trasera"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
+  },
+  {
+    "id": "built-different",
+    "name": "BUILT DIFFERENT",
+    "variant": "Camiseta / Blanco",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-built-different.webp",
+    "description": "Hechos para no encajar. Blanco limpio, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "details": [
+      {
+        "label": "Corte",
+        "value": "Oversize unisex"
+      },
+      {
+        "label": "Material",
+        "value": "100% algodón de alto gramaje"
+      },
+      {
+        "label": "Color",
+        "value": "Blanco"
+      },
+      {
+        "label": "Estampado",
+        "value": "Serigrafía frontal y trasera"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
+  },
+  {
+    "id": "ambition-club",
+    "name": "AMBITION CLUB",
+    "variant": "Camiseta / Blanco",
+    "line": "unisex",
+    "cardImage": "../assets/vora/card-ambition-club.webp",
+    "description": "Para quienes buscan más. Blanco limpio, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "details": [
+      {
+        "label": "Corte",
+        "value": "Oversize unisex"
+      },
+      {
+        "label": "Material",
+        "value": "100% algodón de alto gramaje"
+      },
+      {
+        "label": "Color",
+        "value": "Blanco"
+      },
+      {
+        "label": "Estampado",
+        "value": "Serigrafía frontal y trasera"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
+  },
+  {
+    "id": "bloom-your-own-way",
+    "name": "BLOOM YOUR OWN WAY",
+    "variant": "Camiseta crop top / Blanco",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-bloom-your-own-way.webp",
+    "description": "Florecer a tu manera. Blanco con estampado floral, silueta femenina y algodón suave de alto gramaje.",
+    "details": [
+      { "label": "Corte", "value": "Women's fit" },
+      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Color", "value": "Blanco" },
+      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "featured": 1
+  },
+  {
+    "id": "still-growing",
+    "name": "STILL GROWING",
+    "variant": "Camiseta crop top / Blanco",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-still-growing.webp",
+    "description": "Todavía creciendo, y avanzando. Blanco con estampado gráfico, silueta femenina y algodón de alto gramaje.",
+    "details": [
+      {
+        "label": "Corte",
+        "value": "Women's fit"
+      },
+      {
+        "label": "Material",
+        "value": "100% algodón de alto gramaje"
+      },
+      {
+        "label": "Color",
+        "value": "Blanco"
+      },
+      {
+        "label": "Estampado",
+        "value": "Serigrafía frontal y trasera"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "on-my-way",
@@ -131,35 +287,67 @@
     "featured": 3
   },
   {
-    "id": "beyond-ordinary",
-    "name": "BEYOND ORDINARY",
-    "variant": "Camiseta / Beige",
-    "line": "unisex",
-    "cardImage": "../assets/vora/card-beyond-ordinary.webp",
-    "featured": 3,
-    "description": "Para quien decide ir más allá. Beige, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "id": "built-for-bigger-things",
+    "name": "BUILT FOR BIGGER THINGS",
+    "variant": "Camiseta crop top / Negro",
+    "line": "womens",
+    "cardImage": "../assets/vora/card-built-for-bigger-things.webp",
+    "description": "Hecha para cosas más grandes. Negro profundo, silueta femenina y estampado gráfico en la espalda.",
     "details": [
-      { "label": "Corte", "value": "Oversize unisex" },
-      { "label": "Material", "value": "100% algodón de alto gramaje" },
-      { "label": "Color", "value": "Beige" },
-      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+      {
+        "label": "Corte",
+        "value": "Women's fit"
+      },
+      {
+        "label": "Material",
+        "value": "100% algodón de alto gramaje"
+      },
+      {
+        "label": "Color",
+        "value": "Negro"
+      },
+      {
+        "label": "Estampado",
+        "value": "Serigrafía frontal y trasera"
+      }
     ],
-    "sizes": ["S", "M", "L", "XL"]
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
-    "id": "bloom-your-own-way",
-    "name": "BLOOM YOUR OWN WAY",
-    "variant": "Camiseta crop top / Blanco",
+    "id": "good-things",
+    "name": "GOOD THINGS",
+    "variant": "Camiseta crop top / Azul celeste",
     "line": "womens",
-    "cardImage": "../assets/vora/card-bloom-your-own-way.webp",
-    "description": "Florecer a tu manera. Blanco con estampado floral, silueta femenina y algodón suave de alto gramaje.",
+    "cardImage": "../assets/vora/card-good-things.webp",
+    "description": "Lo bueno llega. Azul celeste, silueta femenina y algodón de alto gramaje con estampado gráfico trasero.",
     "details": [
-      { "label": "Corte", "value": "Women's fit" },
-      { "label": "Material", "value": "100% algodón de alto gramaje" },
-      { "label": "Color", "value": "Blanco" },
-      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+      {
+        "label": "Corte",
+        "value": "Women's fit"
+      },
+      {
+        "label": "Material",
+        "value": "100% algodón de alto gramaje"
+      },
+      {
+        "label": "Color",
+        "value": "Azul celeste"
+      },
+      {
+        "label": "Estampado",
+        "value": "Serigrafía frontal y trasera"
+      }
     ],
-    "sizes": ["S", "M", "L", "XL"],
-    "featured": 1
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   }
 ]
