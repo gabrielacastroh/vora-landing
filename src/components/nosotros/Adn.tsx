@@ -83,7 +83,7 @@ function Pillar({ n, title, bg, text }: (typeof pillars)[number]) {
         <div className="relative aspect-[273.667/82.247] rounded-b-[6.8cqw] border border-t-0 border-[#a32b32] bg-[#1c1c1c]">
           <p
             data-card-text
-            className="absolute top-[5.85%] left-[11.27%] w-[75.78%] text-[3.32cqw] leading-[1.6] text-[#ece6dd]"
+            className="absolute top-1/2 left-[11.27%] w-[75.78%] -translate-y-1/2 text-[3.32cqw] leading-[1.6] text-[#ece6dd] xl:top-[5.85%] xl:translate-y-0"
           >
             {text}
           </p>
