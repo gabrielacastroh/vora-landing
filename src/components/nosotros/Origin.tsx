@@ -97,7 +97,7 @@ export default function Origin() {
           </div>
 
           {/* Mobile: two-up grid. xl: the Figma collage, clipped to the section (the port polaroid is not). */}
-          <div data-seq="top 65%" className="grid grid-cols-2 items-start gap-4 xl:contents">
+          <div data-seq="top 65%" className="grid grid-cols-2 items-center gap-3 xl:contents">
             <div className="contents xl:absolute xl:inset-0 xl:block xl:overflow-hidden">
               <Piece src={map.src} alt="Mapa de Colombia en collage cartográfico vintage" x={829.53} y={-24.14} w={529.399} h={674.733} r={4.54} />
               <Piece src={portrait.src} alt="Retrato vintage ante torre multicolor" x={561} y={-17} w={410} h={459} />
@@ -123,8 +123,9 @@ export default function Origin() {
                 h={723.476}
                 r={5.69}
                 shadow={[16, 5.9, 0.31]}
+                className="max-xl:row-span-2"
               />
-              <Piece src={label.src} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} />
+              <Piece src={label.src} alt="Etiqueta VORA en polaroid vintage" x={568.56} y={388} w={394.002} h={360.067} className="max-xl:self-end" />
               <Piece src={ellipse.src} x={686.45} y={616.64} w={138.141} r={17.52} className="max-xl:hidden" />
               <p
                 className={`pointer-events-none text-sm font-semibold text-white/50 uppercase max-xl:hidden xl:text-(length:--fs) ${place}`}
@@ -141,6 +142,7 @@ export default function Origin() {
               w={402}
               h={288}
               shadow={[16, 10.3, 0.25]}
+              className="max-xl:self-start"
             />
           </div>
         </div>
