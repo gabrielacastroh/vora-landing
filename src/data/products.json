@@ -294,6 +294,11 @@
     "variant": "Camiseta crop top / Beige",
     "line": "womens",
     "cardImage": "../assets/vora/card-on-my-way.webp",
+    "gallery": [
+      { "image": "../assets/vora/on-my-way-1.webp", "position": "center top" },
+      { "image": "../assets/vora/on-my-way-2.webp", "position": "center" },
+      { "image": "../assets/vora/on-my-way-3.webp", "position": "center top" }
+    ],
     "heroImage": "../assets/vora/shop-numbers.webp",
     "heroPosition": "20% center",
     "featured": 2,
