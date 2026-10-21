@@ -2,22 +2,22 @@
   {
     "id": "01",
     "title": "01 / MATERIAL",
-    "lines": ["Algodón de alta calidad,", "transpirable y resistente."],
+    "lines": ["100 % algodón de 230 g, con tacto suave,", "estructura robusta y alta calidad."],
     "image": "../assets/vora/shop-detail-print.webp",
     "frame": [-12, -157, 414, 518]
   },
   {
     "id": "02",
     "title": "02 / CONSTRUCCIÓN",
-    "lines": ["Costuras reforzadas", "y acabados premium."],
+    "lines": ["Corte oversize de estilo urbano, con caída estructurada,", "comodidad y acabado premium."],
     "image": "../assets/vora/shop-detail-fabric.webp",
     "frame": [-6, -47, 399, 399]
   },
   {
     "id": "03",
     "title": "03 / IDENTIDAD",
-    "lines": ["Un símbolo que representa", "movimiento y dirección."],
+    "lines": ["Diseños que representan autenticidad, movimiento", "y una actitud diferente."],
     "image": "../assets/vora/shop-detail-label.webp",
-    "frame": [-41.35, -94.28, 433.95, 542.24]
+    "frame": [-392.1, -612.7, 779.2, 973.6]
   }
 ]

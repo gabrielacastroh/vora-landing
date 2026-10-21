@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import FrameNav from '../vora/FrameNav';
 import Crop from '../vora/Crop';
 import ProductCard from '../vora/ProductCard';
@@ -47,7 +48,7 @@ function Intro() {
 interface LineProps {
   id: string;
   index: string;
-  title: string;
+  title: ReactNode;
   blurb: string;
   image: string;
   /** Image rect inside the 1440 × 387 banner window (Figma mask). */
@@ -113,7 +114,7 @@ function Statement() {
     <section data-statement className="relative flex min-h-[32rem] flex-col justify-end overflow-hidden lg:h-[30.125rem] lg:min-h-0 lg:justify-start">
       <img
         data-statement-photo
-        alt="Modelo con la camiseta FIRST STEP"
+        alt="Equipo VORA con las camisetas de la colección en el estudio"
         src={statementPhoto.src}
         loading="lazy"
         className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[70%_center] lg:object-center"
@@ -207,15 +208,15 @@ function StatCard({ stat, i }: { stat: Stat; i: number }) {
 
 function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
   const stats: Stat[] = [
-    { value: unisex + womens, label: 'PIEZAS', lines: ['Una colección completa,', 'un mismo propósito.'], header: statCard1.src, href: '#unisex' },
-    { value: unisex, label: 'UNISEX', lines: ['Siluetas versátiles', ' para avanzar contigo.'], header: statCard2.src, href: '#unisex' },
-    { value: womens, label: 'PIEZAS', lines: ['Diseños que exploran', ' el movimiento y la evolución.'], header: statCard3.src, href: '#womens' },
-    { value: 1, label: 'PIEZAS', lines: ['Un mismo camino, infinitas', 'posibilidades'], header: statCard4.src, href: '#detalles' },
+    { value: unisex + womens, label: 'PIEZAS', lines: ['Doce diseños únicos, ', 'una misma visión.'], header: statCard1.src, href: '#unisex' },
+    { value: unisex, label: 'UNISEX', lines: ['Siluetas versátiles', 'para avanzar sin etiquetas.'], header: statCard2.src, href: '#unisex' },
+    { value: womens, label: 'WOMEN', lines: ['Diseños para crecer,', ' evolucionar y destacar.'], header: statCard3.src, href: '#womens' },
+    { value: 1, label: 'COLECCIÓN', lines: ['Un primer capítulo. ', 'Infinitas posibilidades.'], header: statCard4.src, href: '#detalles' },
   ];
   return (
     <section className="pt-24 pb-20 lg:pt-[10.1875rem] lg:pb-[7.6875rem]">
       <div className="relative overflow-hidden lg:h-[30.125rem]">
-        <img alt="Modelo con la camiseta ON MY WAY frente a las montañas" src={numbersPhoto.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[20%_center]" />
+        <img alt="Modelo con la camiseta ON MY WAY señalando al cielo" src={numbersPhoto.src} loading="lazy" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-[20%_center]" />
         <div className="relative mx-auto flex w-full max-w-360 flex-col items-center px-6 pt-64 pb-12 sm:px-10 lg:items-end lg:px-[6.5rem] lg:pt-[6.1875rem] lg:pb-0">
           <div className="flex flex-col items-center">
             <div className="text-center font-mont leading-normal text-[#332727]">
@@ -253,8 +254,12 @@ export default function ShopFrame({ unisex, womens, details }: Props) {
         <Line
           id="unisex"
           index="01"
-          title="UNISEX"
-          blurb="Siluetas versátiles diseñadas para avanzar contigo."
+          title={
+            <>
+              UNISEX — <span className="font-normal">EN MARCHA</span>
+            </>
+          }
+          blurb="Diseñadas para quienes construyen su propio camino. Sin límites, sin etiquetas."
           image={bannerUnisex.src}
           frame={[-160.65, -52.05, 1761.875, 587.292]}
           overlay="rgba(5,5,5,0.53)"
@@ -264,8 +269,12 @@ export default function ShopFrame({ unisex, womens, details }: Props) {
         <Line
           id="womens"
           index="02"
-          title="WOMEN'S FIT"
-          blurb="Siluetas versátiles diseñadas para avanzar contigo."
+          title={
+            <>
+              WOMEN — <span className="font-normal">EN MARCHA</span>
+            </>
+          }
+          blurb="Diseños para mujeres que florecen a su ritmo, evolucionan y construyen su propio camino."
           image={bannerWomens.src}
           frame={[-2.79, -96.86, 1444.92, 481.64]}
           overlay="rgba(201,130,130,0.36)"
