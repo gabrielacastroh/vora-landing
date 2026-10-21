@@ -317,12 +317,12 @@
     "variant": "Camiseta crop top / Rosa pastel",
     "line": "womens",
     "cardImage": "../assets/vora/card-still-becoming.webp",
-    "description": "Todavía en proceso, y está bien. Rosa pastel, silueta femenina y estampado gráfico trasero.",
+    "description": "No necesitas tenerlo todo resuelto para seguir creciendo. STILL BECOMING representa la libertad de cambiar, aprender y descubrir quién quieres ser. Su diseño tipográfico expresa una mentalidad de evolución constante, donde cada etapa tiene su propio valor.",
     "details": [
-      { "label": "Corte", "value": "Women's fit" },
-      { "label": "Material", "value": "100% algodón de alto gramaje" },
+      { "label": "Corte", "value": "Oversize Crop Top" },
+      { "label": "Material", "value": "100 % algodón" },
       { "label": "Color", "value": "Rosa pastel" },
-      { "label": "Estampado", "value": "Serigrafía frontal y trasera" }
+      { "label": "Gramaje", "value": "230 g/m²" }
     ],
     "sizes": ["S", "M", "L", "XL"],
     "featured": 3
