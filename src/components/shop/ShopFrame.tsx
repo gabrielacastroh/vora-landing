@@ -173,15 +173,13 @@ interface Stat {
   label: string;
   lines: [string, string];
   header: string;
-  href: string;
 }
 
 function StatCard({ stat, i }: { stat: Stat; i: number }) {
   return (
-    <a
+    <div
       data-reveal
-      href={stat.href}
-      className="group relative block h-[9.8584rem] w-[9.6237rem] shrink-0 overflow-hidden rounded-[1.115rem] bg-[#ece6dd] font-mont leading-normal text-[#1c1c1c] shadow-[-0.4401rem_0.4988rem_0.4019rem_-0.088rem_rgba(0,0,0,0.25)]"
+      className="relative block h-[9.8584rem] w-[9.6237rem] shrink-0 overflow-hidden rounded-[1.115rem] bg-[#ece6dd] font-mont leading-normal text-[#1c1c1c] shadow-[-0.4401rem_0.4988rem_0.4019rem_-0.088rem_rgba(0,0,0,0.25)]"
     >
       <img alt="" src={stat.header} width={153.979} height={79.0889} className="absolute top-0 left-0 h-[4.943rem] w-full" />
       <span className="absolute top-[0.54rem] left-[0.85rem] text-[0.4334rem] font-light text-white">{pad(i + 1)}</span>
@@ -201,18 +199,18 @@ function StatCard({ stat, i }: { stat: Stat; i: number }) {
         src={statArrow.src}
         width={17.3696}
         height={17.3696}
-        className="absolute top-[7.3644rem] left-[7.6875rem] size-[1.0856rem] transition-transform duration-300 group-hover:translate-x-0.5"
+        className="absolute top-[7.3644rem] left-[7.6875rem] size-[1.0856rem]"
       />
-    </a>
+    </div>
   );
 }
 
 function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
   const stats: Stat[] = [
-    { value: unisex + womens, label: 'PIEZAS', lines: ['Doce diseños únicos, ', 'una misma visión.'], header: statCard1.src, href: '#unisex' },
-    { value: unisex, label: 'UNISEX', lines: ['Siluetas versátiles', 'para avanzar sin etiquetas.'], header: statCard2.src, href: '#unisex' },
-    { value: womens, label: 'WOMEN', lines: ['Diseños para crecer,', ' evolucionar y destacar.'], header: statCard3.src, href: '#womens' },
-    { value: 1, label: 'COLECCIÓN', lines: ['Un primer capítulo. ', 'Infinitas posibilidades.'], header: statCard4.src, href: '#detalles' },
+    { value: unisex + womens, label: 'PIEZAS', lines: ['Doce diseños únicos, ', 'una misma visión.'], header: statCard1.src },
+    { value: unisex, label: 'UNISEX', lines: ['Siluetas versátiles', 'para avanzar sin etiquetas.'], header: statCard2.src },
+    { value: womens, label: 'WOMEN', lines: ['Diseños para crecer,', ' evolucionar y destacar.'], header: statCard3.src },
+    { value: 1, label: 'COLECCIÓN', lines: ['Un primer capítulo. ', 'Infinitas posibilidades.'], header: statCard4.src },
   ];
   return (
     <section className="pt-24 pb-20 lg:pt-[10.1875rem] lg:pb-[7.6875rem]">
@@ -224,7 +222,7 @@ function Numbers({ unisex, womens }: { unisex: number; womens: number }) {
         </picture>
         <div className="relative mx-auto flex min-h-[calc(100vw*1672/941)] w-full max-w-360 flex-col items-center px-6 pt-[12%] pb-12 sm:px-10 lg:min-h-0 lg:items-end lg:px-[6.5rem] lg:pt-[6.1875rem] lg:pb-0">
           <div className="flex flex-col items-center">
-            <div className="text-center font-mont leading-normal text-white lg:text-[#332727]">
+            <div className="text-center font-mont leading-normal text-white">
               <p data-reveal className="text-[1.1838rem] font-medium">
                 LA COLECCIÓN
               </p>
