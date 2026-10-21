@@ -162,11 +162,11 @@
     "variant": "Camiseta / Blanco",
     "line": "unisex",
     "cardImage": "../assets/vora/card-built-different.webp",
-    "description": "Hechos para no encajar. Blanco limpio, corte oversize y algodón de alto gramaje con estampado gráfico en la espalda.",
+    "description": "Diseñada para quienes no siguen el camino de los demás. BUILT DIFFERENT representa la autenticidad y la libertad de ser diferente. Su composición gráfica en blanco y negro transmite una actitud firme: no nacimos para encajar, sino para construir nuestra propia identidad.",
     "details": [
       {
         "label": "Corte",
-        "value": "Oversize unisex"
+        "value": "Oversize"
       },
       {
         "label": "Material",
@@ -177,8 +177,8 @@
         "value": "Blanco"
       },
       {
-        "label": "Estampado",
-        "value": "Serigrafía frontal y trasera"
+        "label": "Gramaje",
+        "value": "230 g/m²"
       }
     ],
     "sizes": [
