@@ -166,7 +166,7 @@ export default function ProductHero({ product }: Props) {
             {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="group mx-auto flex h-[3.25rem] w-full max-w-[26rem] items-center justify-between gap-4 rounded-2xl border-[1.5px] border-vora-red-bright/80 px-6 font-mont text-[1.0625rem] font-bold text-vora-red-bright shadow-[0_0_2rem_rgb(163_43_50/0.22)] transition-shadow duration-500 hover:shadow-[0_0_2.5rem_rgb(163_43_50/0.45)] sm:w-[78%]"
           >
-            <img loading="lazy" decoding="async" alt="" src={whatsappIcon.src} className="size-6 object-contain" />
+            <img alt="" src={whatsappIcon.src} width={whatsappIcon.width} height={whatsappIcon.height} className="size-6 shrink-0 max-w-none object-contain" />
             COMPRAR POR WHATSAPP
             <svg aria-hidden="true" viewBox="0 0 19 16" fill="none" stroke="currentColor" strokeWidth="1.23" className="h-4 w-[1.175rem] shrink-0 transition-transform duration-500 group-hover:translate-x-1.5 motion-reduce:transition-none">
               <path d="M0 7.76H18M11.7 15.12 18 7.76 11.7.4" />
