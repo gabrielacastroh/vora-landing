@@ -23,6 +23,8 @@
  *   data-seq="top 70%"               choreographed group: its [data-in] children play in order once the group reaches that start
  *   data-in="fade|slide|pop|drop|draw|wipe"  step inside a data-seq (data-from="left|right|up|down" sets the wipe side, data-settle adds a tilt)
  *   data-parallax="0.06"             xl-only scrubbed vertical drift (percent of own height, negative = opposite way)
+ *   data-sizes / data-size / data-wa-buy  product size picker (not an animation): a [data-size] button toggles aria-pressed (one at a time) and
+ *                                    rewrites the [data-wa-buy] href from its data-wa-base / -name / -variant with a size-aware WhatsApp message
  *   data-ken                         photo inside its section: scrubbed slow zoom + drift
  */
 import gsap from 'gsap';
@@ -50,6 +52,7 @@ let lenis: Lenis | null = null;
 initMenu();
 initSliders();
 initCards();
+initSizePicker();
 initLazyVideos();
 
 // Card → product morph: name only the clicked card's image right before the old page is captured.
@@ -587,6 +590,25 @@ function initMenu() {
  * Product image slider: curtain wipe in the travel direction, incoming image settles from a zoom
  * while the outgoing one drifts back. Works without motion too (instant swap).
  */
+/** Size buttons toggle (single choice); the WhatsApp link's prefilled message follows the selection. */
+function initSizePicker() {
+  const buy = document.querySelector<HTMLAnchorElement>('[data-wa-buy]');
+  for (const root of $$('[data-sizes]')) {
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as Element).closest<HTMLElement>('[data-size]');
+      if (!btn) return;
+      const on = btn.getAttribute('aria-pressed') !== 'true';
+      for (const b of $$('[data-size]', root)) b.setAttribute('aria-pressed', String(on && b === btn));
+      if (!buy) return;
+      const { waBase = '', waName, waVariant } = buy.dataset;
+      const msg = on
+        ? `Hola VORA, me interesa *${waName}* (${waVariant}) en talla *${btn.dataset.size}*. ¿Está disponible?`
+        : `Hola VORA, me interesa *${waName}* (${waVariant}). ¿Qué tallas tienen disponibles?`;
+      buy.href = `${waBase}${waBase.includes('?') ? '&' : '?'}text=${encodeURIComponent(msg)}`;
+    });
+  }
+}
+
 function initSliders() {
   for (const root of $$('[data-slider]')) {
     const slides = $$('[data-slide]', root);

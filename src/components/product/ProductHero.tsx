@@ -21,7 +21,10 @@ export default function ProductHero({ product }: Props) {
   // "Camiseta crop top / Rojo" renders as "CAMISETA CROP TOP / Rojo": only the garment type is capitalised.
   const [kind, ...color] = product.variant.split(' / ');
   const wa = site.social.whatsapp;
-  const buyHref = wa ? `${wa}${wa.includes('?') ? '&' : '?'}text=${encodeURIComponent(`Hola, quiero comprar ${product.name}`)}` : '#';
+  // No size picked yet: ask which are available. motion.ts rewrites the href with the size once one is chosen.
+  const buyHref = wa
+    ? `${wa}${wa.includes('?') ? '&' : '?'}text=${encodeURIComponent(`Hola VORA, me interesa *${product.name}* (${product.variant}). ¿Qué tallas tienen disponibles?`)}`
+    : '#';
 
   return (
     <section className="flex min-h-svh flex-col bg-vora-bg lg:flex-row">
@@ -132,11 +135,14 @@ export default function ProductHero({ product }: Props) {
 
         <div data-reveal className="flex flex-col items-start gap-3" style={info('product-sizes')}>
           <p className="font-display text-[0.9375rem] font-bold uppercase text-vora-cream">Tallas</p>
-          <div className="flex gap-2">
+          <div data-sizes className="flex gap-2">
             {product.sizes.map((size) => (
               <button
                 key={size}
-                className="flex size-10 items-center justify-center border border-vora-cream text-[0.8125rem] text-vora-cream transition-colors hover:bg-vora-cream hover:text-vora-bg"
+                type="button"
+                data-size={size}
+                aria-pressed="false"
+                className="flex size-10 items-center justify-center border border-vora-cream text-[0.8125rem] text-vora-cream transition-colors hover:bg-vora-cream hover:text-vora-bg aria-pressed:bg-vora-cream aria-pressed:text-vora-bg"
               >
                 {size}
               </button>
@@ -153,6 +159,10 @@ export default function ProductHero({ product }: Props) {
         >
           <a
             href={buyHref}
+            data-wa-buy={wa ? '' : undefined}
+            data-wa-base={wa || undefined}
+            data-wa-name={product.name}
+            data-wa-variant={product.variant}
             {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="group mx-auto flex h-[3.25rem] w-full max-w-[26rem] items-center justify-between gap-4 rounded-2xl border-[1.5px] border-vora-red-bright/80 px-6 font-mont text-[1.0625rem] font-bold text-vora-red-bright shadow-[0_0_2rem_rgb(163_43_50/0.22)] transition-shadow duration-500 hover:shadow-[0_0_2.5rem_rgb(163_43_50/0.45)] sm:w-[78%]"
           >
