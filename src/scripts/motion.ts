@@ -25,6 +25,8 @@
  *   data-parallax="0.06"             xl-only scrubbed vertical drift (percent of own height, negative = opposite way)
  *   data-sizes / data-size / data-wa-buy  product size picker (not an animation): a [data-size] button toggles aria-pressed (one at a time) and
  *                                    rewrites the [data-wa-buy] href from its data-wa-base / -name / -variant with a size-aware WhatsApp message
+ *   data-wa-text / data-wa-phone     WhatsApp deep link (not an animation): on mobile a click on a[data-wa-text] opens whatsapp://send with the emoji message
+ *                                    (WhatsApp's landing page mangles emojis); the plain href is the desktop link and the fallback
  *   data-ken                         photo inside its section: scrubbed slow zoom + drift
  */
 import gsap from 'gsap';
@@ -53,6 +55,7 @@ initMenu();
 initSliders();
 initCards();
 initSizePicker();
+initWhatsappDeepLink();
 initLazyVideos();
 
 // Card → product morph: name only the clicked card's image right before the old page is captured.
@@ -601,12 +604,34 @@ function initSizePicker() {
       for (const b of $$('[data-size]', root)) b.setAttribute('aria-pressed', String(on && b === btn));
       if (!buy) return;
       const { waBase = '', waName, waVariant } = buy.dataset;
+      // Same wording as buyText in ProductHero.tsx. The href is emoji-free, data-wa-text keeps the emojis.
       const msg = on
-        ? `¡Hola, VORA! Me interesa ${waName} (${waVariant}) en talla ${btn.dataset.size}. ¿Está disponible?`
-        : `¡Hola, VORA! Me interesa ${waName} (${waVariant}). ¿Qué tallas tienen disponibles?`;
-      buy.href = `${waBase}${waBase.includes('?') ? '&' : '?'}text=${encodeURIComponent(msg)}`;
+        ? `¡Hola, VORA! 👋 Me interesa ${waName} (${waVariant}) en talla ${btn.dataset.size}. ¿Está disponible? 🚀`
+        : `¡Hola, VORA! 👋 Me interesa ${waName} (${waVariant}). ¿Qué tallas tienen disponibles? 🚀`;
+      const plain = msg.replace(/[\p{Extended_Pictographic}\u200D\uFE0F]/gu, '').replace(/ {2,}/g, ' ').trim();
+      buy.dataset.waText = msg;
+      buy.href = `${waBase}${waBase.includes('?') ? '&' : '?'}text=${encodeURIComponent(plain)}`;
     });
   }
+}
+
+function initWhatsappDeepLink() {
+  const ua = navigator.userAgent;
+  const mobile = /Android|iPhone|iPad|iPod/i.test(ua) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(ua));
+  if (!mobile) return;
+  document.addEventListener('click', (e) => {
+    const a = (e.target as Element).closest<HTMLAnchorElement>('a[data-wa-text]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    const stop = () => clearTimeout(timer);
+    // The app took over (page hidden): drop the fallback. Still visible after 1.2 s: open the plain link.
+    const timer = setTimeout(() => {
+      if (document.visibilityState === 'visible') window.open(a.href, '_blank', 'noopener');
+    }, 1200);
+    document.addEventListener('visibilitychange', stop, { once: true });
+    addEventListener('pagehide', stop, { once: true });
+    location.href = `whatsapp://send?phone=${a.dataset.waPhone}&text=${encodeURIComponent(a.dataset.waText!)}`;
+  });
 }
 
 function initSliders() {
