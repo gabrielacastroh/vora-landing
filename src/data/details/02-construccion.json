@@ -1,0 +1,15 @@
+{
+  "order": 2,
+  "title": "02 / CONSTRUCCIÓN",
+  "lines": [
+    "Corte oversize de estilo urbano, con caída estructurada,",
+    "comodidad y acabado premium."
+  ],
+  "image": "../../assets/vora/details/02-construccion/shop-detail-fabric.webp",
+  "frame": {
+    "x": -6,
+    "y": -47,
+    "width": 399,
+    "height": 399
+  }
+}

@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { file, glob } from 'astro/loaders';
+import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 // Single source of truth for the catalog: src/data/products/<id>.json (one file per product). The build fails if an entry
@@ -12,12 +12,12 @@ const products = defineCollection({
       order: z.number().int().positive(),
       name: z.string(),
       variant: z.string(),
-      /** Collection-page group. Omit to leave the product out of /coleccion. */
-      line: z.enum(['unisex', 'womens']).optional(),
+      /** Collection-page group. Omit (or "", what the admin panel writes) to leave the product out of /coleccion. */
+      line: z.preprocess((v) => (v === '' ? undefined : v), z.enum(['unisex', 'womens']).optional()),
       /** Garment on its own: collection/home cards and the first product slide. */
       cardImage: image(),
-      /** Full-bleed product photos (Figma vora-1-N). Shown after the packshot; when set, heroImage is ignored. */
-      gallery: z.array(z.object({ image: image(), position: z.string().optional() })).nonempty().optional(),
+      /** Full-bleed product photos (Figma vora-1-N). Shown after the packshot; when non-empty, heroImage is ignored. */
+      gallery: z.array(z.object({ image: image(), position: z.string().optional() })).optional(),
       /** Model wearing it: second product slide. Omit when there is no model shot yet. */
       heroImage: image().optional(),
       /** object-position for heroImage, to keep the model in frame. */
@@ -30,14 +30,18 @@ const products = defineCollection({
     }),
 });
 
-/** Figma mask framing: image rect [x, y, width, height] relative to the visible window. Omit to fill. */
-const frame = z.tuple([z.number(), z.number(), z.number(), z.number()]).optional();
+/** Figma mask framing: image rect [x, y, width, height] relative to the visible window. Omit, or leave any value null (admin panel), to fill. */
+const frame = z
+  .object({ x: z.number().nullable(), y: z.number().nullable(), width: z.number().nullable(), height: z.number().nullable() })
+  .optional();
 
 // "Detalles de la colección" cards on /coleccion.
 const details = defineCollection({
-  loader: file('src/data/details.json'),
+  loader: glob({ pattern: '*.json', base: 'src/data/details' }),
   schema: ({ image }) =>
     z.object({
+      /** Position on /coleccion (1 = first). */
+      order: z.number().int().positive(),
       title: z.string(),
       /** Rendered one per line. */
       lines: z.array(z.string()).nonempty(),

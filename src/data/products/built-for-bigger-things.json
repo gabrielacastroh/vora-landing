@@ -3,18 +3,18 @@
   "name": "BUILT FOR BIGGER THINGS",
   "variant": "Camiseta crop top / Negro",
   "line": "womens",
-  "cardImage": "../../assets/vora/card-built-for-bigger-things.webp",
+  "cardImage": "../../assets/vora/built-for-bigger-things/card-built-for-bigger-things.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/built-for-bigger-things-1.webp",
+      "image": "../../assets/vora/built-for-bigger-things/built-for-bigger-things-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/built-for-bigger-things-2.webp",
+      "image": "../../assets/vora/built-for-bigger-things/built-for-bigger-things-2.webp",
       "position": "center"
     },
     {
-      "image": "../../assets/vora/built-for-bigger-things-3.webp",
+      "image": "../../assets/vora/built-for-bigger-things/built-for-bigger-things-3.webp",
       "position": "center top"
     }
   ],

@@ -3,18 +3,18 @@
   "name": "KEEP GOING",
   "variant": "Camiseta / Blanco",
   "line": "unisex",
-  "cardImage": "../../assets/vora/card-keep-going.webp",
+  "cardImage": "../../assets/vora/keep-going/card-keep-going.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/keep-going-1.webp",
+      "image": "../../assets/vora/keep-going/keep-going-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/keep-going-2.webp",
+      "image": "../../assets/vora/keep-going/keep-going-2.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/keep-going-3.webp",
+      "image": "../../assets/vora/keep-going/keep-going-3.webp",
       "position": "center top"
     }
   ],

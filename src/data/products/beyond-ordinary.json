@@ -3,18 +3,18 @@
   "name": "BEYOND ORDINARY",
   "variant": "Camiseta / Beige",
   "line": "unisex",
-  "cardImage": "../../assets/vora/card-beyond-ordinary.webp",
+  "cardImage": "../../assets/vora/beyond-ordinary/card-beyond-ordinary.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/beyond-ordinary-1.webp",
+      "image": "../../assets/vora/beyond-ordinary/beyond-ordinary-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/beyond-ordinary-2.webp",
+      "image": "../../assets/vora/beyond-ordinary/beyond-ordinary-2.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/beyond-ordinary-3.webp",
+      "image": "../../assets/vora/beyond-ordinary/beyond-ordinary-3.webp",
       "position": "center top"
     }
   ],

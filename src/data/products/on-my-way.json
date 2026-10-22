@@ -3,22 +3,22 @@
   "name": "ON MY WAY",
   "variant": "Camiseta crop top / Beige",
   "line": "womens",
-  "cardImage": "../../assets/vora/card-on-my-way.webp",
+  "cardImage": "../../assets/vora/on-my-way/card-on-my-way.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/on-my-way-1.webp",
+      "image": "../../assets/vora/on-my-way/on-my-way-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/on-my-way-2.webp",
+      "image": "../../assets/vora/on-my-way/on-my-way-2.webp",
       "position": "center"
     },
     {
-      "image": "../../assets/vora/on-my-way-3.webp",
+      "image": "../../assets/vora/on-my-way/on-my-way-3.webp",
       "position": "center top"
     }
   ],
-  "heroImage": "../../assets/vora/shop-numbers.webp",
+  "heroImage": "../../assets/vora/on-my-way/shop-numbers.webp",
   "heroPosition": "20% center",
   "featured": 2,
   "description": "Cada paso tiene un propósito. ON MY WAY representa la determinación de avanzar sin comparaciones ni prisas. Su composición tipográfica combina elegancia y movimiento, transmitiendo una idea sencilla: no importa dónde estés ahora, lo importante es seguir construyendo tu propio camino.",

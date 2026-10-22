@@ -3,18 +3,18 @@
   "name": "STILL BECOMING",
   "variant": "Camiseta crop top / Rosa pastel",
   "line": "womens",
-  "cardImage": "../../assets/vora/card-still-becoming.webp",
+  "cardImage": "../../assets/vora/still-becoming/card-still-becoming.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/still-becoming-1.webp",
+      "image": "../../assets/vora/still-becoming/still-becoming-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/still-becoming-2.webp",
+      "image": "../../assets/vora/still-becoming/still-becoming-2.webp",
       "position": "center"
     },
     {
-      "image": "../../assets/vora/still-becoming-3.webp",
+      "image": "../../assets/vora/still-becoming/still-becoming-3.webp",
       "position": "center top"
     }
   ],

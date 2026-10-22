@@ -1,0 +1,15 @@
+{
+  "order": 1,
+  "title": "01 / MATERIAL",
+  "lines": [
+    "100 % algodón de 230 g, con tacto suave,",
+    "estructura robusta y alta calidad."
+  ],
+  "image": "../../assets/vora/details/01-material/shop-detail-print.webp",
+  "frame": {
+    "x": -12,
+    "y": -157,
+    "width": 414,
+    "height": 518
+  }
+}

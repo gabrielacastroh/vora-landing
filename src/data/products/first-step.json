@@ -3,23 +3,23 @@
   "name": "FIRST STEP",
   "variant": "Camiseta / Rojo",
   "line": "unisex",
-  "cardImage": "../../assets/vora/card-first-step.webp",
+  "cardImage": "../../assets/vora/first-step/card-first-step.webp",
   "featured": 1,
   "gallery": [
     {
-      "image": "../../assets/vora/first-step-1.webp",
+      "image": "../../assets/vora/first-step/first-step-1.webp",
       "position": "center 26%"
     },
     {
-      "image": "../../assets/vora/first-step-2.webp",
+      "image": "../../assets/vora/first-step/first-step-2.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/first-step-3.webp",
+      "image": "../../assets/vora/first-step/first-step-3.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/first-step-4.webp",
+      "image": "../../assets/vora/first-step/first-step-4.webp",
       "position": "center top"
     }
   ],

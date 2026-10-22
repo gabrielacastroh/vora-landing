@@ -13,7 +13,7 @@ interface Props {
 
 export default function ProductHero({ product }: Props) {
   // Garment first, then the photos: the gallery when there is one, else the single model shot.
-  const photos = product.gallery ?? (product.heroImage ? [{ image: product.heroImage, position: product.heroPosition }] : []);
+  const photos = product.gallery?.length ? product.gallery : (product.heroImage ? [{ image: product.heroImage, position: product.heroPosition }] : []);
   const images = [
     { src: product.cardImage.src, srcSet: product.sets.slide, packshot: true, position: undefined as string | undefined, label: 'prenda' },
     ...photos.map((p, i) => ({ src: p.image.src, srcSet: product.sets.photos[i], packshot: false, position: p.position, label: `foto ${i + 1}` })),

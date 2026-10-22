@@ -15,7 +15,7 @@ export async function getProducts(): Promise<Product[]> {
   const products = await Promise.all(
     entries.map(async (entry) => {
       const { cardImage, gallery, heroImage } = entry.data;
-      const photos = gallery?.map((g) => g.image) ?? (heroImage ? [heroImage] : []);
+      const photos = gallery?.length ? gallery.map((g) => g.image) : heroImage ? [heroImage] : [];
       const sets: ProductSets = {
         card: await srcSet(cardImage, CARD_WIDTHS),
         slide: await srcSet(cardImage, PHOTO_WIDTHS),
@@ -42,10 +42,19 @@ export async function getLine(line: NonNullable<Product['line']>): Promise<Produ
   return (await getProducts()).filter((p) => p.line === line);
 }
 
-export type Detail = CollectionEntry<'details'>['data'] & { id: string };
+export type Detail = Omit<CollectionEntry<'details'>['data'], 'frame'> & {
+  id: string;
+  /** Image rect [x, y, width, height]; undefined when any value is unset (the image then fills). */
+  frame?: [number, number, number, number];
+};
 
-const byId = <T extends { id: string }>(a: T, b: T) => a.id.localeCompare(b.id);
-
+/** Every detail card, by `order`. */
 export async function getDetails(): Promise<Detail[]> {
-  return (await getCollection('details')).sort(byId).map(({ id, data }) => ({ id, ...data }));
+  const entries = await getCollection('details');
+  return entries
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(({ id, data: { frame: f, ...data } }) => {
+      const rect = f && [f.x, f.y, f.width, f.height];
+      return { id, ...data, frame: rect?.every((n) => n !== null) ? (rect as [number, number, number, number]) : undefined };
+    });
 }

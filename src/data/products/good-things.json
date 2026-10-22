@@ -3,18 +3,18 @@
   "name": "GOOD THINGS",
   "variant": "Camiseta crop top / Azul celeste",
   "line": "womens",
-  "cardImage": "../../assets/vora/card-good-things.webp",
+  "cardImage": "../../assets/vora/good-things/card-good-things.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/good-things-1.webp",
+      "image": "../../assets/vora/good-things/good-things-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/good-things-2.webp",
+      "image": "../../assets/vora/good-things/good-things-2.webp",
       "position": "center"
     },
     {
-      "image": "../../assets/vora/good-things-3.webp",
+      "image": "../../assets/vora/good-things/good-things-3.webp",
       "position": "center top"
     }
   ],

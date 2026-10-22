@@ -3,18 +3,18 @@
   "name": "MAKE YOUR OWN LUCK",
   "variant": "Camiseta / Negro",
   "line": "unisex",
-  "cardImage": "../../assets/vora/card-make-your-own-luck.webp",
+  "cardImage": "../../assets/vora/make-your-own-luck/card-make-your-own-luck.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/make-your-own-luck-1.webp",
+      "image": "../../assets/vora/make-your-own-luck/make-your-own-luck-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/make-your-own-luck-2.webp",
+      "image": "../../assets/vora/make-your-own-luck/make-your-own-luck-2.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/make-your-own-luck-3.webp",
+      "image": "../../assets/vora/make-your-own-luck/make-your-own-luck-3.webp",
       "position": "center top"
     }
   ],

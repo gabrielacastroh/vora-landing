@@ -3,18 +3,18 @@
   "name": "BUILT DIFFERENT",
   "variant": "Camiseta / Blanco",
   "line": "unisex",
-  "cardImage": "../../assets/vora/card-built-different.webp",
+  "cardImage": "../../assets/vora/built-different/card-built-different.webp",
   "gallery": [
     {
-      "image": "../../assets/vora/built-different-1.webp",
+      "image": "../../assets/vora/built-different/built-different-1.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/built-different-2.webp",
+      "image": "../../assets/vora/built-different/built-different-2.webp",
       "position": "center top"
     },
     {
-      "image": "../../assets/vora/built-different-3.webp",
+      "image": "../../assets/vora/built-different/built-different-3.webp",
       "position": "center top"
     }
   ],
