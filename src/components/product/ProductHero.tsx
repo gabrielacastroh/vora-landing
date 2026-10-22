@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { Product } from '../../data/catalog';
 import { site } from '../../data/site';
-import { waSend, waUrl } from '../../lib/whatsapp';
+import { waData, waSend, waUrl } from '../../lib/whatsapp';
 import whatsappIcon from '../../assets/vora/contacto-whatsapp.webp';
 
 /** Named View Transition layer; `.info` blocks are choreographed when paging between products. */
@@ -23,9 +23,10 @@ export default function ProductHero({ product }: Props) {
   const [kind, ...color] = product.variant.split(' / ');
   const wa = site.social.whatsapp;
   // No size picked yet: ask which are available. motion.ts rewrites the href with the size once one is chosen.
-  const buyHref = wa
-    ? waUrl(wa, `¡Hola, VORA! Me interesa ${product.name} (${product.variant}). ¿Qué tallas tienen disponibles?`)
-    : '#';
+  // Messages carry emojis; waUrl strips them for the href and motion.ts opens the emoji text through the app on mobile.
+  // Keep the wording in sync with initSizePicker in src/scripts/motion.ts.
+  const buyText = `¡Hola, VORA! 👋 Me interesa ${product.name} (${product.variant}). ¿Qué tallas tienen disponibles? 🚀`;
+  const buyHref = wa ? waUrl(wa, buyText) : '#';
 
   return (
     <section className="flex min-h-svh flex-col bg-vora-bg lg:flex-row">
@@ -164,6 +165,7 @@ export default function ProductHero({ product }: Props) {
             data-wa-base={waSend(wa) || undefined}
             data-wa-name={product.name}
             data-wa-variant={product.variant}
+            {...waData(wa, buyText)}
             {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="group mx-auto flex h-[3.25rem] w-full max-w-[26rem] items-center justify-between gap-4 rounded-2xl border-[1.5px] border-vora-red-bright/80 px-6 font-mont text-[1.0625rem] font-bold text-vora-red-bright shadow-[0_0_2rem_rgb(163_43_50/0.22)] transition-shadow duration-500 hover:shadow-[0_0_2.5rem_rgb(163_43_50/0.45)] sm:w-[78%]"
           >

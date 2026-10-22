@@ -4,11 +4,11 @@ import instagram from '../../assets/vora/contacto-instagram.webp';
 import mail from '../../assets/vora/contacto-mail.webp';
 import tiktok from '../../assets/vora/contacto-tiktok.webp';
 import { site } from '../../data/site';
-import { generalWhatsapp } from '../../lib/whatsapp';
+import { generalWaData, generalWhatsapp } from '../../lib/whatsapp';
 
 // Icons, copy and order live here; every URL comes from site.json (empty = "#", no new tab).
 const channels = [
-  { title: 'WHATSAPP', text: 'Atención directa para compras, tallas y pedidos.', action: 'ESCRIBIR POR WHATSAPP', label: 'Escribir por WhatsApp', href: generalWhatsapp(), icon: whatsapp.src, iconClass: 'h-[3.0625rem] w-[3.0625rem]' },
+  { title: 'WHATSAPP', text: 'Atención directa para compras, tallas y pedidos.', action: 'ESCRIBIR POR WHATSAPP', label: 'Escribir por WhatsApp', href: generalWhatsapp(), icon: whatsapp.src, iconClass: 'h-[3.0625rem] w-[3.0625rem]', wa: generalWaData() },
   { title: 'INSTAGRAM', text: 'Colecciones, lanzamientos y novedades.', action: '@VORA.CO_', label: 'Abrir Instagram de VORA', href: site.social.instagram, icon: instagram.src, iconClass: 'h-[3.0625rem] w-[3.0625rem]' },
   { title: 'CORREO', text: 'Consultas generales, propuestas y colaboraciones.', action: site.contact.email, label: 'Enviar un correo a VORA', href: `mailto:${site.contact.email}`, icon: mail.src, iconClass: 'h-[2.1875rem] w-[3.0625rem]' },
   { title: 'TIK TOK', text: 'Contenido, procesos y movimiento detrás de VORA.', action: '@VORA.CO_', label: 'Abrir TikTok de VORA', href: site.social.tiktok, icon: tiktok.src, iconClass: 'h-[3.0625rem] w-[2.6875rem]' },
@@ -70,6 +70,7 @@ export default function Contacto() {
                 href={c.href || '#'}
                 {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 aria-label={c.label}
+                {...c.wa}
                 data-spot
                 className="group relative flex h-[9.866rem] lg:h-[clamp(7.25rem,calc((100svh_-_10rem_-_3.6rem)/4),9.866rem)] items-center gap-[1.1rem] border-[0.051rem] border-[#55534f] bg-[#080909]/50 pr-5 pl-5 outline-none backdrop-blur-[2px] transition-[border-color,background-color] duration-500 hover:border-[#d40732] hover:bg-[#1a1213]/70 focus-visible:border-[#d40732] focus-visible:bg-[#1a1213]/70 focus-visible:ring-2 focus-visible:ring-[#d40732] sm:pr-[1.9rem] sm:pl-[1.9rem] motion-reduce:transition-none"
               >

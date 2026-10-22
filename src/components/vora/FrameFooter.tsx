@@ -5,7 +5,7 @@ import footerSocial3 from '../../assets/vora/footer-social-3.png';
 import footerCopyrightIcon from '../../assets/vora/footer-copyright-icon.png';
 
 import { site, type SocialNetwork } from '../../data/site';
-import { generalWhatsapp } from '../../lib/whatsapp';
+import { generalWaData, generalWhatsapp } from '../../lib/whatsapp';
 
 const { explora, legal } = site.footer;
 
@@ -66,6 +66,7 @@ export default function FrameFooter() {
                   key={s.network}
                   href={(s.network === 'whatsapp' ? generalWhatsapp() : site.social[s.network]) || '#'}
                   {...(site.social[s.network] ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  {...(s.network === 'whatsapp' ? generalWaData() : {})}
                   aria-label={s.label}
                   className="transition-opacity hover:opacity-70"
                 >
