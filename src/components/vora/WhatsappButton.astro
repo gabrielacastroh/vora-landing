@@ -1,5 +1,5 @@
 ---
-import { site } from '../../data/site';
+import { generalWhatsapp } from '../../lib/whatsapp';
 import icon from '../../assets/vora/contacto-whatsapp.webp';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 // Site-wide shortcut to the brand chat. Hidden when the number isn't set; product pages hide it
 // (their own "Comprar por WhatsApp" button already sits in the same corner).
-const href = site.social.whatsapp;
+const href = generalWhatsapp();
 const { light = false } = Astro.props;
 // Same language as the product buy button: translucent fill, thin red outline, red type, soft red glow.
 const tone = light

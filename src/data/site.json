@@ -24,7 +24,10 @@
       { "label": "Política De Privacidad", "href": "/politica-de-privacidad" }
     ]
   },
-  "contact": { "email": "contacto@vora.com" },
+  "contact": {
+    "email": "contacto@vora.com",
+    "whatsappMessage": "¡Hey, VORA! ♦️ Ando viendo lo que tienen en la web y me surgieron unas dudas. ¿Me echan una mano?"
+  },
   "social": {
     "whatsapp": "https://wa.me/573052846998",
     "instagram": "https://www.instagram.com/vora.co_",

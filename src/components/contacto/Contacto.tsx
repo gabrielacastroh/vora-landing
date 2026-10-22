@@ -4,10 +4,11 @@ import instagram from '../../assets/vora/contacto-instagram.webp';
 import mail from '../../assets/vora/contacto-mail.webp';
 import tiktok from '../../assets/vora/contacto-tiktok.webp';
 import { site } from '../../data/site';
+import { generalWhatsapp } from '../../lib/whatsapp';
 
 // Icons, copy and order live here; every URL comes from site.json (empty = "#", no new tab).
 const channels = [
-  { title: 'WHATSAPP', text: 'Atención directa para compras, tallas y pedidos.', action: 'ESCRIBIR POR WHATSAPP', label: 'Escribir por WhatsApp', href: site.social.whatsapp, icon: whatsapp.src, iconClass: 'h-[3.0625rem] w-[3.0625rem]' },
+  { title: 'WHATSAPP', text: 'Atención directa para compras, tallas y pedidos.', action: 'ESCRIBIR POR WHATSAPP', label: 'Escribir por WhatsApp', href: generalWhatsapp(), icon: whatsapp.src, iconClass: 'h-[3.0625rem] w-[3.0625rem]' },
   { title: 'INSTAGRAM', text: 'Colecciones, lanzamientos y novedades.', action: '@VORA.CO_', label: 'Abrir Instagram de VORA', href: site.social.instagram, icon: instagram.src, iconClass: 'h-[3.0625rem] w-[3.0625rem]' },
   { title: 'CORREO', text: 'Consultas generales, propuestas y colaboraciones.', action: site.contact.email, label: 'Enviar un correo a VORA', href: `mailto:${site.contact.email}`, icon: mail.src, iconClass: 'h-[2.1875rem] w-[3.0625rem]' },
   { title: 'TIK TOK', text: 'Contenido, procesos y movimiento detrás de VORA.', action: '@VORA.CO_', label: 'Abrir TikTok de VORA', href: site.social.tiktok, icon: tiktok.src, iconClass: 'h-[3.0625rem] w-[2.6875rem]' },
