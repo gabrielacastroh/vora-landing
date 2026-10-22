@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { Product } from '../../data/catalog';
 import { site } from '../../data/site';
+import { waSend, waUrl } from '../../lib/whatsapp';
 import whatsappIcon from '../../assets/vora/contacto-whatsapp.webp';
 
 /** Named View Transition layer; `.info` blocks are choreographed when paging between products. */
@@ -23,7 +24,7 @@ export default function ProductHero({ product }: Props) {
   const wa = site.social.whatsapp;
   // No size picked yet: ask which are available. motion.ts rewrites the href with the size once one is chosen.
   const buyHref = wa
-    ? `${wa}${wa.includes('?') ? '&' : '?'}text=${encodeURIComponent(`¡Hola, VORA! 👋 Me interesa ${product.name} (${product.variant}). ¿Qué tallas tienen disponibles? 🚀`)}`
+    ? waUrl(wa, `¡Hola, VORA! 👋 Me interesa ${product.name} (${product.variant}). ¿Qué tallas tienen disponibles? 🚀`)
     : '#';
 
   return (
@@ -160,7 +161,7 @@ export default function ProductHero({ product }: Props) {
           <a
             href={buyHref}
             data-wa-buy={wa ? '' : undefined}
-            data-wa-base={wa || undefined}
+            data-wa-base={waSend(wa) || undefined}
             data-wa-name={product.name}
             data-wa-variant={product.variant}
             {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
