@@ -602,8 +602,8 @@ function initSizePicker() {
       if (!buy) return;
       const { waBase = '', waName, waVariant } = buy.dataset;
       const msg = on
-        ? `¡Hola, VORA! 👋 Me interesa ${waName} (${waVariant}) en talla ${btn.dataset.size}. ¿Está disponible? 🚀`
-        : `¡Hola, VORA! 👋 Me interesa ${waName} (${waVariant}). ¿Qué tallas tienen disponibles? 🚀`;
+        ? `¡Hola, VORA! Me interesa ${waName} (${waVariant}) en talla ${btn.dataset.size}. ¿Está disponible?`
+        : `¡Hola, VORA! Me interesa ${waName} (${waVariant}). ¿Qué tallas tienen disponibles?`;
       buy.href = `${waBase}${waBase.includes('?') ? '&' : '?'}text=${encodeURIComponent(msg)}`;
     });
   }

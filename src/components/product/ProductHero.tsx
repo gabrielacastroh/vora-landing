@@ -24,7 +24,7 @@ export default function ProductHero({ product }: Props) {
   const wa = site.social.whatsapp;
   // No size picked yet: ask which are available. motion.ts rewrites the href with the size once one is chosen.
   const buyHref = wa
-    ? waUrl(wa, `¡Hola, VORA! 👋 Me interesa ${product.name} (${product.variant}). ¿Qué tallas tienen disponibles? 🚀`)
+    ? waUrl(wa, `¡Hola, VORA! Me interesa ${product.name} (${product.variant}). ¿Qué tallas tienen disponibles?`)
     : '#';
 
   return (

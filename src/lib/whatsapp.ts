@@ -1,8 +1,8 @@
 import { site } from '../data/site';
 
 /**
- * Links with a prefilled message use api.whatsapp.com/send, not wa.me: the wa.me landing replaces every emoji in
- * `text` with U+FFFD before handing it to the app (measured), while api.whatsapp.com/send keeps them intact.
+ * Prefilled messages must NOT contain emojis: WhatsApp's landing page (wa.me and api.whatsapp.com/send alike) turns
+ * them into U+FFFD, and the chat box receives that (measured in WhatsApp Web with every encoding tried).
  * `base` is the plain wa.me/<number> link from site.json.
  */
 export function waSend(base: string): string {
