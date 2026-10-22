@@ -15,9 +15,13 @@ Branch: feat/whatsapp-emoji-deeplink. Route: delegated writer.
 - product, size: ¡Hola, VORA! 👋 Me interesa {NAME} ({VARIANT}) en talla {SIZE}. ¿Está disponible? 🚀
 
 ## Tasks
-- [ ] T1 helper: emoji message + derived plain text + data attributes
-- [ ] T2 click handler in motion.ts (mobile deep link + fallback), size picker keeps data in sync
-- [ ] T3 verify (build, hrefs plain, emoji only in data attrs, simulated mobile UA click)
+- [x] T1 helper: emoji message + derived plain text + data attributes
+- [x] T2 click handler in motion.ts (mobile deep link + fallback), size picker keeps data in sync
+- [x] T3 verify (build, hrefs plain, emoji only in data attrs, simulated mobile UA click)
 
 ## Evidence
-(pending)
+- `npx astro build`: passes.
+- Built HTML (index, contacto, producto/first-step): every WhatsApp href is the plain `https://api.whatsapp.com/send?phone=573052846998&text=...` link with emoji-free decoded text; `data-wa-phone="573052846998"` and `data-wa-text` (emoji message) present; emoji appears nowhere else in WhatsApp anchors.
+- curl through WhatsApp landing: visible text equals decoded href text, no U+FFFD.
+- agent-browser (dist/client on :4323, stopped after): desktop UA click on buy button and floating pill is NOT default-prevented; iPhone 14 UA click is prevented, navigates to `whatsapp://send?phone=573052846998&text=%C2%A1Hola%2C%20VORA!%20%F0%9F%91%8B...%F0%9F%9A%80`, and after 1.2 s calls `window.open(plain href, '_blank', 'noopener')`; a visibilitychange before the timer cancels the fallback. Size M, L, deselect update both `data-wa-text` (emoji) and href (plain).
+- Not verified: real phone with WhatsApp installed (deep link), Android/iOS browser handling of custom schemes and the visibility fallback. Desktop stays emoji-free by design.
