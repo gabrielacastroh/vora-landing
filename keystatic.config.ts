@@ -15,7 +15,9 @@ const link = {
 const socialUrl = (label: string) => fields.text({ label, description: 'Dirección completa del perfil. Déjalo vacío para ocultarlo.' });
 
 export default config({
-  storage: { kind: 'local' },
+  // Local files while developing; Keystatic Cloud (commits to GitHub) once deployed.
+  storage: import.meta.env.DEV ? { kind: 'local' } : { kind: 'cloud' },
+  cloud: { project: 'vora-prod/vora-landing' },
   ui: {
     brand: { name: 'VORA', mark: BrandMark },
     navigation: { Colección: ['products'], Contenido: ['details', 'site'] },
