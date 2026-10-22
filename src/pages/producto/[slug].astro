@@ -26,7 +26,7 @@ const jsonLd = JSON.stringify({
 });
 ---
 
-<Layout title={`${product.name} — ${site.name}`} description={product.description}>
+<Layout title={`${product.name} — ${site.name}`} description={product.description} hideWhatsapp>
   <script type="application/ld+json" set:html={jsonLd} />
   <FrameNav active="coleccion" background={productNavBg.src} theme="dark" />
   <main>

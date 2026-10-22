@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
+import WhatsappButton from '../components/vora/WhatsappButton.astro';
 import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import archivoItalicLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-italic.woff2?url';
@@ -19,6 +20,8 @@ interface Props {
   noindex?: boolean;
   /** The first paint uses the italic faces (nosotros hero): preload them, since motion waits on document.fonts.ready. */
   italics?: boolean;
+  /** Hide the floating WhatsApp shortcut (product pages have their own buy button). */
+  hideWhatsapp?: boolean;
   /** Social-share overrides; default to title/description. */
   ogTitle?: string;
   ogDescription?: string;
@@ -26,7 +29,7 @@ interface Props {
   image?: string;
 }
 
-const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex, italics, ogTitle = title, ogDescription = description, image = '/og-image.jpg' } = Astro.props;
+const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex, italics, hideWhatsapp = false, ogTitle = title, ogDescription = description, image = '/og-image.jpg' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
 ---
@@ -124,6 +127,7 @@ const ogImage = new URL(image, Astro.site).href;
   </head>
   <body class="bg-vora-bg font-sans antialiased">
     <slot />
+    {!hideWhatsapp && <WhatsappButton />}
     <script>
       import '../scripts/motion';
       // Firefox ignores -webkit-user-drag.
