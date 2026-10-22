@@ -27,6 +27,7 @@ export default config({
       path: 'src/data/products/*',
       format: { data: 'json' },
       schema: {
+        active: fields.checkbox({ label: 'Visible en la tienda', description: 'Desactívalo para ocultar este producto del sitio. Los cambios se publican en 1-2 minutos.', defaultValue: true }),
         order: fields.integer({ label: 'Avanzado: orden en el catálogo', description: 'Posición en el catálogo (1 = primero). Normalmente no hace falta tocarlo.', validation: { isRequired: true, min: 1 } }),
         name: fields.slug({ name: { label: 'Nombre', description: 'Nombre del producto. Genera la dirección de su página.' } }),
         variant: fields.text({ label: 'Variante', description: 'Color o versión, por ejemplo "Negro".' }),

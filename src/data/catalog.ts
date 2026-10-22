@@ -9,9 +9,9 @@ export type ProductSets = { card?: string; /** The card image at slide size (fir
 
 export type Product = CollectionEntry<'products'>['data'] & { slug: string; sets: ProductSets };
 
-/** Every product, by `order` (glob() makes no ordering guarantee). */
+/** Every visible (`active`) product, by `order` (glob() makes no ordering guarantee). */
 export async function getProducts(): Promise<Product[]> {
-  const entries = await getCollection('products');
+  const entries = await getCollection('products', (e) => e.data.active);
   const products = await Promise.all(
     entries.map(async (entry) => {
       const { cardImage, gallery, heroImage } = entry.data;
