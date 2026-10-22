@@ -311,7 +311,7 @@ function Gallery() {
   );
 }
 
-/** `featured`: products.json entries flagged `featured`, already ordered (see data/catalog). */
+/** `featured`: product entries flagged `featured`, already ordered (see data/catalog). */
 export default function HomeFrame({ featured }: { featured: Product[] }) {
   return (
     <div className="relative overflow-x-clip bg-[#0b0b0d]">

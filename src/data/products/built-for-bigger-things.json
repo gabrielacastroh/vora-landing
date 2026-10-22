@@ -1,0 +1,46 @@
+{
+  "order": 15,
+  "name": "BUILT FOR BIGGER THINGS",
+  "variant": "Camiseta crop top / Negro",
+  "line": "womens",
+  "cardImage": "../../assets/vora/built-for-bigger-things/card-built-for-bigger-things.webp",
+  "gallery": [
+    {
+      "image": "../../assets/vora/built-for-bigger-things/built-for-bigger-things-1.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/built-for-bigger-things/built-for-bigger-things-2.webp",
+      "position": "center"
+    },
+    {
+      "image": "../../assets/vora/built-for-bigger-things/built-for-bigger-things-3.webp",
+      "position": "center top"
+    }
+  ],
+  "description": "Hay quienes nacieron para ir más allá de lo esperado. BUILT FOR BIGGER THINGS representa la ambición, la confianza y la determinación de construir algo extraordinario. Su diseño de alto contraste transmite una actitud firme frente a los retos y las oportunidades.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize Crop Top"
+    },
+    {
+      "label": "Material",
+      "value": "100 % algodón"
+    },
+    {
+      "label": "Color",
+      "value": "Negro"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

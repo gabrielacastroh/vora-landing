@@ -1,0 +1,51 @@
+{
+  "order": 1,
+  "name": "FIRST STEP",
+  "variant": "Camiseta / Rojo",
+  "line": "unisex",
+  "cardImage": "../../assets/vora/first-step/card-first-step.webp",
+  "featured": 1,
+  "gallery": [
+    {
+      "image": "../../assets/vora/first-step/first-step-1.webp",
+      "position": "center 26%"
+    },
+    {
+      "image": "../../assets/vora/first-step/first-step-2.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/first-step/first-step-3.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/first-step/first-step-4.webp",
+      "position": "center top"
+    }
+  ],
+  "description": "Todo comienza con una decisión. FIRST STEP representa el inicio de un camino lleno de posibilidades. Su diseño combina elementos gráficos, tipografía y símbolos de dirección que reflejan el valor de dar el primer paso hacia algo más grande.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize"
+    },
+    {
+      "label": "Material",
+      "value": "100% algodón de alto gramaje"
+    },
+    {
+      "label": "Color",
+      "value": "Rojo"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

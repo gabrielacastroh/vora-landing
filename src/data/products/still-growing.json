@@ -1,0 +1,46 @@
+{
+  "order": 12,
+  "name": "STILL GROWING",
+  "variant": "Camiseta crop top / Blanco",
+  "line": "womens",
+  "cardImage": "../../assets/vora/still-growing/card-still-growing.webp",
+  "gallery": [
+    {
+      "image": "../../assets/vora/still-growing/still-growing-1.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/still-growing/still-growing-2.webp",
+      "position": "center"
+    },
+    {
+      "image": "../../assets/vora/still-growing/still-growing-3.webp",
+      "position": "center top"
+    }
+  ],
+  "description": "Crecer es un proceso que nunca se detiene. STILL GROWING representa la transformación, la paciencia y la evolución personal. Inspirado en las etapas de una mariposa, su diseño nos recuerda que cada cambio forma parte del camino hacia una mejor versión de nosotros mismos.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize Crop Top"
+    },
+    {
+      "label": "Material",
+      "value": "100 % algodón"
+    },
+    {
+      "label": "Color",
+      "value": "Blanco"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

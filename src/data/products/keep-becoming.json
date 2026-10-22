@@ -1,0 +1,31 @@
+{
+  "order": 6,
+  "name": "KEEP BECOMING",
+  "variant": "Camiseta / Azul claro",
+  "cardImage": "../../assets/vora/keep-becoming/card-keep-becoming.webp",
+  "description": "En constante evolución. Azul claro con estampado de mariposa, silueta femenina y caída natural.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Women's fit"
+    },
+    {
+      "label": "Material",
+      "value": "100% algodón de alto gramaje"
+    },
+    {
+      "label": "Color",
+      "value": "Azul claro"
+    },
+    {
+      "label": "Estampado",
+      "value": "Serigrafía frontal y trasera"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

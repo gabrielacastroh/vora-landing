@@ -1,0 +1,46 @@
+{
+  "order": 9,
+  "name": "BUILT DIFFERENT",
+  "variant": "Camiseta / Blanco",
+  "line": "unisex",
+  "cardImage": "../../assets/vora/built-different/card-built-different.webp",
+  "gallery": [
+    {
+      "image": "../../assets/vora/built-different/built-different-1.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/built-different/built-different-2.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/built-different/built-different-3.webp",
+      "position": "center top"
+    }
+  ],
+  "description": "Diseñada para quienes no siguen el camino de los demás. BUILT DIFFERENT representa la autenticidad y la libertad de ser diferente. Su composición gráfica en blanco y negro transmite una actitud firme: no nacimos para encajar, sino para construir nuestra propia identidad.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize"
+    },
+    {
+      "label": "Material",
+      "value": "100% algodón de alto gramaje"
+    },
+    {
+      "label": "Color",
+      "value": "Blanco"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

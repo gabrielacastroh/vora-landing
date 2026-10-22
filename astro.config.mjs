@@ -2,6 +2,7 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 
+import keystatic from '@keystatic/astro';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
@@ -13,7 +14,7 @@ export default defineConfig({
   // Server output kept for the Vercel adapter; every page opts into prerendering.
   output: 'server',
   adapter: vercel({ imageService: true }),
-  integrations: [react()],
+  integrations: [react(), keystatic()],
 
   redirects: { '/expectativa': '/', '/admin-vora': '/' },
 

@@ -1,0 +1,31 @@
+{
+  "order": 2,
+  "name": "DESDE CERO",
+  "variant": "Camiseta / Verde oliva",
+  "cardImage": "../../assets/vora/desde-cero/card-desde-cero.webp",
+  "description": "Para quien decide empezar de nuevo. Verde oliva, corte oversize y algodón de alto gramaje con una caída natural.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize unisex"
+    },
+    {
+      "label": "Material",
+      "value": "100% algodón de alto gramaje"
+    },
+    {
+      "label": "Color",
+      "value": "Verde oliva"
+    },
+    {
+      "label": "Estampado",
+      "value": "Serigrafía frontal y trasera"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}
