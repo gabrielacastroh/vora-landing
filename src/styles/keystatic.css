@@ -1,0 +1,60 @@
+/* Landing look for the Keystatic panel. Only overrides Keystar UI's documented CSS custom properties (--kui-*).
+   Values mirror the landing tokens in src/styles/global.css (@theme); keep them in sync by hand, since importing
+   global.css would pull Tailwind's preflight into the panel. */
+@import "@fontsource-variable/montserrat/wght.css";
+
+:root {
+  --vora-bg: #0b0b0d;
+  --vora-cream: #ece6dd;
+  --vora-muted: #8d877d;
+  --vora-red: #a32b32;
+  --vora-red-bright: #d94f56;
+}
+
+/* Doubled class beats the provider's own scheme rules regardless of stylesheet order. */
+.kui-scheme--light.kui-scheme--light,
+.kui-scheme--auto.kui-scheme--auto {
+  /* Cream canvas, warm greys. */
+  --kui-color-scale-slate1: #f6f2ec;
+  --kui-color-scale-slate2: var(--vora-cream);
+  --kui-color-scale-slate3: #e3dcd1;
+  --kui-color-scale-slate4: #d9d1c4;
+  --kui-color-scale-slate5: #cdc4b5;
+  --kui-color-scale-slate6: #bfb5a4;
+  --kui-color-scale-slate7: #a89e8e;
+  --kui-color-scale-slate8: var(--vora-muted);
+  --kui-color-scale-slate9: #6b665d;
+  --kui-color-scale-slate10: #3b3833;
+  --kui-color-scale-slate11: var(--vora-bg);
+  --kui-color-scale-indigo9: var(--vora-red);
+  --kui-color-scale-indigo11: var(--vora-red);
+}
+
+.kui-scheme--dark.kui-scheme--dark {
+  /* Landing black canvas, cream text. */
+  --kui-color-scale-slate1: var(--vora-bg);
+  --kui-color-scale-slate2: #141417;
+  --kui-color-scale-slate3: #1c1c20;
+  --kui-color-scale-slate4: #26262b;
+  --kui-color-scale-slate5: #303036;
+  --kui-color-scale-slate6: #3d3d44;
+  --kui-color-scale-slate7: #55524d;
+  --kui-color-scale-slate8: var(--vora-muted);
+  --kui-color-scale-slate9: #a8a298;
+  --kui-color-scale-slate10: #cfc9bf;
+  --kui-color-scale-slate11: var(--vora-cream);
+  --kui-color-scale-indigo9: var(--vora-red);
+  --kui-color-scale-indigo11: var(--vora-red-bright);
+}
+
+:root,
+.kui-scheme--light,
+.kui-scheme--dark,
+.kui-scheme--auto {
+  --kui-typography-font-family-base: "Montserrat Variable", sans-serif;
+}
+
+body {
+  font-family: "Montserrat Variable", sans-serif;
+  margin: 0;
+}
