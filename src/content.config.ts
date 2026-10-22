@@ -8,6 +8,8 @@ const products = defineCollection({
   loader: glob({ pattern: '*.json', base: 'src/data/products' }),
   schema: ({ image }) =>
     z.object({
+      /** false hides the product everywhere public (admin toggle). Omitted = visible. */
+      active: z.boolean().default(true),
       /** Position in the catalog (1 = first): sets the /coleccion numbering and the pager order. */
       order: z.number().int().positive(),
       name: z.string(),
