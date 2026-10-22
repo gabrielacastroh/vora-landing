@@ -1,5 +1,4 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import productsFile from './products.json';
 import { srcSet } from '../lib/srcset';
 
 const CARD_WIDTHS = [640, 1080];
@@ -10,9 +9,8 @@ export type ProductSets = { card?: string; /** The card image at slide size (fir
 
 export type Product = CollectionEntry<'products'>['data'] & { slug: string; sets: ProductSets };
 
-/** Every product, in products.json order (getCollection() orders by id, so the file sets it). */
+/** Every product, by `order` (glob() makes no ordering guarantee). */
 export async function getProducts(): Promise<Product[]> {
-  const fileOrder = productsFile.map((p) => p.id);
   const entries = await getCollection('products');
   const products = await Promise.all(
     entries.map(async (entry) => {
@@ -26,16 +24,16 @@ export async function getProducts(): Promise<Product[]> {
       return { slug: entry.id, ...entry.data, sets };
     }),
   );
-  return products.sort((a, b) => fileOrder.indexOf(a.slug) - fileOrder.indexOf(b.slug));
+  return products.sort((a, b) => a.order - b.order);
 }
 
-/** Products flagged `featured` in products.json, in that order (home groups them by `line`). */
+/** Products flagged `featured`, in that order (home groups them by `line`). */
 export async function getFeatured(): Promise<Product[]> {
   return (await getProducts()).filter((p) => p.featured).sort((a, b) => a.featured! - b.featured!);
 }
 
-/** Products of one /coleccion group, in products.json order (that order is the 01, 02… numbering). */
-/** Products shown in the store (they belong to a line). The rest stay in products.json but have no public page. */
+/** Products of one /coleccion group, by `order` (that order is the 01, 02… numbering). */
+/** Products shown in the store (they belong to a line). The rest stay in src/data/products but have no public page. */
 export async function getListed(): Promise<Product[]> {
   return (await getProducts()).filter((p) => p.line);
 }

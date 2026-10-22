@@ -1,13 +1,15 @@
 import { defineCollection } from 'astro:content';
-import { file } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// Single source of truth for the catalog: src/data/products.json. The build fails if an entry
+// Single source of truth for the catalog: src/data/products/<id>.json (one file per product). The build fails if an entry
 // is malformed or points at an image that does not exist.
 const products = defineCollection({
-  loader: file('src/data/products.json'),
+  loader: glob({ pattern: '*.json', base: 'src/data/products' }),
   schema: ({ image }) =>
     z.object({
+      /** Position in the catalog (1 = first): sets the /coleccion numbering and the pager order. */
+      order: z.number().int().positive(),
       name: z.string(),
       variant: z.string(),
       /** Collection-page group. Omit to leave the product out of /coleccion. */

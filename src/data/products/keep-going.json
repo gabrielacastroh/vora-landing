@@ -1,0 +1,47 @@
+{
+  "order": 3,
+  "name": "KEEP GOING",
+  "variant": "Camiseta / Blanco",
+  "line": "unisex",
+  "cardImage": "../../assets/vora/card-keep-going.webp",
+  "gallery": [
+    {
+      "image": "../../assets/vora/keep-going-1.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/keep-going-2.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/keep-going-3.webp",
+      "position": "center top"
+    }
+  ],
+  "featured": 2,
+  "description": "Seguir avanzando también es una forma de crecer. KEEP GOING representa la constancia, la determinación y la capacidad de superar nuestros propios límites. Su composición artística combina una figura clásica en movimiento con elementos gráficos que simbolizan evolución y progreso.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize"
+    },
+    {
+      "label": "Material",
+      "value": "100% algodón de alto gramaje"
+    },
+    {
+      "label": "Color",
+      "value": "Blanco"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

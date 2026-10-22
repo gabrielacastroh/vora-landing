@@ -1,0 +1,49 @@
+{
+  "order": 13,
+  "name": "ON MY WAY",
+  "variant": "Camiseta crop top / Beige",
+  "line": "womens",
+  "cardImage": "../../assets/vora/card-on-my-way.webp",
+  "gallery": [
+    {
+      "image": "../../assets/vora/on-my-way-1.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/on-my-way-2.webp",
+      "position": "center"
+    },
+    {
+      "image": "../../assets/vora/on-my-way-3.webp",
+      "position": "center top"
+    }
+  ],
+  "heroImage": "../../assets/vora/shop-numbers.webp",
+  "heroPosition": "20% center",
+  "featured": 2,
+  "description": "Cada paso tiene un propósito. ON MY WAY representa la determinación de avanzar sin comparaciones ni prisas. Su composición tipográfica combina elegancia y movimiento, transmitiendo una idea sencilla: no importa dónde estés ahora, lo importante es seguir construyendo tu propio camino.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize Crop Top"
+    },
+    {
+      "label": "Material",
+      "value": "100 % algodón"
+    },
+    {
+      "label": "Color",
+      "value": "Beige"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

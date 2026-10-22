@@ -1,0 +1,46 @@
+{
+  "order": 10,
+  "name": "AMBITION CLUB",
+  "variant": "Camiseta / Blanco",
+  "line": "unisex",
+  "cardImage": "../../assets/vora/card-ambition-club.webp",
+  "gallery": [
+    {
+      "image": "../../assets/vora/ambition-club-1.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/ambition-club-2.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/ambition-club-3.webp",
+      "position": "center top"
+    }
+  ],
+  "description": "Para quienes piensan en grande y trabajan por sus objetivos. AMBITION CLUB representa una mentalidad de crecimiento constante, donde la ambición se convierte en acción. Una propuesta tipográfica que combina carácter, identidad y una visión de futuro.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize"
+    },
+    {
+      "label": "Material",
+      "value": "100% algodón de alto gramaje"
+    },
+    {
+      "label": "Color",
+      "value": "Blanco"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}

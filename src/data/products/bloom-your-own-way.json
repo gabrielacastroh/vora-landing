@@ -1,0 +1,47 @@
+{
+  "order": 11,
+  "name": "BLOOM YOUR OWN WAY",
+  "variant": "Camiseta crop top / Blanco",
+  "line": "womens",
+  "cardImage": "../../assets/vora/card-bloom-your-own-way.webp",
+  "gallery": [
+    {
+      "image": "../../assets/vora/bloom-your-own-way-1.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/bloom-your-own-way-2.webp",
+      "position": "center top"
+    },
+    {
+      "image": "../../assets/vora/bloom-your-own-way-3.webp",
+      "position": "center top"
+    }
+  ],
+  "description": "Una camiseta que representa el inicio del camino. Su lenguaje gráfico toma referencias de señalización, dirección y movimiento para construir una composición que transmite la idea de avanzar desde un punto inicial.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize Crop Top"
+    },
+    {
+      "label": "Material",
+      "value": "100 % algodón"
+    },
+    {
+      "label": "Color",
+      "value": "Blanco"
+    },
+    {
+      "label": "Gramaje",
+      "value": "230 g/m²"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "featured": 1
+}

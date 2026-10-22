@@ -1,0 +1,31 @@
+{
+  "order": 4,
+  "name": "GOOD LUCK",
+  "variant": "Camiseta / Negro",
+  "cardImage": "../../assets/vora/card-good-luck.webp",
+  "description": "Para lo inesperado que también forma parte del camino. Negro profundo, corte oversize y algodón de alto gramaje.",
+  "details": [
+    {
+      "label": "Corte",
+      "value": "Oversize unisex"
+    },
+    {
+      "label": "Material",
+      "value": "100% algodón de alto gramaje"
+    },
+    {
+      "label": "Color",
+      "value": "Negro"
+    },
+    {
+      "label": "Estampado",
+      "value": "Serigrafía frontal y trasera"
+    }
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ]
+}
