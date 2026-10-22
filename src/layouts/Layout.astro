@@ -127,7 +127,7 @@ const ogImage = new URL(image, Astro.site).href;
   </head>
   <body class="bg-vora-bg font-sans antialiased">
     <slot />
-    {!hideWhatsapp && <WhatsappButton />}
+    {!hideWhatsapp && <WhatsappButton light={canvas === '#ece6dd'} />}
     <script>
       import '../scripts/motion';
       // Firefox ignores -webkit-user-drag.
