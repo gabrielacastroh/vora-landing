@@ -1,0 +1,30 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import FrameNav from '../components/vora/FrameNav';
+import FrameFooter from '../components/vora/FrameFooter';
+import navBg from '../assets/vora/nav-bg.png';
+import { site } from '../data/site';
+
+const link = 'font-display text-sm font-bold tracking-[0.1em] text-vora-red-bright uppercase underline-offset-8 hover:underline focus-visible:underline';
+---
+
+<Layout title={`Página no encontrada — ${site.name}`} description="Esta página no existe. Vuelve al inicio o explora la colección de VORA." noindex>
+  <div class="relative overflow-x-clip bg-[#0b0b0d]">
+    <FrameNav active="" background={navBg.src} theme="dark" />
+    <main class="mx-auto flex min-h-svh w-full max-w-360 flex-col justify-center px-6 pt-32 pb-16 sm:px-10 lg:pl-[5.5rem]">
+      <p class="font-display text-sm font-bold tracking-[0.1875rem] text-vora-red-bright">ERROR 404</p>
+      <h1 class="mt-4 font-mont text-[2.75rem] leading-[0.9] font-black text-[#ece6dd] italic sm:text-[4rem] lg:text-[4.6875rem]">
+        ESTE CAMINO<br />NO EXISTE.
+      </h1>
+      <p class="mt-6 max-w-[32.8rem] text-[1.0625rem] leading-[1.4] text-[#b7b7b5]">
+        La página que buscas se movió o nunca estuvo aquí. Sigue hacia adelante por otra ruta.
+      </p>
+      <nav aria-label="Salidas" class="mt-10 flex flex-wrap gap-x-10 gap-y-4">
+        <a href="/coleccion" class={link}>Ver la colección →</a>
+        <a href="/" class={link}>Volver al inicio →</a>
+      </nav>
+    </main>
+  </div>
+  <FrameFooter />
+</Layout>
