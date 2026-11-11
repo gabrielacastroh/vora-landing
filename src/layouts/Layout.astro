@@ -27,10 +27,13 @@ interface Props {
   ogDescription?: string;
   /** Share image path or absolute URL (1200x630). */
   image?: string;
+  imageAlt?: string;
 }
 
-const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex, italics, hideWhatsapp = false, ogTitle = title, ogDescription = description, image = '/og-image.jpg' } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const { title, description = site.description, canvas = '#0b0b0d', preloadImage, noindex, italics, hideWhatsapp = false, ogTitle = title, ogDescription = description, image = '/og-image.jpg', imageAlt = 'VORA Colombia' } = Astro.props;
+// Prerendered pages report "/coleccion/" while the sitemap and every internal link use "/coleccion":
+// drop the trailing slash so all three name the same URL.
+const canonical = new URL(Astro.url.pathname.replace(/(.)\/$/, '$1'), Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
 ---
 
@@ -51,7 +54,7 @@ const ogImage = new URL(image, Astro.site).href;
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="VORA Colombia" />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
