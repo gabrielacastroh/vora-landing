@@ -7,6 +7,7 @@ import productNavBg from '../../assets/vora/product-nav-bg.png';
 import ProductHero from '../../components/product/ProductHero';
 import { getListed } from '../../data/catalog';
 import { site } from '../../data/site';
+import { jsonLd } from '../../lib/jsonld';
 
 export async function getStaticPaths() {
   return (await getListed()).map((p) => ({ params: { slug: p.slug } }));
@@ -16,18 +17,36 @@ const products = await getListed();
 const i = products.findIndex((p) => p.slug === Astro.params.slug);
 if (i < 0) return new Response(null, { status: 404 });
 const product = products[i];
-const jsonLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: product.name,
-  description: product.description,
-  image: new URL(product.cardImage.src, Astro.site).href,
-  brand: { '@type': 'Brand', name: site.name },
-});
+const abs = (path: string) => new URL(path, Astro.site).href;
+const url = abs(`/producto/${product.slug}`);
+const photos = product.gallery?.length ? product.gallery.map((g) => g.image) : product.heroImage ? [product.heroImage] : [];
+const crumbs = [
+  { name: 'Inicio', item: abs('/') },
+  { name: 'Colección', item: abs('/coleccion') },
+  { name: product.name, item: url },
+];
+const structuredData = jsonLd([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    url,
+    image: [product.cardImage, ...photos].map((img) => abs(img.src)),
+    brand: { '@type': 'Brand', name: site.name },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, n) => ({ '@type': 'ListItem', position: n + 1, ...c })),
+  },
+]);
+// "Camiseta / Rojo" -> "Camiseta Rojo": the garment type is what people search for.
+const title = `${product.name} — ${product.variant.replace(' / ', ' ')} | ${site.name}`;
 ---
 
-<Layout title={`${product.name} — ${site.name}`} description={product.description} hideWhatsapp>
-  <script type="application/ld+json" set:html={jsonLd} />
+<Layout title={title} description={product.description} image={`/og/${product.slug}.jpg`} imageAlt={`${product.name} — ${product.variant}`} hideWhatsapp>
+  <script is:inline type="application/ld+json" set:html={structuredData} />
   <FrameNav active="coleccion" background={productNavBg.src} theme="dark" />
   <main>
     <ProductHero product={product} />

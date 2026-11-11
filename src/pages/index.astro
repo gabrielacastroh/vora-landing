@@ -6,8 +6,22 @@ import FrameFooter from '../components/vora/FrameFooter';
 import heroBg from '../assets/vora/hero-couple.webp';
 import { getFeatured } from '../data/catalog';
 import { site } from '../data/site';
+import { jsonLd } from '../lib/jsonld';
 
 const featured = await getFeatured();
+const home = new URL('/', Astro.site).href;
+// WebSite gives Google the site name; Organization ties the brand to its social profiles.
+const structuredData = jsonLd([
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: home },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.name,
+    url: home,
+    logo: new URL('/apple-touch-icon.png', Astro.site).href,
+    sameAs: [site.social.instagram, site.social.tiktok].filter(Boolean),
+  },
+]);
 ---
 
 <Layout
@@ -17,6 +31,7 @@ const featured = await getFeatured();
   ogDescription={site.description}
   preloadImage={heroBg.src}
 >
+  <script is:inline type="application/ld+json" set:html={structuredData} />
   <HomeFrame featured={featured} />
   <FrameFooter />
 </Layout>
