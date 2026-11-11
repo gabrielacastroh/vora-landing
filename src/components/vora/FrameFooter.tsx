@@ -78,11 +78,21 @@ export default function FrameFooter() {
         </div>
 
         <div data-line className="mt-12 h-px bg-white/25" />
-        <div data-reveal className="flex items-center gap-[0.4375rem] pt-[1.8125rem]">
-          <img loading="lazy" decoding="async" alt="" src={footerCopyrightIcon.src} className="size-[0.6875rem] max-w-none object-cover" />
-          <p className="font-display text-[0.6875rem] font-thin uppercase leading-none text-white">
-            2026 vora, <span className="capitalize">todos</span>
-            <span className="lowercase"> los derechos reservados.</span>
+        {/* Credit centred from sm up (empty third column balances the copyright). Never on the right, and left-aligned
+            on phones: the floating WhatsApp button covers the bottom-right corner. */}
+        <div data-reveal className="flex flex-col gap-4 pt-[1.8125rem] sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+          <div className="flex items-center gap-[0.4375rem]">
+            <img loading="lazy" decoding="async" alt="" src={footerCopyrightIcon.src} className="size-[0.6875rem] max-w-none object-cover" />
+            <p className="font-display text-[0.6875rem] font-thin uppercase leading-none text-white">
+              2026 vora, <span className="capitalize">todos</span>
+              <span className="lowercase"> los derechos reservados.</span>
+            </p>
+          </div>
+          <p className="font-display text-[0.6875rem] font-thin leading-none text-white">
+            Powered by{' '}
+            <a href="https://www.scale-labs.co/" target="_blank" rel="noopener noreferrer" className="font-normal underline-offset-4 hover:underline focus-visible:underline">
+              Scale Labs
+            </a>
           </p>
         </div>
       </div>
